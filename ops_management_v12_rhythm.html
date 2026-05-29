@@ -1,0 +1,405 @@
+
+<!-- saved from url=(0063)file:///C:/Users/Admin/Downloads/ops_management_v12_rhythm.html -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:var(--font-sans);color:var(--color-text-primary)}
+.wrap{padding:16px 0;min-width:960px;max-width:1200px;margin:0 auto}
+.pg-title{text-align:center;font-size:14px;font-weight:600;margin-bottom:16px}
+
+.block{border-radius:12px;border:.5px solid;overflow:hidden}
+.b1{border-color:#5DCAA5}.b2{border-color:#AFA9EC}.b3{border-color:#EF9F27}
+.bh{padding:10px 16px;border-bottom:.5px solid var(--color-border-tertiary)}
+.b1 .bh{background:rgba(29,158,117,.06)}
+.b2 .bh{background:rgba(127,119,221,.08)}
+.b3 .bh{background:rgba(186,117,23,.06)}
+.bh-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:5px}
+.bh-num{font-size:11px;font-weight:700;padding:2px 10px;border-radius:20px;border:.5px solid}
+.b1 .bh-num{background:#E1F5EE;color:#085041;border-color:#5DCAA5}
+.b2 .bh-num{background:#EEEDFE;color:#26215C;border-color:#AFA9EC}
+.b3 .bh-num{background:#FAEEDA;color:#412402;border-color:#EF9F27}
+.bh-cad{font-size:11px;color:var(--color-text-tertiary)}
+.bh-title{font-size:13px;font-weight:600}
+.body{display:grid;grid-template-columns:1fr 1fr}
+.col{padding:14px 16px}
+.col-r{border-left:.5px solid var(--color-border-tertiary)}
+.col-lbl{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.07em;color:var(--color-text-tertiary);margin-bottom:9px;display:flex;align-items:center;gap:5px}
+.ex{font-size:9px;padding:1px 5px;border-radius:6px;background:var(--color-background-tertiary);color:var(--color-text-tertiary);border:.5px solid var(--color-border-tertiary);text-transform:none;letter-spacing:0;font-weight:500}
+.steps{display:flex;flex-direction:column;gap:8px}
+.step{display:flex;align-items:flex-start;gap:8px}
+.sn{width:20px;height:20px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:700;flex-shrink:0;margin-top:1px}
+.b1 .sn{background:#E1F5EE;color:#085041}
+.b2 .sn{background:#EEEDFE;color:#3C3489}
+.b3 .sn{background:#FAEEDA;color:#633806}
+.st{font-size:12px;color:var(--color-text-secondary);line-height:1.55}
+.st b{font-weight:600;color:var(--color-text-primary)}
+.mgroup{margin-bottom:12px}.mgroup:last-of-type{margin-bottom:0}
+.msub{font-size:11px;font-weight:600;color:var(--color-text-secondary);margin-bottom:5px}
+.kpis{display:flex;flex-wrap:wrap;gap:5px}
+.kpi{font-size:11px;padding:3px 10px;border-radius:20px;border:.5px solid;white-space:nowrap}
+.b1 .kpi{background:#E1F5EE;color:#085041;border-color:#9FE1CB}
+.b2 .kpi{background:#EEEDFE;color:#26215C;border-color:#CECBF6}
+.b3 .kpi{background:#FAEEDA;color:#412402;border-color:#FAC775}
+.kpi.bld{font-weight:700}
+.mnote{font-size:11px;color:var(--color-text-tertiary);font-style:italic;line-height:1.5;margin-top:9px}
+.bf{display:flex;align-items:center;justify-content:space-between;padding:9px 16px;border-top:.5px solid var(--color-border-tertiary);background:var(--color-background-tertiary)}
+.bf-meet{font-size:11px;color:var(--color-text-secondary)}
+.bf-parts{display:flex;gap:5px}
+.bp{font-size:11px;font-weight:700;padding:2px 9px;border-radius:4px}
+.b1 .bp-coo{background:#E1F5EE;color:#085041}
+.b2 .bp-coo,.b2 .bp-ceo{background:#EEEDFE;color:#3C3489}
+.b3 .bp-coo,.b3 .bp-ceo{background:#FAEEDA;color:#633806}
+.kpi-side-badge{display:inline-flex;align-items:center;font-size:10px;font-weight:600;padding:2px 8px;border-radius:4px;background:#EEF1FD;color:#2D3FBF;border:.5px solid #8FA3F5;margin-left:8px}
+
+/* KPI BANNER */
+.kpi-banner{border-radius:10px;border:1.5px solid #4F6BED;background:linear-gradient(135deg,rgba(79,107,237,.07) 0%,rgba(130,90,220,.07) 100%);padding:14px 20px;margin-bottom:8px;display:flex;align-items:flex-start;gap:20px}
+.kpi-icon{font-size:22px;flex-shrink:0;margin-top:1px}
+.kpi-text{flex:1}
+.kpi-title{font-size:13px;font-weight:700;color:#2D3FBF;margin-bottom:4px}
+.kpi-sub{font-size:12px;color:var(--color-text-secondary);line-height:1.5}
+.kpi-tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}
+.kpi-tag{font-size:11px;padding:3px 11px;border-radius:20px;font-weight:600;border:.5px solid}
+.kt-kpi{background:#EEF1FD;color:#2D3FBF;border-color:#8FA3F5}
+.kt-okr{background:#F2EEFB;color:#5B259F;border-color:#C09FEC}
+.kt-plan{background:#E8F4FF;color:#0B4FA8;border-color:#7DB8F5}
+.applies-row{display:flex;justify-content:center;align-items:center;gap:8px;margin-bottom:10px}
+.applies-line{flex:1;height:1px;background:rgba(79,107,237,.25)}
+.applies-text{font-size:11px;font-weight:600;color:#4F6BED;white-space:nowrap;padding:0 4px}
+
+/* ── RHYTHM SECTION ── */
+.rhythm-section{border-radius:10px;border:1.5px solid #2BA8A0;background:linear-gradient(135deg,rgba(43,168,160,.06) 0%,rgba(20,120,140,.06) 100%);padding:0;margin-bottom:10px;overflow:hidden}
+.rhythm-header{display:flex;align-items:center;gap:12px;padding:12px 20px;border-bottom:.5px solid rgba(43,168,160,.25)}
+.rhythm-icon{font-size:20px;flex-shrink:0}
+.rhythm-htitle{font-size:13px;font-weight:700;color:#0E6B65}
+.rhythm-hsub{font-size:12px;color:var(--color-text-secondary);margin-left:4px}
+.rhythm-applies{margin-left:auto;font-size:11px;font-weight:600;color:#2BA8A0;white-space:nowrap;padding:2px 10px;border:.5px solid #2BA8A0;border-radius:4px;background:var(--color-background-primary)}
+
+.rhythm-grid{display:grid;grid-template-columns:1fr 1fr 1fr;border-top:none}
+.rc{padding:14px 18px;border-right:.5px solid rgba(43,168,160,.2)}
+.rc:last-child{border-right:none}
+.rc-badge{display:inline-flex;align-items:center;gap:5px;font-size:10px;font-weight:700;padding:2px 9px;border-radius:20px;margin-bottom:8px;border:.5px solid}
+.rc-b1{background:#E1F5EE;color:#085041;border-color:#5DCAA5}
+.rc-b2{background:#EEEDFE;color:#26215C;border-color:#AFA9EC}
+.rc-b3{background:#FAEEDA;color:#412402;border-color:#EF9F27}
+.rc-cad{font-size:11px;font-weight:700;color:var(--color-text-primary);margin-bottom:10px}
+.rc-rows{display:flex;flex-direction:column;gap:6px}
+.rc-row{display:flex;align-items:flex-start;gap:7px}
+.rc-dot{width:5px;height:5px;border-radius:50%;flex-shrink:0;margin-top:5px}
+.rc-dot-1{background:#1D9E75}
+.rc-dot-2{background:#7F77DD}
+.rc-dot-3{background:#BA7517}
+.rc-txt{font-size:11px;color:var(--color-text-secondary);line-height:1.5}
+.rc-txt b{font-weight:600;color:var(--color-text-primary)}
+
+/* FORK */
+.fork-zone{position:relative;height:90px;margin:2px 0}
+.fork-zone svg{position:absolute;top:0;left:0;width:100%;height:100%}
+.lbl-l{position:absolute;top:30px;left:3%;font-size:11px;padding:3px 12px;border:.5px solid #9FE1CB;border-radius:5px;font-weight:500;color:#085041;background:var(--color-background-primary);white-space:nowrap}
+.lbl-r{position:absolute;top:30px;right:3%;font-size:11px;padding:3px 12px;border:.5px solid #FAC775;border-radius:5px;font-weight:500;color:#412402;background:var(--color-background-primary);white-space:nowrap}
+.bottom-row{display:grid;grid-template-columns:1fr 60px 1fr}
+
+/* DRILL-DOWN */
+.dd{margin-top:24px;border-radius:12px;border:.5px solid var(--color-border-secondary);overflow:hidden}
+.dd-hdr{padding:9px 16px;background:var(--color-background-secondary);border-bottom:.5px solid var(--color-border-tertiary);display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.dd-ht{font-size:12px;font-weight:600}
+.dd-hs{font-size:11px;color:var(--color-text-secondary)}
+.dd-chain{display:flex;align-items:stretch;padding:12px 14px;gap:5px;overflow-x:auto}
+.dd-step{flex:1;min-width:100px;border-radius:8px;border:.5px solid var(--color-border-tertiary);background:var(--color-background-secondary);padding:9px 10px}
+.dd-src{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.04em;margin-bottom:3px}
+.dd-t{font-size:12px;font-weight:600;margin-bottom:3px}
+.dd-d{font-size:11px;color:var(--color-text-secondary);line-height:1.4}
+.tag-r{font-size:10px;padding:1px 6px;border-radius:3px;display:inline-block;margin-bottom:3px;background:#FCEBEB;color:#A32D2D;border:.5px solid #F09595}
+.tag-g{font-size:10px;padding:1px 6px;border-radius:3px;display:inline-block;margin-bottom:3px;background:#EAF3DE;color:#3B6D11;border:.5px solid #97C459}
+.tag-a{font-size:10px;padding:1px 6px;border-radius:3px;display:inline-block;margin-bottom:3px;background:#FAEEDA;color:#633806;border:.5px solid #FAC775}
+.dd-arr{display:flex;align-items:center;color:var(--color-text-tertiary);font-size:16px;flex-shrink:0}
+
+@media(prefers-color-scheme:dark){
+  .b1{border-color:#1D9E75}.b1 .bh{background:rgba(29,158,117,.1)}
+  .b1 .bh-num,.b1 .sn,.b1 .bp-coo{background:#04342C;color:#5DCAA5;border-color:#1D9E75}
+  .b1 .kpi{background:#04342C;color:#9FE1CB;border-color:#0F6E56}
+  .lbl-l{border-color:#1D9E75;color:#5DCAA5}
+  .b2{border-color:#7F77DD}.b2 .bh{background:rgba(127,119,221,.12)}
+  .b2 .bh-num,.b2 .sn,.b2 .bp-coo,.b2 .bp-ceo{background:#26215C;color:#AFA9EC;border-color:#7F77DD}
+  .b2 .kpi{background:#26215C;color:#CECBF6;border-color:#534AB7}
+  .b3{border-color:#BA7517}.b3 .bh{background:rgba(186,117,23,.1)}
+  .b3 .bh-num,.b3 .sn,.b3 .bp-coo,.b3 .bp-ceo{background:#412402;color:#EF9F27;border-color:#BA7517}
+  .b3 .kpi{background:#412402;color:#FAC775;border-color:#854F0B}
+  .lbl-r{border-color:#BA7517;color:#EF9F27}
+  .kpi-banner{border-color:#4F6BED;background:rgba(79,107,237,.08)}
+  .kpi-title{color:#8FA3F5}.kt-kpi{background:#1A2050;color:#8FA3F5;border-color:#4F6BED}
+  .kt-okr{background:#2A1545;color:#C09FEC;border-color:#7A4FBD}
+  .kt-plan{background:#0D2040;color:#7DB8F5;border-color:#3A78CC}
+  .kpi-side-badge{background:#1A2050;color:#8FA3F5;border-color:#4F6BED}
+  .applies-text{color:#8FA3F5}.applies-line{background:rgba(143,163,245,.25)}
+  .rhythm-section{border-color:#1D8F89;background:rgba(29,143,137,.08)}
+  .rhythm-htitle{color:#2BA8A0}.rhythm-applies{color:#2BA8A0;border-color:#2BA8A0}
+  .rc{border-color:rgba(43,168,160,.15)}
+  .rc-b1{background:#04342C;color:#5DCAA5;border-color:#1D9E75}
+  .rc-b2{background:#26215C;color:#AFA9EC;border-color:#7F77DD}
+  .rc-b3{background:#412402;color:#EF9F27;border-color:#BA7517}
+  .tag-r{background:#501313;color:#F09595;border-color:#791F1F}
+  .tag-g{background:#173404;color:#C0DD97;border-color:#3B6D11}
+  .tag-a{background:#412402;color:#FAC775;border-color:#854F0B}
+}
+</style>
+
+</head><body><div class="wrap">
+<div class="pg-title">Архитектура операционного управления</div>
+
+<!-- KPI/OKR -->
+<div class="kpi-banner">
+  <div class="kpi-icon">🎯</div>
+  <div class="kpi-text">
+    <div class="kpi-title">Фундамент системы: KPI + OKR</div>
+    <div class="kpi-sub">Чтобы сравнивать план и факт на каждом уровне — нужно заранее определить целевые показатели. KPI фиксирует что измеряем. OKR задаёт куда идём и через какие результаты. Без этого нет плановых значений — нечего сравнивать.</div>
+    <div class="kpi-tags">
+      <span class="kpi-tag kt-kpi">KPI — что измеряем</span>
+      <span class="kpi-tag kt-okr">OKR — цели и ключевые результаты</span>
+      <span class="kpi-tag kt-plan">Planned vs Actual — на каждом уровне</span>
+    </div>
+  </div>
+</div>
+<div class="applies-row">
+  <div class="applies-line"></div>
+  <div class="applies-text">Применяется во всех трёх блоках — Блок 1, Блок 2, Блок 3</div>
+  <div class="applies-line"></div>
+</div>
+
+<!-- ══ RHYTHM & STANDARDIZATION ══ -->
+<div class="rhythm-section">
+  <div class="rhythm-header">
+    <div class="rhythm-icon">🔄</div>
+    <div class="rhythm-htitle">Операционный ритм и стандартизация</div>
+    <div class="rhythm-hsub">— единые правила для каждого уровня управления</div>
+    <div class="rhythm-applies">Применяется во всех трёх блоках</div>
+  </div>
+  <div class="rhythm-grid">
+
+    <!-- Block 1 rhythm -->
+    <div class="rc">
+      <div class="rc-badge rc-b1">Блок 1</div>
+      <div class="rc-cad">Daily · Weekly</div>
+      <div class="rc-rows">
+        <div class="rc-row"><div class="rc-dot rc-dot-1"></div><div class="rc-txt"><b>Ритм:</b> ежедневный дашборд + еженедельный митинг COO с Head of</div></div>
+        <div class="rc-row"><div class="rc-dot rc-dot-1"></div><div class="rc-txt"><b>Формат:</b> 30–45 мин, фокус на одном буксующем показателе</div></div>
+        <div class="rc-row"><div class="rc-dot rc-dot-1"></div><div class="rc-txt"><b>Стандарт:</b> дашборд открыт, план vs факт на экране, action items фиксируются письменно</div></div>
+        <div class="rc-row"><div class="rc-dot rc-dot-1"></div><div class="rc-txt"><b>Выход:</b> конкретное решение + ответственный + дедлайн</div></div>
+      </div>
+    </div>
+
+    <!-- Block 2 rhythm -->
+    <div class="rc">
+      <div class="rc-badge rc-b2">Блок 2</div>
+      <div class="rc-cad">Monthly</div>
+      <div class="rc-rows">
+        <div class="rc-row"><div class="rc-dot rc-dot-2"></div><div class="rc-txt"><b>Ритм:</b> фиксированный день месяца, одна и та же повестка каждый раз</div></div>
+        <div class="rc-row"><div class="rc-dot rc-dot-2"></div><div class="rc-txt"><b>Формат:</b> 60–90 мин, COO + CEO, дашборд + отчёт подготовлены заранее</div></div>
+        <div class="rc-row"><div class="rc-dot rc-dot-2"></div><div class="rc-txt"><b>Стандарт:</b> единый шаблон отчёта — метрика / план / факт / дельта / причина / action</div></div>
+        <div class="rc-row"><div class="rc-dot rc-dot-2"></div><div class="rc-txt"><b>Выход:</b> обновлённый action plan на следующий месяц</div></div>
+      </div>
+    </div>
+
+    <!-- Block 3 rhythm -->
+    <div class="rc">
+      <div class="rc-badge rc-b3">Блок 3</div>
+      <div class="rc-cad">Quarterly</div>
+      <div class="rc-rows">
+        <div class="rc-row"><div class="rc-dot rc-dot-3"></div><div class="rc-txt"><b>Ритм:</b> последняя неделя квартала, полный стратегический разбор</div></div>
+        <div class="rc-row"><div class="rc-dot rc-dot-3"></div><div class="rc-txt"><b>Формат:</b> 2–3 часа, COO + CEO, данные Блока 2 × 3 месяца на входе</div></div>
+        <div class="rc-row"><div class="rc-dot rc-dot-3"></div><div class="rc-txt"><b>Стандарт:</b> квартальный отчёт — тренды, паттерны, выводы, корректировка OKR</div></div>
+        <div class="rc-row"><div class="rc-dot rc-dot-3"></div><div class="rc-txt"><b>Выход:</b> скорректированная стратегия + KPI-план Блока 2 на следующий квартал</div></div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- BLOCK 2 -->
+<div class="block b2">
+  <div class="bh">
+    <div class="bh-top">
+      <span class="bh-num">Блок 2 · Основа системы</span>
+      <span style="display:flex;align-items:center;gap:8px"><span class="kpi-side-badge">KPI · OKR</span><span class="bh-cad">Monthly</span></span>
+    </div>
+    <div class="bh-title">Ежемесячный мониторинг и контроль</div>
+  </div>
+  <div class="body">
+    <div class="col">
+      <div class="col-lbl">Алгоритм встречи</div>
+      <div class="steps">
+        <div class="step"><div class="sn">1</div><div class="st"><b>Данные из дашборда.</b> Факт за месяц собирается автоматически</div></div>
+        <div class="step"><div class="sn">2</div><div class="st"><b>Planned vs actual</b> по каждому KPI показателю</div></div>
+        <div class="step"><div class="sn">3</div><div class="st"><b>Анализ отклонений.</b> Что хорошо, что буксует и почему</div></div>
+        <div class="step"><div class="sn">4</div><div class="st"><b>Диагностика через Блок 1</b> по буксующему направлению</div></div>
+        <div class="step"><div class="sn">5</div><div class="st"><b>Action plan.</b> Конкретные действия, ответственный, дедлайн</div></div>
+        <div class="step"><div class="sn">6</div><div class="st"><b>Передача в Блок 3.</b> Данные месяца идут в квартальный анализ</div></div>
+      </div>
+    </div>
+    <div class="col col-r">
+      <div class="col-lbl">Показатели бизнеса <span class="ex">⚠ только пример</span></div>
+      <div class="mgroup">
+        <div class="msub">P&amp;L / Сервисный бизнес:</div>
+        <div class="kpis"><span class="kpi bld">Revenue</span><span class="kpi bld">EBITDA</span><span class="kpi">COGS</span><span class="kpi">Gross margin</span><span class="kpi">OpEx</span></div>
+      </div>
+      <div class="mgroup">
+        <div class="msub">SaaS / Продукт:</div>
+        <div class="kpis"><span class="kpi">MRR / ARR</span><span class="kpi">NRR</span><span class="kpi">Churn</span><span class="kpi">CAC Payback</span></div>
+      </div>
+      <div class="mnote">Метрики определяются один раз при настройке системы. Набор зависит от типа и модели бизнеса.</div>
+    </div>
+  </div>
+  <div class="bf">
+    <span class="bf-meet">📅 Ежемесячные встречи</span>
+    <div class="bf-parts"><span class="bp bp-coo">COO</span><span class="bp bp-ceo">CEO</span></div>
+  </div>
+</div>
+
+<!-- FORK -->
+<div class="fork-zone">
+  <svg viewBox="0 0 1000 90" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+    <line x1="500" y1="0" x2="500" y2="20" stroke="var(--color-border-secondary)" stroke-width="1.5"></line>
+    <line x1="120" y1="20" x2="880" y2="20" stroke="var(--color-border-secondary)" stroke-width="1.5"></line>
+    <line x1="120" y1="20" x2="120" y2="70" stroke="var(--color-border-secondary)" stroke-width="1.5"></line>
+    <polygon points="113,65 120,78 127,65" fill="var(--color-border-secondary)"></polygon>
+    <line x1="880" y1="20" x2="880" y2="70" stroke="var(--color-border-secondary)" stroke-width="1.5"></line>
+    <polygon points="873,65 880,78 887,65" fill="var(--color-border-secondary)"></polygon>
+  </svg>
+  <div class="lbl-l">← Определяет ведущие показатели Блока 1</div>
+  <div class="lbl-r">Данные × 3 месяца → квартальный анализ →</div>
+</div>
+
+<!-- BOTTOM ROW -->
+<div class="bottom-row">
+  <div class="block b1">
+    <div class="bh">
+      <div class="bh-top">
+        <span class="bh-num">Блок 1</span>
+        <span style="display:flex;align-items:center;gap:8px"><span class="kpi-side-badge">KPI</span><span class="bh-cad">Daily · Weekly</span></span>
+      </div>
+      <div class="bh-title">Ежедневный / еженедельный мониторинг и контроль</div>
+    </div>
+    <div class="body">
+      <div class="col">
+        <div class="col-lbl">Алгоритм COO</div>
+        <div class="steps">
+          <div class="step"><div class="sn">1</div><div class="st"><b>Выбор ведущих показателей</b> исходя из метрик Блока 2</div></div>
+          <div class="step"><div class="sn">2</div><div class="st"><b>Ежедневный / еженедельный замер</b> через дашборд автоматически</div></div>
+          <div class="step"><div class="sn">3</div><div class="st"><b>Отклонение от плана?</b> Определяем направление и функцию, которая буксует</div></div>
+          <div class="step"><div class="sn">4</div><div class="st"><b>Вход в процесс.</b> Конкретный этап воронки совместно с Head of</div></div>
+          <div class="step"><div class="sn">5</div><div class="st"><b>Корректирующие действия.</b> Решение, ответственный, дедлайн</div></div>
+          <div class="step"><div class="sn">6</div><div class="st"><b>Контроль эффекта.</b> Нет улучшения — эскалация в Блок 2</div></div>
+        </div>
+      </div>
+      <div class="col col-r">
+        <div class="col-lbl">Показатели <span class="ex">⚠ только пример</span></div>
+        <div class="mgroup">
+          <div class="msub">Если буксует Revenue:</div>
+          <div class="kpis"><span class="kpi bld">Win rate</span><span class="kpi bld">NRR</span><span class="kpi">Lead conv.</span><span class="kpi">Sales cycle</span><span class="kpi">Pipeline</span><span class="kpi">CAC</span><span class="kpi">Churn</span></div>
+        </div>
+        <div class="mgroup">
+          <div class="msub">Если буксует Gross margin:</div>
+          <div class="kpis"><span class="kpi">Utilization</span><span class="kpi">Cost/delivery</span><span class="kpi">Rework rate</span></div>
+        </div>
+        <div class="mnote">Набор метрик определяется исходя из показателя Блока 2, который буксует.</div>
+      </div>
+    </div>
+    <div class="bf">
+      <span class="bf-meet">📅 Еженедельно</span>
+      <div class="bf-parts"><span class="bp bp-coo">COO — ответственный</span></div>
+    </div>
+  </div>
+
+  <div></div>
+
+  <div class="block b3">
+    <div class="bh">
+      <div class="bh-top">
+        <span class="bh-num">Блок 3</span>
+        <span style="display:flex;align-items:center;gap:8px"><span class="kpi-side-badge">KPI · OKR</span><span class="bh-cad">Quarterly</span></span>
+      </div>
+      <div class="bh-title">Ежеквартальный стратегический обзор</div>
+    </div>
+    <div class="body">
+      <div class="col">
+        <div class="col-lbl">Алгоритм встречи</div>
+        <div class="steps">
+          <div class="step"><div class="sn">1</div><div class="st"><b>Агрегация данных.</b> Показатели Блока 2 за 3 месяца в единую картину</div></div>
+          <div class="step"><div class="sn">2</div><div class="st"><b>Анализ трендов.</b> Паттерны роста, системные отклонения</div></div>
+          <div class="step"><div class="sn">3</div><div class="st"><b>Оценка action plans</b> из Блоков 1 и 2 — что сработало</div></div>
+          <div class="step"><div class="sn">4</div><div class="st"><b>Стратегические выводы.</b> Где мы vs OKR годовые цели</div></div>
+          <div class="step"><div class="sn">5</div><div class="st"><b>Корректировка стратегии.</b> Цели, приоритеты, ресурсы</div></div>
+          <div class="step"><div class="sn">6</div><div class="st"><b>План следующего квартала</b> — плановые KPI для Блока 2</div></div>
+        </div>
+      </div>
+      <div class="col col-r">
+        <div class="col-lbl">Входные данные <span class="ex">⚠ только пример</span></div>
+        <div class="mgroup">
+          <div class="msub">Динамика Блока 2 × квартал:</div>
+          <div class="kpis"><span class="kpi bld">Revenue × 3M</span><span class="kpi bld">EBITDA trend</span><span class="kpi">GM delta</span><span class="kpi">OpEx динамика</span></div>
+        </div>
+        <div class="mgroup">
+          <div class="msub">Дополнительно на квартале:</div>
+          <div class="kpis"><span class="kpi">Market position</span><span class="kpi">Headcount plan</span><span class="kpi">Budget revision</span><span class="kpi">Roadmap review</span></div>
+        </div>
+        <div class="mnote">Стратегические решения принимаются на базе накопленных данных, а не одного месяца.</div>
+      </div>
+    </div>
+    <div class="bf">
+      <span class="bf-meet">📅 Ежеквартально</span>
+      <div class="bf-parts"><span class="bp bp-coo">COO</span><span class="bp bp-ceo">CEO — ответственный</span></div>
+    </div>
+  </div>
+</div>
+
+<!-- DRILL-DOWN -->
+<div class="dd">
+  <div class="dd-hdr">
+    <span class="dd-ht">🔍 Пример drill-down</span>
+    <span class="dd-hs">Блок 2 сигнализирует → COO работает в Блоке 1 → action plan → результат фиксируется в Блоке 2</span>
+  </div>
+  <div class="dd-chain">
+    <div class="dd-step">
+      <div class="dd-src" style="color:#7F77DD">Блок 2 · COO+CEO</div>
+      <span class="tag-r">↓ план</span>
+      <div class="dd-t">Revenue</div>
+      <div class="dd-d">Факт ниже плана за месяц</div>
+    </div>
+    <div class="dd-arr">›</div>
+    <div class="dd-step">
+      <div class="dd-src" style="color:#1D9E75">Блок 1 · COO</div>
+      <span class="tag-r">↓ план</span>
+      <div class="dd-t">Win rate</div>
+      <div class="dd-d">Ниже таргета 3 недели подряд</div>
+    </div>
+    <div class="dd-arr">›</div>
+    <div class="dd-step">
+      <div class="dd-src" style="color:var(--color-text-tertiary)">Воронка</div>
+      <span class="tag-a">Этап</span>
+      <div class="dd-t">Opportunity → Deal</div>
+      <div class="dd-d">Узкое место здесь</div>
+    </div>
+    <div class="dd-arr">›</div>
+    <div class="dd-step">
+      <div class="dd-src" style="color:var(--color-text-tertiary)">COO + Head of Sales</div>
+      <span class="tag-a">Причина</span>
+      <div class="dd-t">Условия оплаты</div>
+      <div class="dd-d">15 дней — барьер для клиентов</div>
+    </div>
+    <div class="dd-arr">›</div>
+    <div class="dd-step">
+      <div class="dd-src" style="color:var(--color-text-tertiary)">Action · COO</div>
+      <span class="tag-g">Решение</span>
+      <div class="dd-t">Отсрочка → 30 дней</div>
+      <div class="dd-d">Owner: Head of Sales</div>
+    </div>
+    <div class="dd-arr">›</div>
+    <div class="dd-step">
+      <div class="dd-src" style="color:#1D9E75">Блок 1 · Weekly</div>
+      <span class="tag-g">↑ растёт</span>
+      <div class="dd-t">Win rate ↑</div>
+      <div class="dd-d">Фиксируем в Блоке 2 следующего месяца</div>
+    </div>
+  </div>
+</div>
+
+</div>
+</body></html>
