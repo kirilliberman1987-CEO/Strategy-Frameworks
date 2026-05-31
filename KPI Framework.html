@@ -1,0 +1,592 @@
+<!DOCTYPE html>
+<!-- saved from url=(0051)file:///C:/Users/Admin/Downloads/kpi-framework.html -->
+<html lang="ru"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>KPI Framework</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=IBM+Plex+Mono:wght@400;600&family=IBM+Plex+Sans:wght@300;400;600&display=swap');
+
+  :root {
+    --bg: #0a0a0f;
+    --surface: #12121a;
+    --border: #1e1e2e;
+    --accent1: #00e5ff;
+    --accent2: #ff6b35;
+    --accent3: #7fff6b;
+    --text: #e8e8f0;
+    --muted: #6b6b80;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'IBM Plex Sans', sans-serif;
+    min-height: 100vh;
+    padding: 40px 24px;
+  }
+
+  .header {
+    text-align: center;
+    margin-bottom: 60px;
+  }
+
+  .header h1 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(48px, 8vw, 96px);
+    letter-spacing: 6px;
+    background: linear-gradient(90deg, var(--accent1), var(--accent2), var(--accent3));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    line-height: 1;
+  }
+
+  .header p {
+    font-family: 'IBM Plex Mono', monospace;
+    color: var(--muted);
+    font-size: 13px;
+    letter-spacing: 3px;
+    margin-top: 12px;
+    text-transform: uppercase;
+  }
+
+  .container {
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+
+  /* DEFINITION BLOCK */
+  .definitions {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin-bottom: 48px;
+  }
+
+  .def-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-left: 3px solid var(--accent1);
+    padding: 20px 24px;
+  }
+
+  .def-card:last-child {
+    border-left-color: var(--accent2);
+  }
+
+  .def-label {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 3px;
+    color: var(--muted);
+    text-transform: uppercase;
+    margin-bottom: 8px;
+  }
+
+  .def-text {
+    font-size: 14px;
+    line-height: 1.6;
+    color: var(--text);
+  }
+
+  .def-text strong {
+    color: var(--accent1);
+  }
+
+  /* SECTION TITLE */
+  .section-title {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 4px;
+    color: var(--muted);
+    text-transform: uppercase;
+    margin-bottom: 24px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  /* KPI TYPES */
+  .types-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 0;
+    margin-bottom: 48px;
+    border: 1px solid var(--border);
+  }
+
+  .type-card {
+    padding: 28px 24px;
+    border-right: 1px solid var(--border);
+    position: relative;
+    transition: background 0.3s;
+  }
+
+  .type-card:last-child { border-right: none; }
+  .type-card:hover { background: #16161f; }
+
+  .type-number {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 64px;
+    line-height: 1;
+    margin-bottom: 12px;
+    opacity: 0.15;
+    position: absolute;
+    top: 16px;
+    right: 20px;
+  }
+
+  .type-card:nth-child(1) .type-number { color: var(--accent1); }
+  .type-card:nth-child(2) .type-number { color: var(--accent2); }
+  .type-card:nth-child(3) .type-number { color: var(--accent3); }
+
+  .type-tag {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    padding: 4px 10px;
+    margin-bottom: 16px;
+    display: inline-block;
+  }
+
+  .type-card:nth-child(1) .type-tag { background: rgba(0,229,255,0.1); color: var(--accent1); }
+  .type-card:nth-child(2) .type-tag { background: rgba(255,107,53,0.1); color: var(--accent2); }
+  .type-card:nth-child(3) .type-tag { background: rgba(127,255,107,0.1); color: var(--accent3); }
+
+  .type-title {
+    font-family: 'IBM Plex Sans', sans-serif;
+    font-weight: 600;
+    font-size: 15px;
+    margin-bottom: 12px;
+    line-height: 1.3;
+  }
+
+  .type-desc {
+    font-size: 13px;
+    line-height: 1.7;
+    color: #b0b0c0;
+    margin-bottom: 16px;
+  }
+
+  .type-formula {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 12px;
+    padding: 10px 14px;
+    background: rgba(255,255,255,0.04);
+    border-left: 2px solid;
+    color: var(--muted);
+    line-height: 1.6;
+  }
+
+  .type-card:nth-child(1) .type-formula { border-color: var(--accent1); }
+  .type-card:nth-child(2) .type-formula { border-color: var(--accent2); }
+  .type-card:nth-child(3) .type-formula { border-color: var(--accent3); }
+
+  .type-example {
+    margin-top: 14px;
+    font-size: 12px;
+    color: var(--muted);
+    font-style: italic;
+    line-height: 1.6;
+  }
+
+  /* VISUAL SCALE */
+  .scale-section {
+    margin-bottom: 48px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    padding: 32px;
+  }
+
+  .scale-wrap {
+    position: relative;
+    margin: 32px 0 16px;
+  }
+
+  .scale-bar {
+    height: 12px;
+    background: linear-gradient(90deg, 
+      rgba(0,229,255,0.3) 0%, 
+      rgba(0,229,255,0.8) 20%, 
+      rgba(127,255,107,0.8) 50%, 
+      rgba(255,107,53,0.8) 80%, 
+      rgba(255,107,53,0.3) 100%
+    );
+    border-radius: 2px;
+    position: relative;
+  }
+
+  .scale-markers {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 12px;
+  }
+
+  .scale-marker {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    text-align: center;
+  }
+
+  .scale-marker.min { color: var(--accent1); }
+  .scale-marker.target { color: var(--accent3); }
+  .scale-marker.max { color: var(--accent2); }
+
+  .scale-marker span {
+    display: block;
+    font-size: 10px;
+    color: var(--muted);
+    margin-top: 4px;
+  }
+
+  .scale-zones {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 24px;
+    gap: 16px;
+  }
+
+  .zone {
+    flex: 1;
+    padding: 14px;
+    border: 1px solid var(--border);
+    font-size: 12px;
+    line-height: 1.6;
+  }
+
+  .zone-label {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-bottom: 6px;
+  }
+
+  .zone:nth-child(1) .zone-label { color: var(--accent1); }
+  .zone:nth-child(2) .zone-label { color: var(--accent3); }
+  .zone:nth-child(3) .zone-label { color: var(--accent2); }
+
+  .zone-text { color: var(--muted); }
+
+  /* ALGORITHM */
+  .algo-section {
+    margin-bottom: 48px;
+  }
+
+  .algo-steps {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    border: 1px solid var(--border);
+  }
+
+  .algo-step {
+    display: grid;
+    grid-template-columns: 60px 1fr auto;
+    align-items: stretch;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .algo-step:last-child { border-bottom: none; }
+
+  .step-num {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 28px;
+    background: var(--surface);
+    border-right: 1px solid var(--border);
+    color: var(--muted);
+  }
+
+  .step-content {
+    padding: 20px 24px;
+  }
+
+  .step-title {
+    font-weight: 600;
+    font-size: 14px;
+    margin-bottom: 6px;
+  }
+
+  .step-desc {
+    font-size: 13px;
+    color: var(--muted);
+    line-height: 1.6;
+  }
+
+  .step-outcome {
+    padding: 20px 24px;
+    display: flex;
+    align-items: center;
+    border-left: 1px solid var(--border);
+    min-width: 180px;
+  }
+
+  .outcome-badge {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    padding: 6px 12px;
+    letter-spacing: 1px;
+  }
+
+  .badge-1 { background: rgba(0,229,255,0.1); color: var(--accent1); }
+  .badge-2 { background: rgba(127,255,107,0.1); color: var(--accent3); }
+  .badge-mixed { background: rgba(255,255,255,0.05); color: var(--muted); }
+
+  /* NOTE */
+  .note {
+    background: rgba(255,107,53,0.06);
+    border: 1px solid rgba(255,107,53,0.2);
+    border-left: 3px solid var(--accent2);
+    padding: 20px 24px;
+    margin-bottom: 48px;
+  }
+
+  .note-label {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 3px;
+    color: var(--accent2);
+    text-transform: uppercase;
+    margin-bottom: 8px;
+  }
+
+  .note-text {
+    font-size: 13px;
+    line-height: 1.7;
+    color: #b0b0c0;
+  }
+
+  /* ARROW */
+  .arrow {
+    text-align: center;
+    color: var(--muted);
+    font-size: 20px;
+    margin: 8px 0;
+  }
+
+  @media (max-width: 768px) {
+    .definitions { grid-template-columns: 1fr; }
+    .types-grid { grid-template-columns: 1fr; }
+    .type-card { border-right: none; border-bottom: 1px solid var(--border); }
+    .algo-step { grid-template-columns: 48px 1fr; }
+    .step-outcome { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<div class="container">
+
+  <div class="header">
+    <h1>KPI Framework</h1>
+    <p>Структура построения и типологии показателей эффективности</p>
+  </div>
+
+  <!-- DEFINITIONS -->
+  <div class="section-title">// Базовые определения</div>
+  <div class="definitions">
+    <div class="def-card">
+      <div class="def-label">KPI</div>
+      <div class="def-text">Показатели для <strong>измерения и корректировки</strong> эффективности процессов. Не самоцель — инструмент управления.</div>
+    </div>
+    <div class="def-card">
+      <div class="def-label">Процесс</div>
+      <div class="def-text">Циклично повторяемые действия для достижения определённой цели. KPI существует только если есть повторяемость.</div>
+    </div>
+  </div>
+
+  <!-- THREE TYPES -->
+  <div class="section-title">// Три типа KPI</div>
+  <div class="types-grid">
+
+    <div class="type-card">
+      <div class="type-number">1</div>
+      <div class="type-tag">Работоспособность</div>
+      <div class="type-title">KPI минимального порога</div>
+      <div class="type-desc">Циклично повторяемые действия для достижения минимально требуемых значений.</div>
+      <div class="type-formula">
+        Логика: ≥ MIN<br>
+        Вопрос: процесс вообще<br>
+        работает?
+      </div>
+      <div class="type-example">Пример: менеджер делает 1 звонок в день → продаж нет. KPI = минимум 50 звонков/день чтобы процесс "завёлся".</div>
+    </div>
+
+    <div class="type-card">
+      <div class="type-number">2</div>
+      <div class="type-tag">Эффективность</div>
+      <div class="type-title">KPI допустимого максимума</div>
+      <div class="type-desc">Циклично повторяемые действия для достижения максимально возможных значений, при которых процесс остаётся эффективным. При превышении этих значений процесс ломается или перестаёт быть эффективным.</div>
+      <div class="type-formula">
+        Логика: ≤ MAX<br>
+        Вопрос: процесс не<br>
+        разрушает себя?
+      </div>
+      <div class="type-example">Пример: машина едет 150 км/ч → убивает двигатель. KPI = не выше 100 км/ч. Цель достигается, ресурс сохраняется.</div>
+    </div>
+
+    <div class="type-card">
+      <div class="type-number">3</div>
+      <div class="type-tag">Норматив</div>
+      <div class="type-title">KPI целевого значения</div>
+      <div class="type-desc">Производное Типов 1 и 2. Когда определён минимальный порог работоспособности и максимальный порог эффективности — KPI превращается из граничного условия в точное целевое значение внутри допустимого диапазона.</div>
+      <div class="type-formula">
+        Логика: MIN ≤ X ≤ MAX<br>
+        Вопрос: какое точное<br>
+        значение оптимально?
+      </div>
+      <div class="type-example">Пример: звонков ≥ 50, конверсия не падает при &gt; 80 → целевой KPI = 65 звонков/день как оптимальная точка.</div>
+    </div>
+
+  </div>
+
+  <!-- SCALE -->
+  <div class="section-title">// Визуализация диапазона</div>
+  <div class="scale-section">
+    <p style="font-size:13px; color: var(--muted); margin-bottom: 8px;">Все три типа KPI живут на одной шкале. Тип определяется тем, какую точку или границу вы контролируете:</p>
+
+    <!-- ROW LABELS -->
+    <div style="display:flex; margin-top:28px; margin-bottom:6px; padding: 0 2px;">
+      <div style="width:120px; font-family:&#39;IBM Plex Mono&#39;,monospace; font-size:10px; color:var(--muted); letter-spacing:2px; text-transform:uppercase; flex-shrink:0;">Работоспо-<br>собность</div>
+      <div style="flex:1; position:relative; height:18px;">
+        <div style="position:absolute; left:0; right:50%; height:3px; background: var(--accent1); top:7px;"></div>
+        <div style="position:absolute; left:0; top:0; width:10px; height:18px; display:flex; align-items:center; justify-content:center; color:var(--accent1); font-size:16px;">✓</div>
+        <div style="position:absolute; left:50%; right:0; height:3px; background: rgba(0,229,255,0.2); top:7px;"></div>
+        <div style="position:absolute; right:0; top:0; width:10px; height:18px; display:flex; align-items:center; justify-content:center; color:var(--muted); font-size:16px;">✗</div>
+      </div>
+    </div>
+
+    <div style="display:flex; margin-bottom:6px; padding: 0 2px;">
+      <div style="width:120px; font-family:&#39;IBM Plex Mono&#39;,monospace; font-size:10px; color:var(--muted); letter-spacing:2px; text-transform:uppercase; flex-shrink:0;">Эффектив-<br>ность</div>
+      <div style="flex:1; position:relative; height:18px;">
+        <div style="position:absolute; left:0; right:50%; height:3px; background: rgba(255,107,53,0.2); top:7px;"></div>
+        <div style="position:absolute; left:0; top:0; width:10px; height:18px; display:flex; align-items:center; justify-content:center; color:var(--muted); font-size:16px;">✗</div>
+        <div style="position:absolute; left:50%; right:0; height:3px; background: var(--accent2); top:7px;"></div>
+        <div style="position:absolute; right:0; top:0; width:10px; height:18px; display:flex; align-items:center; justify-content:center; color:var(--accent2); font-size:16px;">✓</div>
+      </div>
+    </div>
+
+    <!-- MAIN SCALE BAR -->
+    <div class="scale-wrap" style="margin-top:16px;">
+      <div style="position:relative;">
+        <!-- background full bar -->
+        <div style="height:16px; background: var(--border); border-radius:2px;"></div>
+        <!-- TYPE 1 zone: left half, cyan -->
+        <div style="position:absolute; top:0; left:0; width:50%; height:16px; background: linear-gradient(90deg, rgba(0,229,255,0.15), rgba(0,229,255,0.5)); border-radius:2px 0 0 2px;"></div>
+        <!-- TYPE 2 zone: right half, orange -->
+        <div style="position:absolute; top:0; left:50%; width:50%; height:16px; background: linear-gradient(90deg, rgba(255,107,53,0.5), rgba(255,107,53,0.15)); border-radius:0 2px 2px 0;"></div>
+        <!-- TYPE 3 overlap zone: center band -->
+        <div style="position:absolute; top:-4px; left:35%; width:30%; height:24px; border:2px solid var(--accent3); border-radius:3px; background: rgba(127,255,107,0.08);"></div>
+        <!-- TYPE 3 label above -->
+        <div style="position:absolute; top:-28px; left:50%; transform:translateX(-50%); font-family:&#39;IBM Plex Mono&#39;,monospace; font-size:10px; color:var(--accent3); letter-spacing:1px; white-space:nowrap; background:var(--surface); padding: 2px 8px; border:1px solid var(--accent3);">ТИП 3 — работоспособен + эффективен</div>
+        <!-- MIN marker -->
+        <div style="position:absolute; top:0; left:0; width:2px; height:16px; background:var(--accent1);"></div>
+        <!-- MAX marker -->
+        <div style="position:absolute; top:0; right:0; width:2px; height:16px; background:var(--accent2);"></div>
+      </div>
+
+      <div class="scale-markers" style="margin-top:16px;">
+        <div class="scale-marker min">MIN<span>Тип 1 — floor<br>процесс включается</span></div>
+        <div class="scale-marker target" style="text-align:center;">
+          <span style="display:block; font-family:&#39;IBM Plex Mono&#39;,monospace; font-size:11px; color:var(--accent3);">✓ работает<br>✓ эффективен</span>
+        </div>
+        <div class="scale-marker max">MAX<span>Тип 2 — ceiling<br>процесс ломается</span></div>
+      </div>
+    </div>
+
+    <div class="scale-zones" style="margin-top:24px;">
+      <div class="zone">
+        <div class="zone-label" style="color:var(--muted);">Ниже MIN</div>
+        <div class="zone-text">Процесс не работает. Применяем Тип 1 — поднимаем до минимального порога.</div>
+      </div>
+      <div class="zone" style="border-color: rgba(127,255,107,0.3); background: rgba(127,255,107,0.04);">
+        <div class="zone-label" style="color:var(--accent3);">Тип 3 — зона таргета</div>
+        <div class="zone-text">Процесс <strong style="color:var(--accent3);">работоспособен и эффективен</strong> одновременно. Здесь определяется точное целевое значение.</div>
+      </div>
+      <div class="zone">
+        <div class="zone-label" style="color:var(--muted);">Выше MAX</div>
+        <div class="zone-text">Процесс ломается или теряет эффективность. Применяем Тип 2 — снижаем до допустимого потолка.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ALGORITHM -->
+  <div class="section-title">// Алгоритм определения KPI для процесса</div>
+  <div class="algo-section">
+    <div class="algo-steps">
+
+      <div class="algo-step">
+        <div class="step-num">1</div>
+        <div class="step-content">
+          <div class="step-title">Визуализировать и выписать все процессы</div>
+          <div class="step-desc">Собрать полный список циклично повторяемых действий. Без этого шага невозможно определить что измерять.</div>
+        </div>
+        <div class="step-outcome"><div class="outcome-badge badge-mixed">Map of processes</div></div>
+      </div>
+
+      <div class="algo-step" style="background: rgba(255,107,53,0.04); border-left: 3px solid var(--accent2);">
+        <div class="step-num" style="color: var(--accent2);">2</div>
+        <div class="step-content">
+          <div class="step-title" style="color: var(--accent2);">Этот процесс вообще нужен?</div>
+          <div class="step-desc">Прежде чем измерять — убедиться что процесс создаёт ценность. Процесс может быть работоспособным и эффективным, но не тем. Если процесс не нужен — его устранить, а не оптимизировать.</div>
+        </div>
+        <div class="step-outcome"><div class="outcome-badge" style="background:rgba(255,107,53,0.1); color:var(--accent2);">Validate purpose</div></div>
+      </div>
+
+      <div class="algo-step">
+        <div class="step-num">3</div>
+        <div class="step-content">
+          <div class="step-title">Процесс работоспособен?</div>
+          <div class="step-desc">Даёт ли процесс хоть какой-то результат при текущей интенсивности? Если нет — процесс не включился. Нужно определить минимальный порог запуска.</div>
+        </div>
+        <div class="step-outcome"><div class="outcome-badge badge-1">→ Тип 1 KPI (MIN)</div></div>
+      </div>
+
+      <div class="algo-step" style="background: rgba(255,107,53,0.04); border-left: 3px solid var(--accent2);">
+        <div class="step-num" style="color: var(--accent2);">4</div>
+        <div class="step-content">
+          <div class="step-title" style="color: var(--accent2);">Есть ли данные для определения MIN?</div>
+          <div class="step-desc">Если процесс новый и исторических данных нет — минимальный порог нельзя взять из воздуха. Запустить эксперимент: поставить гипотезу, собрать первые данные, скорректировать MIN по факту. Не ставить пороговые значения без измерений.</div>
+        </div>
+        <div class="step-outcome"><div class="outcome-badge" style="background:rgba(255,107,53,0.1); color:var(--accent2);">Experiment → Baseline</div></div>
+      </div>
+
+      <div class="algo-step">
+        <div class="step-num">5</div>
+        <div class="step-content">
+          <div class="step-title">Процесс эффективен?</div>
+          <div class="step-desc">Можно ли получить тот же результат дешевле — по времени или деньгам — без потери качества? Если процесс перегружен или избыточен — определить потолок после которого начинается деградация.</div>
+        </div>
+        <div class="step-outcome"><div class="outcome-badge badge-2">→ Тип 2 KPI (MAX)</div></div>
+      </div>
+
+      <div class="algo-step">
+        <div class="step-num">6</div>
+        <div class="step-content">
+          <div class="step-title">Известны MIN и MAX?</div>
+          <div class="step-desc">Если оба порога определены — рассчитать оптимальную рабочую точку внутри допустимого диапазона. KPI превращается из граничного условия в точное целевое значение для ежедневного управления.</div>
+        </div>
+        <div class="step-outcome"><div class="outcome-badge badge-mixed">→ Тип 3 KPI (TARGET)</div></div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- NOTE -->
+  <div class="note">
+    <div class="note-label">// Методологическое замечание</div>
+    <div class="note-text">
+      <strong style="color: var(--accent2);">Тип 3 — производный, не самостоятельный.</strong> Он не существует без предварительного определения Типов 1 и 2. Попытка поставить целевое значение без понимания floor и ceiling — это либо случайное число, либо экспертная интуиция. Оба варианта нестабильны при изменении условий.<br><br>
+      <strong style="color: var(--accent2);">Последовательность обязательна:</strong> работоспособность → эффективность → норматив. Оптимизировать сломанный процесс бессмысленно.
+    </div>
+  </div>
+
+</div>
+
+
+</body></html>
