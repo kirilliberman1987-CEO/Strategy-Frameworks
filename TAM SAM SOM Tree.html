@@ -1,0 +1,1072 @@
+<!DOCTYPE html>
+<!-- saved from url=(0051)file:///C:/Users/Admin/Downloads/mindmap-v3_20.html -->
+<html lang="ru"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TAM SAM SOM Tree</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Epilogue:wght@400;600;700;800&display=swap');
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: #f7f4ef;
+    font-family: 'Epilogue', sans-serif;
+    color: #1a1612;
+    padding: 48px 40px 80px;
+    min-width: 1200px;
+  }
+
+  h1 {
+    text-align: center;
+    font-size: 22px;
+    font-weight: 800;
+    margin-bottom: 4px;
+  }
+  .subtitle {
+    text-align: center;
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: #9a9080;
+    margin-bottom: 52px;
+  }
+
+  /* ─── WRAPPERS ─── */
+  .wrapper {
+    border-radius: 16px;
+    padding: 20px 24px 24px;
+    position: relative;
+  }
+
+  .wrapper-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    font-weight: 500;
+    margin-bottom: 16px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .wrapper-label::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: currentColor;
+    opacity: 0.2;
+  }
+
+  /* TAM wrapper */
+  .wrap-tam {
+    background: #1a1612;
+    color: #f7f4ef;
+    margin-bottom: 0;
+  }
+  .wrap-tam .wrapper-label { color: rgba(255,255,255,0.5); }
+
+  /* SAM wrapper — contains everything below */
+  .wrap-sam {
+    background: #fff;
+    border: 2px solid #c8c0b0;
+    margin-top: 0;
+  }
+  .wrap-sam > .wrapper-label { color: #8a8070; }
+
+  /* Sports row inside SAM */
+  .sports-row {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+    margin-bottom: 0;
+  }
+
+  /* Each sport block = its own TAM */
+  .sport-block {
+    border-radius: 12px;
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .sport-block-football {
+    background: #f2fbf5;
+    border: 1.5px solid #27ae60;
+  }
+  .sport-block-hockey {
+    background: #f2f7fc;
+    border: 1.5px solid #2980b9;
+    opacity: 0.8;
+  }
+  .sport-block-tennis {
+    background: #fdf6f0;
+    border: 1.5px solid #d35400;
+    opacity: 0.8;
+  }
+
+  .sport-chosen {
+    box-shadow: 0 0 0 2.5px #f39c12;
+    opacity: 1 !important;
+  }
+
+  /* Sport TAM header */
+  .sport-tam {
+    padding: 10px 12px;
+    border-radius: 8px;
+    position: relative;
+  }
+  .sport-tam-football { background: #27ae60; color: #fff; }
+  .sport-tam-hockey   { background: #2980b9; color: #fff; }
+  .sport-tam-tennis   { background: #d35400; color: #fff; }
+
+  /* Sport SAM block */
+  .sport-sam {
+    background: #fff;
+    border-radius: 8px;
+    padding: 10px 12px;
+    border: 1px solid rgba(0,0,0,0.08);
+  }
+  .sport-sam .block-badge { background: rgba(0,0,0,0.10); color: #1a1612; }
+
+  /* Sport SOM block */
+  .sport-som {
+    background: rgba(255,255,255,0.7);
+    border-radius: 8px;
+    padding: 10px 12px;
+    border: 1px dashed rgba(0,0,0,0.15);
+  }
+  .sport-som .block-badge { background: rgba(0,0,0,0.07); color: #1a1612; border: 1px dashed rgba(0,0,0,0.18); }
+
+  .block-badge {
+    font-family: 'DM Mono', monospace;
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    margin-bottom: 6px;
+    display: inline-block;
+    padding: 3px 9px;
+    border-radius: 4px;
+    background: rgba(0,0,0,0.18);
+    color: #fff;
+  }
+
+  .block-title {
+    font-size: 12px;
+    font-weight: 700;
+    line-height: 1.3;
+    margin-bottom: 3px;
+  }
+
+  .block-val {
+    font-family: 'DM Mono', monospace;
+    font-size: 13px;
+    font-weight: 500;
+    margin-bottom: 3px;
+  }
+
+  .block-desc {
+    font-size: 10px;
+    line-height: 1.5;
+    opacity: 0.55;
+  }
+
+  .pill {
+    display: inline-block;
+    font-family: 'DM Mono', monospace;
+    font-size: 8px;
+    padding: 2px 7px;
+    border-radius: 100px;
+    margin-top: 5px;
+    font-weight: 500;
+  }
+  .pill-g { background: rgba(39,174,96,0.15); color: #1a6b3a; }
+  .pill-b { background: rgba(41,128,185,0.15); color: #1a5c8a; }
+  .pill-o { background: rgba(211,84,0,0.15); color: #7a3000; }
+  .pill-gold { background: #fff3cd; color: #7a4f00; }
+
+  .chosen-badge {
+    position: absolute;
+    top: -10px;
+    right: 10px;
+    background: #f39c12;
+    color: #fff;
+    font-family: 'DM Mono', monospace;
+    font-size: 8px;
+    padding: 2px 8px;
+    border-radius: 100px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    font-weight: 500;
+  }
+
+  /* Arrow connector between TAM and SAM */
+  .connector {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 44px;
+    justify-content: center;
+    gap: 2px;
+  }
+  .connector-line {
+    width: 2px;
+    flex: 1;
+    background: #c8c0b0;
+  }
+  .connector-arrow {
+    width: 0;
+    height: 0;
+    border-left: 6px solid transparent;
+    border-right: 6px solid transparent;
+    border-top: 8px solid #c8c0b0;
+  }
+  .connector-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 8.5px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: #b0a898;
+    margin-top: 4px;
+  }
+
+  /* Inner arrow between sport levels */
+  .inner-arrow {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 14px;
+    gap: 0;
+    flex-direction: column;
+  }
+  .inner-arrow-line {
+    width: 1.5px;
+    height: 6px;
+  }
+  .inner-arrow-head {
+    width: 0; height: 0;
+    border-left: 4px solid transparent;
+    border-right: 4px solid transparent;
+  }
+
+  /* TAM node */
+  .tam-node {
+    text-align: center;
+    padding: 20px 24px;
+    border-radius: 12px;
+    width: 240px;
+    margin: 0 auto;
+  }
+</style>
+</head>
+<body>
+
+<h1>Market Structure: TAM → SAM → SOM</h1>
+<div class="subtitle">Иерархия рынка · Market Structure</div>
+
+<!-- ═══ GLOBAL TAM ═══ -->
+<div style="display:grid; grid-template-columns:1fr 2fr 1fr; gap:20px; align-items:stretch;">
+
+  <!-- LEFT: From / Problem -->
+  <div style="background:#2a1a1a; border-radius:16px; padding:22px 24px; border:1px solid #5a2a2a; display:flex; flex-direction:column; justify-content:center;">
+    <div style="font-family:&#39;DM Mono&#39;,monospace; font-size:8px; letter-spacing:2px; text-transform:uppercase; color:#c0392b; margin-bottom:12px; display:flex; align-items:center; gap:6px;">
+      <span style="width:6px;height:6px;border-radius:50%;background:#c0392b;display:inline-block;"></span>
+      Исходная позиция
+    </div>
+    <div style="font-size:13px; font-weight:700; color:#fff; margin-bottom:8px;">Data Annotation</div>
+    <div style="font-size:10px; color:rgba(255,255,255,0.45); line-height:1.6; margin-bottom:12px;">Сырые данные в виде статистики для тренировки AI моделей. Оптика, медицина, автомотив.</div>
+    <div style="border-top:1px solid rgba(255,255,255,0.08); padding-top:10px;">
+      <div style="font-family:&#39;DM Mono&#39;,monospace; font-size:8px; letter-spacing:1.5px; text-transform:uppercase; color:#c0392b; margin-bottom:6px;">⚠ Проблема</div>
+      <div style="font-size:10px; color:rgba(255,255,255,0.45); line-height:1.6;">Как только AI модель дотренирована — мы больше не нужны. Проекты короткие, деньги маленькие, P&amp;L непредсказуем.</div>
+    </div>
+  </div>
+
+  <!-- CENTER: TAM -->
+  <div class="wrapper wrap-tam" style="margin:0;">
+    <div class="wrapper-label">🌐 Global TAM</div>
+    <div style="display:flex; justify-content:center; flex-direction:column; align-items:center; gap:6px;">
+      <div style="font-size:26px; font-weight:800; color:#e8c96a; font-family:&#39;DM Mono&#39;,monospace;">~$8.4B</div>
+      <div style="font-size:16px; font-weight:700; color:#fff;">Sports Data</div>
+      <div style="font-size:11px; color:rgba(255,255,255,0.4); line-height:1.6; text-align:center; max-width:260px;">Весь мировой рынок спортивных данных — все виды спорта, все регионы, все сегменты</div>
+    </div>
+  </div>
+
+  <!-- RIGHT: Why pivot -->
+  <div style="background:#0f2018; border-radius:16px; padding:22px 24px; border:1px solid #1a5c35; display:flex; flex-direction:column; justify-content:center;">
+    <div style="font-family:&#39;DM Mono&#39;,monospace; font-size:8px; letter-spacing:2px; text-transform:uppercase; color:#27ae60; margin-bottom:12px; display:flex; align-items:center; gap:6px;">
+      <span style="width:6px;height:6px;border-radius:50%;background:#27ae60;display:inline-block;"></span>
+      Почему Sports Data
+    </div>
+    <div style="display:flex; flex-direction:column; gap:8px;">
+      <div style="display:flex; gap:8px; align-items:flex-start;">
+        <div style="width:18px;height:18px;border-radius:4px;background:rgba(39,174,96,0.15);display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px;">
+          <span style="font-size:9px;">01</span>
+        </div>
+        <div style="font-size:10px; color:rgba(255,255,255,0.55); line-height:1.5;">Статистика нужна <span style="color:#6aef8a;">не для обучения AI</span>, а для получения аналитики — умных выводов на базе данных</div>
+      </div>
+      <div style="display:flex; gap:8px; align-items:flex-start;">
+        <div style="width:18px;height:18px;border-radius:4px;background:rgba(39,174,96,0.15);display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px;">
+          <span style="font-size:9px;">02</span>
+        </div>
+        <div style="font-size:10px; color:rgba(255,255,255,0.55); line-height:1.5;">Наша экспертиза в сборе и обработке данных <span style="color:#6aef8a;">полностью переносится</span> в спортивную аналитику</div>
+      </div>
+      <div style="display:flex; gap:8px; align-items:flex-start;">
+        <div style="width:18px;height:18px;border-radius:4px;background:rgba(39,174,96,0.15);display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px;">
+          <span style="font-size:9px;">03</span>
+        </div>
+        <div style="font-size:10px; color:rgba(255,255,255,0.55); line-height:1.5;">Спорт — это <span style="color:#6aef8a;">длинные сезоны</span>, повторяющийся спрос и предсказуемый P&amp;L</div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<!-- Connector -->
+<div class="connector">
+  <div class="connector-line"></div>
+  <div class="connector-arrow"></div>
+</div>
+
+<!-- ═══ WHY THESE 3 SPORTS ═══ -->
+<div style="background:#fff; border-radius:14px; padding:20px 28px; border:1px solid #e0d8cc; border-left:4px solid #1a1612; margin-bottom:0;">
+  <div style="display:grid; grid-template-columns:auto 1fr; gap:20px; align-items:start;">
+    
+    <div style="min-width:220px;">
+      <div style="font-family:&#39;DM Mono&#39;,monospace; font-size:8px; letter-spacing:2px; text-transform:uppercase; color:#8a8070; margin-bottom:6px;">Фильтр выбора</div>
+      <div style="font-size:14px; font-weight:800; color:#1a1612; line-height:1.3;">Почему именно<br>футбол, хоккей, теннис?</div>
+      <div style="font-size:10px; color:#8a8070; margin-top:6px; line-height:1.5;">В спорте десятки дисциплин —<br>мы отбирали по 5 критериям</div>
+    </div>
+
+    <div style="display:grid; grid-template-columns:repeat(5,1fr); gap:10px;">
+      
+      <div style="background:#f7f4ef; border-radius:8px; padding:10px 12px; border-top:2px solid #1a1612;">
+        <div style="font-size:18px; margin-bottom:4px;">💰</div>
+        <div style="font-size:10px; font-weight:700; color:#1a1612; margin-bottom:3px;">Деньги в рынке</div>
+        <div style="font-size:9px; color:#6a6050; line-height:1.5;">Крупнейшие TAM среди всех видов спорта — здесь концентрация бюджетов максимальна</div>
+      </div>
+
+      <div style="background:#f7f4ef; border-radius:8px; padding:10px 12px; border-top:2px solid #1a1612;">
+        <div style="font-size:18px; margin-bottom:4px;">📅</div>
+        <div style="font-size:10px; font-weight:700; color:#1a1612; margin-bottom:3px;">Длинные сезоны</div>
+        <div style="font-size:9px; color:#6a6050; line-height:1.5;">Длинный сезон = длинный контракт = предсказуемый revenue. Уходим от разовых проектов</div>
+      </div>
+
+      <div style="background:#f7f4ef; border-radius:8px; padding:10px 12px; border-top:2px solid #1a1612;">
+        <div style="font-size:18px; margin-bottom:4px;">📈</div>
+        <div style="font-size:10px; font-weight:700; color:#1a1612; margin-bottom:3px;">Рентабельность</div>
+        <div style="font-size:9px; color:#6a6050; line-height:1.5;">Виды спорта с высоким спросом на данные — маржа выше, чем в нишевых дисциплинах</div>
+      </div>
+
+      <div style="background:#f7f4ef; border-radius:8px; padding:10px 12px; border-top:2px solid #1a1612;">
+        <div style="font-size:18px; margin-bottom:4px;">🚪</div>
+        <div style="font-size:10px; font-weight:700; color:#1a1612; margin-bottom:3px;">Быстрый вход</div>
+        <div style="font-size:9px; color:#6a6050; line-height:1.5;">Развитая экосистема B2B покупателей данных — не нужно долго искать клиента</div>
+      </div>
+
+      <div style="background:#fff8f0; border-radius:8px; padding:10px 12px; border-top:2px solid #e67e22;">
+        <div style="font-size:18px; margin-bottom:4px;">🧠</div>
+        <div style="font-size:10px; font-weight:700; color:#e67e22; margin-bottom:3px;">Наша экспертиза</div>
+        <div style="font-size:9px; color:#6a6050; line-height:1.5;">Статистика этих видов спорта — сырые данные. Наша data annotation экспертиза применяется без наработки новой</div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- Connector -->
+<div class="connector">
+  <div class="connector-line"></div>
+  <div class="connector-arrow"></div>
+</div>
+
+<!-- ═══ SAM — все три вида спорта ═══ -->
+<div class="wrapper wrap-sam">
+  <div class="wrapper-label">📦 Global SAM — Выбранные сегменты рынка</div>
+
+  <div class="sports-row">
+
+    <!-- ── FOOTBALL ── -->
+    <div class="sport-block sport-block-football sport-chosen" style="max-width:none;">
+      <!-- TAM -->
+      <div class="sport-tam sport-tam-football" style="position:relative;">
+        <div class="chosen-badge">✓ Выбран</div>
+        <span class="block-badge">TAM · Футбол</span>
+        <div class="block-title" style="color:#fff;">Football Data Market</div>
+        <div class="block-val" style="color:#c8f5d8;">~$3.8B</div>
+        <div class="block-desc" style="color:rgba(255,255,255,0.6);">Топ-5 лиг, международные турниры, глобальный охват · сезон 10–11 мес</div>
+      </div>
+
+      <!-- Branch arrows TAM → 2x SAM -->
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:4px;">
+
+        <!-- SAM A: B2B -->
+        <div style="display:flex;flex-direction:column;gap:8px;">
+          <div style="display:flex;flex-direction:column;align-items:center;height:20px;justify-content:center;">
+            <div style="width:1.5px;flex:1;background:#27ae60;"></div>
+            <div style="width:0;height:0;border-left:4px solid transparent;border-right:4px solid transparent;border-top:5px solid #27ae60;"></div>
+          </div>
+          <div class="sport-sam" style="border-top:3px solid #27ae60;">
+            <span class="block-badge" style="background:rgba(39,174,96,0.15);color:#1a6b3a;">SAM · B2B Analytics</span>
+            <div class="block-title" style="font-size:11px;">Внешние платформы</div>
+            <div style="font-family:&#39;DM Mono&#39;,monospace;font-size:12px;font-weight:700;color:#1a6b3a;margin:4px 0;">~$1.1B</div>
+            <div class="block-desc">Betting providers, media tech, скаутинг платформы, data resellers</div>
+          </div>
+
+          <!-- Branch arrows SAM → 2x SOM -->
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;">
+            <div style="display:flex;flex-direction:column;gap:6px;">
+              <div style="display:flex;flex-direction:column;align-items:center;height:16px;">
+                <div style="width:1.5px;flex:1;background:#27ae60;opacity:0.4;"></div>
+                <div style="width:0;height:0;border-left:3px solid transparent;border-right:3px solid transparent;border-top:4px solid #27ae60;opacity:0.4;"></div>
+              </div>
+              <div class="sport-som" style="border-color:rgba(39,174,96,0.2);">
+                <span class="block-badge" style="background:rgba(0,0,0,0.05);color:#6a6050;font-size:8px;">SOM</span>
+                <div style="font-size:10px;font-weight:700;color:#6a6050;">Проф лиги</div>
+                <div style="font-family:&#39;DM Mono&#39;,monospace;font-size:10px;font-weight:600;color:#6a6050;margin:3px 0;">~$120M</div>
+                <div style="font-size:9px;color:#9a9080;line-height:1.4;">Топ клубы, федерации</div>
+              </div>
+            </div>
+            <div style="display:flex;flex-direction:column;gap:6px;">
+              <div style="display:flex;flex-direction:column;align-items:center;height:16px;">
+                <div style="width:1.5px;flex:1;background:#27ae60;"></div>
+                <div style="width:0;height:0;border-left:3px solid transparent;border-right:3px solid transparent;border-top:4px solid #27ae60;"></div>
+              </div>
+              <div class="sport-som" style="border:2px solid #27ae60;background:#e8f8ee;position:relative;">
+                <div style="position:absolute;top:-8px;right:4px;background:#27ae60;color:#fff;font-size:7px;font-family:&#39;DM Mono&#39;,monospace;padding:1px 6px;border-radius:10px;font-weight:700;letter-spacing:1px;">ВЫБОР</div>
+                <span class="block-badge" style="background:rgba(39,174,96,0.2);color:#1a6b3a;font-size:8px;">SOM</span>
+                <div style="font-size:10px;font-weight:700;color:#1a6b3a;">Юниор &amp; Amateur</div>
+                <div style="font-size:9px;color:#6a6050;line-height:1.4;margin-top:2px;">NCAA, amateur лиги, академии</div>
+                <div style="font-family:&#39;DM Mono&#39;,monospace;font-size:9px;font-weight:700;color:#1a6b3a;margin-top:5px;">~$80M · 50–60%</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- SAM B: In-house -->
+        <div style="display:flex;flex-direction:column;gap:8px;">
+          <div style="display:flex;flex-direction:column;align-items:center;height:20px;justify-content:center;">
+            <div style="width:1.5px;flex:1;background:#27ae60;"></div>
+            <div style="width:0;height:0;border-left:4px solid transparent;border-right:4px solid transparent;border-top:5px solid #27ae60;"></div>
+          </div>
+          <div class="sport-sam" style="border-top:3px solid #27ae60;">
+            <span class="block-badge" style="background:rgba(39,174,96,0.15);color:#1a6b3a;">SAM · In-house</span>
+            <div class="block-title" style="font-size:11px;">Внутренние команды</div>
+            <div style="font-family:&#39;DM Mono&#39;,monospace;font-size:12px;font-weight:700;color:#1a6b3a;margin:4px 0;">~$0.8B</div>
+            <div class="block-desc">Аналитические отделы внутри лиг и клубов</div>
+          </div>
+
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;">
+            <div style="display:flex;flex-direction:column;gap:6px;">
+              <div style="display:flex;flex-direction:column;align-items:center;height:16px;">
+                <div style="width:1.5px;flex:1;background:#27ae60;opacity:0.4;"></div>
+                <div style="width:0;height:0;border-left:3px solid transparent;border-right:3px solid transparent;border-top:4px solid #27ae60;opacity:0.4;"></div>
+              </div>
+              <div class="sport-som" style="border-color:rgba(39,174,96,0.2);">
+                <span class="block-badge" style="background:rgba(0,0,0,0.05);color:#6a6050;font-size:8px;">SOM</span>
+                <div style="font-size:10px;font-weight:700;color:#6a6050;">Проф лиги</div>
+                <div style="font-family:&#39;DM Mono&#39;,monospace;font-size:10px;font-weight:600;color:#6a6050;margin:3px 0;">~$120M</div>
+                <div style="font-size:9px;color:#9a9080;line-height:1.4;">Топ клубы, федерации</div>
+              </div>
+            </div>
+            <div style="display:flex;flex-direction:column;gap:6px;">
+              <div style="display:flex;flex-direction:column;align-items:center;height:16px;">
+                <div style="width:1.5px;flex:1;background:#27ae60;opacity:0.4;"></div>
+                <div style="width:0;height:0;border-left:3px solid transparent;border-right:3px solid transparent;border-top:4px solid #27ae60;opacity:0.4;"></div>
+              </div>
+              <div class="sport-som" style="border-color:rgba(39,174,96,0.2);">
+                <span class="block-badge" style="background:rgba(0,0,0,0.05);color:#6a6050;font-size:8px;">SOM</span>
+                <div style="font-size:10px;font-weight:700;color:#6a6050;">Юниор &amp; Amateur</div>
+                <div style="font-family:&#39;DM Mono&#39;,monospace;font-size:10px;font-weight:600;color:#6a6050;margin:3px 0;">~$80M</div>
+                <div style="font-size:9px;color:#9a9080;line-height:1.4;">NCAA, amateur лиги</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- ── HOCKEY ── -->
+    <div class="sport-block sport-block-hockey">
+      <div class="sport-tam sport-tam-hockey">
+        <span class="block-badge">TAM · Хоккей</span>
+        <div class="block-title" style="color:#fff;">Hockey Data Market</div>
+        <div class="block-val" style="color:#c8e8f8;">~$1.4B</div>
+        <div class="block-desc" style="color:rgba(255,255,255,0.6);">NHL, KHL · сезон 7–8 мес</div>
+      </div>
+
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:4px;">
+
+        <div style="display:flex;flex-direction:column;gap:8px;">
+          <div style="display:flex;flex-direction:column;align-items:center;height:20px;justify-content:center;">
+            <div style="width:1.5px;flex:1;background:#2980b9;"></div>
+            <div style="width:0;height:0;border-left:4px solid transparent;border-right:4px solid transparent;border-top:5px solid #2980b9;"></div>
+          </div>
+          <div class="sport-sam" style="border-top:3px solid #2980b9;">
+            <span class="block-badge" style="background:rgba(41,128,185,0.12);color:#1a5c8a;">SAM · B2B Analytics</span>
+            <div class="block-title" style="font-size:11px;">Внешние платформы</div>
+            <div style="font-family:&#39;DM Mono&#39;,monospace;font-size:12px;font-weight:700;color:#1a5c8a;margin:4px 0;">~$280M</div>
+            <div class="block-desc">Betting, data vendors, media</div>
+          </div>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;">
+            <div style="display:flex;flex-direction:column;gap:6px;">
+              <div style="display:flex;flex-direction:column;align-items:center;height:16px;"><div style="width:1.5px;flex:1;background:#2980b9;opacity:0.4;"></div><div style="width:0;height:0;border-left:3px solid transparent;border-right:3px solid transparent;border-top:4px solid #2980b9;opacity:0.4;"></div></div>
+              <div class="sport-som" style="border-color:rgba(41,128,185,0.2);">
+                <span class="block-badge" style="background:rgba(0,0,0,0.05);color:#6a6050;font-size:8px;">SOM</span>
+                <div style="font-size:10px;font-weight:700;color:#6a6050;">Проф лиги</div>
+                <div style="font-family:&#39;DM Mono&#39;,monospace;font-size:10px;font-weight:600;color:#6a6050;margin:3px 0;">~$22M</div>
+                <div style="font-size:9px;color:#9a9080;line-height:1.4;">NHL, KHL клубы</div>
+              </div>
+            </div>
+            <div style="display:flex;flex-direction:column;gap:6px;">
+              <div style="display:flex;flex-direction:column;align-items:center;height:16px;"><div style="width:1.5px;flex:1;background:#2980b9;opacity:0.4;"></div><div style="width:0;height:0;border-left:3px solid transparent;border-right:3px solid transparent;border-top:4px solid #2980b9;opacity:0.4;"></div></div>
+              <div class="sport-som" style="border-color:rgba(41,128,185,0.2);">
+                <span class="block-badge" style="background:rgba(0,0,0,0.05);color:#6a6050;font-size:8px;">SOM</span>
+                <div style="font-size:10px;font-weight:700;color:#6a6050;">Юниор &amp; Amateur</div>
+                <div style="font-family:&#39;DM Mono&#39;,monospace;font-size:10px;font-weight:600;color:#6a6050;margin:3px 0;">~$8M</div>
+                <div style="font-size:9px;color:#9a9080;line-height:1.4;">NCAA, junior лиги</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div style="display:flex;flex-direction:column;gap:8px;">
+          <div style="display:flex;flex-direction:column;align-items:center;height:20px;justify-content:center;">
+            <div style="width:1.5px;flex:1;background:#2980b9;"></div>
+            <div style="width:0;height:0;border-left:4px solid transparent;border-right:4px solid transparent;border-top:5px solid #2980b9;"></div>
+          </div>
+          <div class="sport-sam" style="border-top:3px solid #2980b9;">
+            <span class="block-badge" style="background:rgba(41,128,185,0.12);color:#1a5c8a;">SAM · In-house</span>
+            <div class="block-title" style="font-size:11px;">Внутренние команды</div>
+            <div style="font-family:&#39;DM Mono&#39;,monospace;font-size:12px;font-weight:700;color:#1a5c8a;margin:4px 0;">~$140M</div>
+            <div class="block-desc">Аналитика внутри NHL/KHL лиг</div>
+          </div>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;">
+            <div style="display:flex;flex-direction:column;gap:6px;">
+              <div style="display:flex;flex-direction:column;align-items:center;height:16px;"><div style="width:1.5px;flex:1;background:#2980b9;opacity:0.4;"></div><div style="width:0;height:0;border-left:3px solid transparent;border-right:3px solid transparent;border-top:4px solid #2980b9;opacity:0.4;"></div></div>
+              <div class="sport-som" style="border-color:rgba(41,128,185,0.2);">
+                <span class="block-badge" style="background:rgba(0,0,0,0.05);color:#6a6050;font-size:8px;">SOM</span>
+                <div style="font-size:10px;font-weight:700;color:#6a6050;">Проф лиги</div>
+                <div style="font-family:&#39;DM Mono&#39;,monospace;font-size:10px;font-weight:600;color:#6a6050;margin:3px 0;">~$22M</div>
+                <div style="font-size:9px;color:#9a9080;line-height:1.4;">NHL, KHL клубы</div>
+              </div>
+            </div>
+            <div style="display:flex;flex-direction:column;gap:6px;">
+              <div style="display:flex;flex-direction:column;align-items:center;height:16px;"><div style="width:1.5px;flex:1;background:#2980b9;opacity:0.4;"></div><div style="width:0;height:0;border-left:3px solid transparent;border-right:3px solid transparent;border-top:4px solid #2980b9;opacity:0.4;"></div></div>
+              <div class="sport-som" style="border-color:rgba(41,128,185,0.2);">
+                <span class="block-badge" style="background:rgba(0,0,0,0.05);color:#6a6050;font-size:8px;">SOM</span>
+                <div style="font-size:10px;font-weight:700;color:#6a6050;">Юниор &amp; Amateur</div>
+                <div style="font-family:&#39;DM Mono&#39;,monospace;font-size:10px;font-weight:600;color:#6a6050;margin:3px 0;">~$8M</div>
+                <div style="font-size:9px;color:#9a9080;line-height:1.4;">NCAA, junior лиги</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- ── TENNIS ── -->
+    <div class="sport-block sport-block-tennis">
+      <div class="sport-tam sport-tam-tennis">
+        <span class="block-badge">TAM · Теннис</span>
+        <div class="block-title" style="color:#fff;">Tennis Data Market</div>
+        <div class="block-val" style="color:#fde0c4;">~$0.9B</div>
+        <div class="block-desc" style="color:rgba(255,255,255,0.6);">ATP, WTA · турниры 1–2 нед</div>
+      </div>
+
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:4px;">
+
+        <div style="display:flex;flex-direction:column;gap:8px;">
+          <div style="display:flex;flex-direction:column;align-items:center;height:20px;justify-content:center;">
+            <div style="width:1.5px;flex:1;background:#d35400;"></div>
+            <div style="width:0;height:0;border-left:4px solid transparent;border-right:4px solid transparent;border-top:5px solid #d35400;"></div>
+          </div>
+          <div class="sport-sam" style="border-top:3px solid #d35400;">
+            <span class="block-badge" style="background:rgba(211,84,0,0.12);color:#7a3000;">SAM · B2B Analytics</span>
+            <div class="block-title" style="font-size:11px;">Внешние платформы</div>
+            <div style="font-family:&#39;DM Mono&#39;,monospace;font-size:12px;font-weight:700;color:#7a3000;margin:4px 0;">~$180M</div>
+            <div class="block-desc">ATP/WTA data, betting, media</div>
+          </div>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;">
+            <div style="display:flex;flex-direction:column;gap:6px;">
+              <div style="display:flex;flex-direction:column;align-items:center;height:16px;"><div style="width:1.5px;flex:1;background:#d35400;opacity:0.4;"></div><div style="width:0;height:0;border-left:3px solid transparent;border-right:3px solid transparent;border-top:4px solid #d35400;opacity:0.4;"></div></div>
+              <div class="sport-som" style="border-color:rgba(211,84,0,0.2);">
+                <span class="block-badge" style="background:rgba(0,0,0,0.05);color:#6a6050;font-size:8px;">SOM</span>
+                <div style="font-size:10px;font-weight:700;color:#6a6050;">Проф турниры</div>
+                <div style="font-family:&#39;DM Mono&#39;,monospace;font-size:10px;font-weight:600;color:#6a6050;margin:3px 0;">~$16M</div>
+                <div style="font-size:9px;color:#9a9080;line-height:1.4;">Большой шлем, ATP</div>
+              </div>
+            </div>
+            <div style="display:flex;flex-direction:column;gap:6px;">
+              <div style="display:flex;flex-direction:column;align-items:center;height:16px;"><div style="width:1.5px;flex:1;background:#d35400;opacity:0.4;"></div><div style="width:0;height:0;border-left:3px solid transparent;border-right:3px solid transparent;border-top:4px solid #d35400;opacity:0.4;"></div></div>
+              <div class="sport-som" style="border-color:rgba(211,84,0,0.2);">
+                <span class="block-badge" style="background:rgba(0,0,0,0.05);color:#6a6050;font-size:8px;">SOM</span>
+                <div style="font-size:10px;font-weight:700;color:#6a6050;">Юниор &amp; Amateur</div>
+                <div style="font-family:&#39;DM Mono&#39;,monospace;font-size:10px;font-weight:600;color:#6a6050;margin:3px 0;">~$6M</div>
+                <div style="font-size:9px;color:#9a9080;line-height:1.4;">Академии, лиги</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div style="display:flex;flex-direction:column;gap:8px;">
+          <div style="display:flex;flex-direction:column;align-items:center;height:20px;justify-content:center;">
+            <div style="width:1.5px;flex:1;background:#d35400;"></div>
+            <div style="width:0;height:0;border-left:4px solid transparent;border-right:4px solid transparent;border-top:5px solid #d35400;"></div>
+          </div>
+          <div class="sport-sam" style="border-top:3px solid #d35400;">
+            <span class="block-badge" style="background:rgba(211,84,0,0.12);color:#7a3000;">SAM · In-house</span>
+            <div class="block-title" style="font-size:11px;">Внутренние команды</div>
+            <div style="font-family:&#39;DM Mono&#39;,monospace;font-size:12px;font-weight:700;color:#7a3000;margin:4px 0;">~$100M</div>
+            <div class="block-desc">Аналитика турниров и федераций</div>
+          </div>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;">
+            <div style="display:flex;flex-direction:column;gap:6px;">
+              <div style="display:flex;flex-direction:column;align-items:center;height:16px;"><div style="width:1.5px;flex:1;background:#d35400;opacity:0.4;"></div><div style="width:0;height:0;border-left:3px solid transparent;border-right:3px solid transparent;border-top:4px solid #d35400;opacity:0.4;"></div></div>
+              <div class="sport-som" style="border-color:rgba(211,84,0,0.2);">
+                <span class="block-badge" style="background:rgba(0,0,0,0.05);color:#6a6050;font-size:8px;">SOM</span>
+                <div style="font-size:10px;font-weight:700;color:#6a6050;">Проф турниры</div>
+                <div style="font-family:&#39;DM Mono&#39;,monospace;font-size:10px;font-weight:600;color:#6a6050;margin:3px 0;">~$16M</div>
+                <div style="font-size:9px;color:#9a9080;line-height:1.4;">Большой шлем, ATP</div>
+              </div>
+            </div>
+            <div style="display:flex;flex-direction:column;gap:6px;">
+              <div style="display:flex;flex-direction:column;align-items:center;height:16px;"><div style="width:1.5px;flex:1;background:#d35400;opacity:0.4;"></div><div style="width:0;height:0;border-left:3px solid transparent;border-right:3px solid transparent;border-top:4px solid #d35400;opacity:0.4;"></div></div>
+              <div class="sport-som" style="border-color:rgba(211,84,0,0.2);">
+                <span class="block-badge" style="background:rgba(0,0,0,0.05);color:#6a6050;font-size:8px;">SOM</span>
+                <div style="font-size:10px;font-weight:700;color:#6a6050;">Юниор &amp; Amateur</div>
+                <div style="font-family:&#39;DM Mono&#39;,monospace;font-size:10px;font-weight:600;color:#6a6050;margin:3px 0;">~$6M</div>
+                <div style="font-size:9px;color:#9a9080;line-height:1.4;">Академии, лиги</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+  </div>v&gt;
+</div>
+
+<!-- Connector to criteria block -->
+<div class="connector">
+  <div class="connector-line"></div>
+  <div class="connector-arrow"></div>
+</div>
+
+<!-- CRITERIA BLOCK -->
+<div style="background:#fff; border-radius:16px; padding:24px 28px; border:1.5px solid #c8c0b0; margin-bottom:0;">
+  <div style="font-family:&#39;DM Mono&#39;,monospace; font-size:9px; letter-spacing:2.5px; text-transform:uppercase; color:#8a8070; margin-bottom:18px; display:flex; align-items:center; gap:8px;">
+    🎯 Критерии выбора домена
+    <div style="flex:1; height:1px; background:#c8c0b0; opacity:0.4;"></div>
+  </div>
+
+  <div style="display:grid; grid-template-columns:repeat(4,1fr); gap:16px; margin-bottom:20px;">
+
+    <!-- Criterion 1 -->
+    <div style="background:#f7f4ef; border-radius:10px; padding:14px 16px; border-left:3px solid #1a1612;">
+      <div style="font-family:&#39;DM Mono&#39;,monospace; font-size:8px; letter-spacing:1.5px; text-transform:uppercase; color:#8a8070; margin-bottom:6px;">Критерий 1</div>
+      <div style="font-size:13px; font-weight:700; color:#1a1612; margin-bottom:4px;">Большой рынок</div>
+      <div style="font-size:10px; color:#6a6050; line-height:1.5;">Выбираем сегмент с максимальным объёмом денег — больше возможностей для роста и высокого чека</div>
+    </div>
+
+    <!-- Criterion 2 -->
+    <div style="background:#f7f4ef; border-radius:10px; padding:14px 16px; border-left:3px solid #1a1612;">
+      <div style="font-family:&#39;DM Mono&#39;,monospace; font-size:8px; letter-spacing:1.5px; text-transform:uppercase; color:#8a8070; margin-bottom:6px;">Критерий 2</div>
+      <div style="font-size:13px; font-weight:700; color:#1a1612; margin-bottom:4px;">Длинные контракты</div>
+      <div style="font-size:10px; color:#6a6050; line-height:1.5;">Длительность контракта = длительность сезона. Чем длиннее сезон — тем предсказуемее P&amp;L</div>
+    </div>
+
+    <!-- Criterion 3 -->
+    <div style="background:#f7f4ef; border-radius:10px; padding:14px 16px; border-left:3px solid #1a1612;">
+      <div style="font-family:&#39;DM Mono&#39;,monospace; font-size:8px; letter-spacing:1.5px; text-transform:uppercase; color:#8a8070; margin-bottom:6px;">Критерий 3</div>
+      <div style="font-size:13px; font-weight:700; color:#1a1612; margin-bottom:4px;">Маржа ≥ 50%</div>
+      <div style="font-size:10px; color:#6a6050; line-height:1.5;">Юнит-экономика должна держать рентабельность не ниже 50% — иначе масштабирование не имеет смысла</div>
+    </div>
+
+    <!-- Criterion 4 -->
+    <div style="background:#fff8f0; border-radius:10px; padding:14px 16px; border-left:3px solid #e67e22;">
+      <div style="font-family:&#39;DM Mono&#39;,monospace; font-size:8px; letter-spacing:1.5px; text-transform:uppercase; color:#e67e22; margin-bottom:6px;">Критерий 4 · Стартап-фактор</div>
+      <div style="font-size:13px; font-weight:700; color:#1a1612; margin-bottom:4px;">Низкий барьер входа</div>
+      <div style="font-size:10px; color:#6a6050; line-height:1.5;">Мы стартап без бренда и репутации. Нужен сегмент где решение принимается быстро и не требует многолетних связей</div>
+    </div>
+
+  </div>
+
+  <!-- Comparison table — all 12 options -->
+  <div style="border-radius:10px; overflow:hidden; border:1px solid #e0d8cc;">
+
+    <!-- Header -->
+    <div style="display:grid; grid-template-columns:210px 1fr 1fr 1fr 1fr 64px; background:#1a1612; padding:10px 16px; gap:8px;">
+      <div style="font-family:&#39;DM Mono&#39;,monospace; font-size:8px; letter-spacing:1.5px; text-transform:uppercase; color:rgba(255,255,255,0.4);">Вид спорта · Канал · Сегмент</div>
+      <div style="font-family:&#39;DM Mono&#39;,monospace; font-size:8px; letter-spacing:1.5px; text-transform:uppercase; color:rgba(255,255,255,0.4); text-align:center;">Размер SOM</div>
+      <div style="font-family:&#39;DM Mono&#39;,monospace; font-size:8px; letter-spacing:1.5px; text-transform:uppercase; color:rgba(255,255,255,0.4); text-align:center;">Длина сезона</div>
+      <div style="font-family:&#39;DM Mono&#39;,monospace; font-size:8px; letter-spacing:1.5px; text-transform:uppercase; color:rgba(255,255,255,0.4); text-align:center;">Маржа</div>
+      <div style="font-family:&#39;DM Mono&#39;,monospace; font-size:8px; letter-spacing:1.5px; text-transform:uppercase; color:rgba(255,255,255,0.4); text-align:center;">Барьер входа</div>
+      <div style="font-family:&#39;DM Mono&#39;,monospace; font-size:8px; letter-spacing:1.5px; text-transform:uppercase; color:rgba(255,255,255,0.4); text-align:center;">Итог</div>
+    </div>
+    <div style="display:grid; grid-template-columns:210px 1fr 1fr 1fr 1fr 64px; padding:10px 16px; gap:8px; background:#f0faf4; border-bottom:1px solid #e0d8cc; align-items:center; border-left:4px solid #1a6b3a; ">
+      <div>
+        <div style="font-size:10px; font-weight:700; color:#1a6b3a;">⚽ Футбол</div>
+        <div style="font-size:9px; color:#1a6b3a; margin-top:1px; line-height:1.4;">B2B Analytics → Юниор &amp; Amateur</div>
+        <div style="background:#27ae60;color:#fff;font-family:&#39;DM Mono&#39;,monospace;font-size:7px;padding:1px 6px;border-radius:10px;display:inline-block;margin-top:3px;letter-spacing:1px;font-weight:700;">✓ ВЫБОР</div>
+      </div>
+      <div style="text-align:center;">
+        <div style="font-family:&#39;DM Mono&#39;,monospace; font-size:12px; font-weight:700; color:#1a6b3a;">~$80M</div>
+      </div>
+      <div style="text-align:center;">
+        <div style="font-family:&#39;DM Mono&#39;,monospace; font-size:12px; font-weight:700; color:#1a6b3a;">10–11 мес</div>
+      </div>
+      <div style="text-align:center;">
+        <div style="font-family:&#39;DM Mono&#39;,monospace; font-size:12px; font-weight:700; color:#1a6b3a;">50–60%</div>
+      </div>
+      <div style="text-align:center;">
+        <div style="font-family:&#39;DM Mono&#39;,monospace; font-size:11px; font-weight:700; color:#1a6b3a;">Низкий</div>
+      </div>
+      <div style="text-align:center;">
+        <div style="background:#27ae60; color:#fff; font-family:&#39;DM Mono&#39;,monospace; font-size:9px; font-weight:700; padding:3px 6px; border-radius:6px; letter-spacing:1px;">4/4</div>
+      </div>
+    </div>
+    <div style="display:grid; grid-template-columns:210px 1fr 1fr 1fr 1fr 64px; padding:10px 16px; gap:8px; background:#fff; border-bottom:1px solid #e0d8cc; align-items:center;  opacity:0.55;">
+      <div>
+        <div style="font-size:10px; font-weight:700; color:#27ae60;">⚽ Футбол</div>
+        <div style="font-size:9px; color:#8a8070; margin-top:1px; line-height:1.4;">B2B Analytics → Проф лиги</div>
+        
+      </div>
+      <div style="text-align:center;">
+        <div style="font-family:&#39;DM Mono&#39;,monospace; font-size:12px; font-weight:700; color:#27ae60;">~$120M</div>
+      </div>
+      <div style="text-align:center;">
+        <div style="font-family:&#39;DM Mono&#39;,monospace; font-size:12px; font-weight:700; color:#1a6b3a;">10–11 мес</div>
+      </div>
+      <div style="text-align:center;">
+        <div style="font-family:&#39;DM Mono&#39;,monospace; font-size:12px; font-weight:700; color:#e67e22;">35–45%</div>
+      </div>
+      <div style="text-align:center;">
+        <div style="font-family:&#39;DM Mono&#39;,monospace; font-size:11px; font-weight:700; color:#c0392b;">Высокий</div>
+      </div>
+      <div style="text-align:center;">
+        <div style="background:#e0d8cc; color:#6a6050; font-family:&#39;DM Mono&#39;,monospace; font-size:9px; font-weight:700; padding:3px 6px; border-radius:6px; letter-spacing:1px;">2/4</div>
+      </div>
+    </div>
+    <div style="display:grid; grid-template-columns:210px 1fr 1fr 1fr 1fr 64px; padding:10px 16px; gap:8px; background:#fff; border-bottom:1px solid #e0d8cc; align-items:center;  opacity:0.55;">
+      <div>
+        <div style="font-size:10px; font-weight:700; color:#27ae60;">⚽ Футбол</div>
+        <div style="font-size:9px; color:#8a8070; margin-top:1px; line-height:1.4;">In-house → Юниор &amp; Amateur</div>
+        
+      </div>
+      <div style="text-align:center;">
+        <div style="font-family:&#39;DM Mono&#39;,monospace; font-size:12px; font-weight:700; color:#27ae60;">~$80M</div>
+      </div>
+      <div style="text-align:center;">
+        <div style="font-family:&#39;DM Mono&#39;,monospace; font-size:12px; font-weight:700; color:#1a6b3a;">10–11 мес</div>
+      </div>
+      <div style="text-align:center;">
+        <div style="font-family:&#39;DM Mono&#39;,monospace; font-size:12px; font-weight:700; color:#1a6b3a;">40–50%</div>
+      </div>
+      <div style="text-align:center;">
+        <div style="font-family:&#39;DM Mono&#39;,monospace; font-size:11px; font-weight:700; color:#e67e22;">Средний</div>
+      </div>
+      <div style="text-align:center;">
+        <div style="background:#e0d8cc; color:#6a6050; font-family:&#39;DM Mono&#39;,monospace; font-size:9px; font-weight:700; padding:3px 6px; border-radius:6px; letter-spacing:1px;">2/4</div>
+      </div>
+    </div>
+    <div style="display:grid; grid-template-columns:210px 1fr 1fr 1fr 1fr 64px; padding:10px 16px; gap:8px; background:#fff; border-bottom:2px solid #c8c0b0; align-items:center;  opacity:0.55;">
+      <div>
+        <div style="font-size:10px; font-weight:700; color:#27ae60;">⚽ Футбол</div>
+        <div style="font-size:9px; color:#8a8070; margin-top:1px; line-height:1.4;">In-house → Проф лиги</div>
+        
+      </div>
+      <div style="text-align:center;">
+        <div style="font-family:&#39;DM Mono&#39;,monospace; font-size:12px; font-weight:700; color:#27ae60;">~$120M</div>
+      </div>
+      <div style="text-align:center;">
+        <div style="font-family:&#39;DM Mono&#39;,monospace; font-size:12px; font-weight:700; color:#1a6b3a;">10–11 мес</div>
+      </div>
+      <div style="text-align:center;">
+        <div style="font-family:&#39;DM Mono&#39;,monospace; font-size:12px; font-weight:700; color:#e67e22;">35–45%</div>
+      </div>
+      <div style="text-align:center;">
+        <div style="font-family:&#39;DM Mono&#39;,monospace; font-size:11px; font-weight:700; color:#c0392b;">Очень высокий</div>
+      </div>
+      <div style="text-align:center;">
+        <div style="background:#f0e0d8; color:#8a4030; font-family:&#39;DM Mono&#39;,monospace; font-size:9px; font-weight:700; padding:3px 6px; border-radius:6px; letter-spacing:1px;">1/4</div>
+      </div>
+    </div>
+    <div style="display:grid; grid-template-columns:210px 1fr 1fr 1fr 1fr 64px; padding:10px 16px; gap:8px; background:#fff; border-bottom:1px solid #e0d8cc; align-items:center;  opacity:0.55;">
+      <div>
+        <div style="font-size:10px; font-weight:700; color:#2980b9;">🏒 Хоккей</div>
+        <div style="font-size:9px; color:#8a8070; margin-top:1px; line-height:1.4;">B2B Analytics → Юниор &amp; Amateur</div>
+        
+      </div>
+      <div style="text-align:center;">
+        <div style="font-family:&#39;DM Mono&#39;,monospace; font-size:12px; font-weight:700; color:#2980b9;">~$8M</div>
+      </div>
+      <div style="text-align:center;">
+        <div style="font-family:&#39;DM Mono&#39;,monospace; font-size:12px; font-weight:700; color:#e67e22;">7–8 мес</div>
+      </div>
+      <div style="text-align:center;">
+        <div style="font-family:&#39;DM Mono&#39;,monospace; font-size:12px; font-weight:700; color:#1a6b3a;">40–50%</div>
+      </div>
+      <div style="text-align:center;">
+        <div style="font-family:&#39;DM Mono&#39;,monospace; font-size:11px; font-weight:700; color:#e67e22;">Средний</div>
+      </div>
+      <div style="text-align:center;">
+        <div style="background:#f0e0d8; color:#8a4030; font-family:&#39;DM Mono&#39;,monospace; font-size:9px; font-weight:700; padding:3px 6px; border-radius:6px; letter-spacing:1px;">0/4</div>
+      </div>
+    </div>
+    <div style="display:grid; grid-template-columns:210px 1fr 1fr 1fr 1fr 64px; padding:10px 16px; gap:8px; background:#fff; border-bottom:1px solid #e0d8cc; align-items:center;  opacity:0.55;">
+      <div>
+        <div style="font-size:10px; font-weight:700; color:#2980b9;">🏒 Хоккей</div>
+        <div style="font-size:9px; color:#8a8070; margin-top:1px; line-height:1.4;">B2B Analytics → Проф лиги</div>
+        
+      </div>
+      <div style="text-align:center;">
+        <div style="font-family:&#39;DM Mono&#39;,monospace; font-size:12px; font-weight:700; color:#2980b9;">~$22M</div>
+      </div>
+      <div style="text-align:center;">
+        <div style="font-family:&#39;DM Mono&#39;,monospace; font-size:12px; font-weight:700; color:#e67e22;">7–8 мес</div>
+      </div>
+      <div style="text-align:center;">
+        <div style="font-family:&#39;DM Mono&#39;,monospace; font-size:12px; font-weight:700; color:#1a6b3a;">40–50%</div>
+      </div>
+      <div style="text-align:center;">
+        <div style="font-family:&#39;DM Mono&#39;,monospace; font-size:11px; font-weight:700; color:#c0392b;">Высокий</div>
+      </div>
+      <div style="text-align:center;">
+        <div style="background:#f0e0d8; color:#8a4030; font-family:&#39;DM Mono&#39;,monospace; font-size:9px; font-weight:700; padding:3px 6px; border-radius:6px; letter-spacing:1px;">0/4</div>
+      </div>
+    </div>
+    <div style="display:grid; grid-template-columns:210px 1fr 1fr 1fr 1fr 64px; padding:10px 16px; gap:8px; background:#fff; border-bottom:1px solid #e0d8cc; align-items:center;  opacity:0.55;">
+      <div>
+        <div style="font-size:10px; font-weight:700; color:#2980b9;">🏒 Хоккей</div>
+        <div style="font-size:9px; color:#8a8070; margin-top:1px; line-height:1.4;">In-house → Юниор &amp; Amateur</div>
+        
+      </div>
+      <div style="text-align:center;">
+        <div style="font-family:&#39;DM Mono&#39;,monospace; font-size:12px; font-weight:700; color:#2980b9;">~$8M</div>
+      </div>
+      <div style="text-align:center;">
+        <div style="font-family:&#39;DM Mono&#39;,monospace; font-size:12px; font-weight:700; color:#e67e22;">7–8 мес</div>
+      </div>
+      <div style="text-align:center;">
+        <div style="font-family:&#39;DM Mono&#39;,monospace; font-size:12px; font-weight:700; color:#1a6b3a;">40–50%</div>
+      </div>
+      <div style="text-align:center;">
+        <div style="font-family:&#39;DM Mono&#39;,monospace; font-size:11px; font-weight:700; color:#e67e22;">Средний</div>
+      </div>
+      <div style="text-align:center;">
+        <div style="background:#f0e0d8; color:#8a4030; font-family:&#39;DM Mono&#39;,monospace; font-size:9px; font-weight:700; padding:3px 6px; border-radius:6px; letter-spacing:1px;">0/4</div>
+      </div>
+    </div>
+    <div style="display:grid; grid-template-columns:210px 1fr 1fr 1fr 1fr 64px; padding:10px 16px; gap:8px; background:#fff; border-bottom:2px solid #c8c0b0; align-items:center;  opacity:0.55;">
+      <div>
+        <div style="font-size:10px; font-weight:700; color:#2980b9;">🏒 Хоккей</div>
+        <div style="font-size:9px; color:#8a8070; margin-top:1px; line-height:1.4;">In-house → Проф лиги</div>
+        
+      </div>
+      <div style="text-align:center;">
+        <div style="font-family:&#39;DM Mono&#39;,monospace; font-size:12px; font-weight:700; color:#2980b9;">~$22M</div>
+      </div>
+      <div style="text-align:center;">
+        <div style="font-family:&#39;DM Mono&#39;,monospace; font-size:12px; font-weight:700; color:#e67e22;">7–8 мес</div>
+      </div>
+      <div style="text-align:center;">
+        <div style="font-family:&#39;DM Mono&#39;,monospace; font-size:12px; font-weight:700; color:#1a6b3a;">40–50%</div>
+      </div>
+      <div style="text-align:center;">
+        <div style="font-family:&#39;DM Mono&#39;,monospace; font-size:11px; font-weight:700; color:#c0392b;">Очень высокий</div>
+      </div>
+      <div style="text-align:center;">
+        <div style="background:#f0e0d8; color:#8a4030; font-family:&#39;DM Mono&#39;,monospace; font-size:9px; font-weight:700; padding:3px 6px; border-radius:6px; letter-spacing:1px;">0/4</div>
+      </div>
+    </div>
+    <div style="display:grid; grid-template-columns:210px 1fr 1fr 1fr 1fr 64px; padding:10px 16px; gap:8px; background:#fff; border-bottom:1px solid #e0d8cc; align-items:center;  opacity:0.55;">
+      <div>
+        <div style="font-size:10px; font-weight:700; color:#d35400;">🎾 Теннис</div>
+        <div style="font-size:9px; color:#8a8070; margin-top:1px; line-height:1.4;">B2B Analytics → Юниор &amp; Amateur</div>
+        
+      </div>
+      <div style="text-align:center;">
+        <div style="font-family:&#39;DM Mono&#39;,monospace; font-size:12px; font-weight:700; color:#d35400;">~$6M</div>
+      </div>
+      <div style="text-align:center;">
+        <div style="font-family:&#39;DM Mono&#39;,monospace; font-size:12px; font-weight:700; color:#c0392b;">1–2 нед</div>
+      </div>
+      <div style="text-align:center;">
+        <div style="font-family:&#39;DM Mono&#39;,monospace; font-size:12px; font-weight:700; color:#e67e22;">35–45%</div>
+      </div>
+      <div style="text-align:center;">
+        <div style="font-family:&#39;DM Mono&#39;,monospace; font-size:11px; font-weight:700; color:#e67e22;">Средний</div>
+      </div>
+      <div style="text-align:center;">
+        <div style="background:#f0e0d8; color:#8a4030; font-family:&#39;DM Mono&#39;,monospace; font-size:9px; font-weight:700; padding:3px 6px; border-radius:6px; letter-spacing:1px;">0/4</div>
+      </div>
+    </div>
+    <div style="display:grid; grid-template-columns:210px 1fr 1fr 1fr 1fr 64px; padding:10px 16px; gap:8px; background:#fff; border-bottom:1px solid #e0d8cc; align-items:center;  opacity:0.55;">
+      <div>
+        <div style="font-size:10px; font-weight:700; color:#d35400;">🎾 Теннис</div>
+        <div style="font-size:9px; color:#8a8070; margin-top:1px; line-height:1.4;">B2B Analytics → Проф турниры</div>
+        
+      </div>
+      <div style="text-align:center;">
+        <div style="font-family:&#39;DM Mono&#39;,monospace; font-size:12px; font-weight:700; color:#d35400;">~$16M</div>
+      </div>
+      <div style="text-align:center;">
+        <div style="font-family:&#39;DM Mono&#39;,monospace; font-size:12px; font-weight:700; color:#c0392b;">1–2 нед</div>
+      </div>
+      <div style="text-align:center;">
+        <div style="font-family:&#39;DM Mono&#39;,monospace; font-size:12px; font-weight:700; color:#e67e22;">35–45%</div>
+      </div>
+      <div style="text-align:center;">
+        <div style="font-family:&#39;DM Mono&#39;,monospace; font-size:11px; font-weight:700; color:#c0392b;">Высокий</div>
+      </div>
+      <div style="text-align:center;">
+        <div style="background:#f0e0d8; color:#8a4030; font-family:&#39;DM Mono&#39;,monospace; font-size:9px; font-weight:700; padding:3px 6px; border-radius:6px; letter-spacing:1px;">0/4</div>
+      </div>
+    </div>
+    <div style="display:grid; grid-template-columns:210px 1fr 1fr 1fr 1fr 64px; padding:10px 16px; gap:8px; background:#fff; border-bottom:1px solid #e0d8cc; align-items:center;  opacity:0.55;">
+      <div>
+        <div style="font-size:10px; font-weight:700; color:#d35400;">🎾 Теннис</div>
+        <div style="font-size:9px; color:#8a8070; margin-top:1px; line-height:1.4;">In-house → Юниор &amp; Amateur</div>
+        
+      </div>
+      <div style="text-align:center;">
+        <div style="font-family:&#39;DM Mono&#39;,monospace; font-size:12px; font-weight:700; color:#d35400;">~$6M</div>
+      </div>
+      <div style="text-align:center;">
+        <div style="font-family:&#39;DM Mono&#39;,monospace; font-size:12px; font-weight:700; color:#c0392b;">1–2 нед</div>
+      </div>
+      <div style="text-align:center;">
+        <div style="font-family:&#39;DM Mono&#39;,monospace; font-size:12px; font-weight:700; color:#e67e22;">35–45%</div>
+      </div>
+      <div style="text-align:center;">
+        <div style="font-family:&#39;DM Mono&#39;,monospace; font-size:11px; font-weight:700; color:#e67e22;">Средний</div>
+      </div>
+      <div style="text-align:center;">
+        <div style="background:#f0e0d8; color:#8a4030; font-family:&#39;DM Mono&#39;,monospace; font-size:9px; font-weight:700; padding:3px 6px; border-radius:6px; letter-spacing:1px;">0/4</div>
+      </div>
+    </div>
+    <div style="display:grid; grid-template-columns:210px 1fr 1fr 1fr 1fr 64px; padding:10px 16px; gap:8px; background:#fff; border-bottom:1px solid #e0d8cc; align-items:center;  opacity:0.55;">
+      <div>
+        <div style="font-size:10px; font-weight:700; color:#d35400;">🎾 Теннис</div>
+        <div style="font-size:9px; color:#8a8070; margin-top:1px; line-height:1.4;">In-house → Проф турниры</div>
+        
+      </div>
+      <div style="text-align:center;">
+        <div style="font-family:&#39;DM Mono&#39;,monospace; font-size:12px; font-weight:700; color:#d35400;">~$16M</div>
+      </div>
+      <div style="text-align:center;">
+        <div style="font-family:&#39;DM Mono&#39;,monospace; font-size:12px; font-weight:700; color:#c0392b;">1–2 нед</div>
+      </div>
+      <div style="text-align:center;">
+        <div style="font-family:&#39;DM Mono&#39;,monospace; font-size:12px; font-weight:700; color:#e67e22;">35–45%</div>
+      </div>
+      <div style="text-align:center;">
+        <div style="font-family:&#39;DM Mono&#39;,monospace; font-size:11px; font-weight:700; color:#c0392b;">Очень высокий</div>
+      </div>
+      <div style="text-align:center;">
+        <div style="background:#f0e0d8; color:#8a4030; font-family:&#39;DM Mono&#39;,monospace; font-size:9px; font-weight:700; padding:3px 6px; border-radius:6px; letter-spacing:1px;">0/4</div>
+      </div>
+    </div>
+  </div>
+  <div style="font-size:9px; color:#b0a898; margin-top:6px; font-family:&#39;DM Mono&#39;,monospace;">* Проф лиги футбола крупнее по деньгам ($120M), но высокий барьер входа и маржа ниже порога исключают их как стартовый домен</div>
+
+<!-- Connector to final block -->
+<div class="connector">
+  <div class="connector-line" style="background:#f39c12;"></div>
+  <div class="connector-arrow" style="border-top-color:#f39c12;"></div>
+</div>
+
+<!-- FINAL CHOSEN DOMAIN -->
+<div style="background:#1a1612; border-radius:16px; padding:28px 32px; border:2.5px solid #f39c12; position:relative;">
+
+  <div style="position:absolute; top:-13px; left:32px; background:#f39c12; color:#fff; font-family:&#39;DM Mono&#39;,monospace; font-size:9px; font-weight:700; letter-spacing:2px; text-transform:uppercase; padding:3px 14px; border-radius:100px;">
+    🎯 Global SOM · Выбранный домен
+  </div>
+
+  <!-- Chain breadcrumb -->
+  <div style="display:flex; align-items:center; gap:12px; margin-bottom:24px; flex-wrap:wrap;">
+
+    <!-- GLOBAL TAM -->
+    <div style="display:flex;flex-direction:column;gap:3px;align-items:center;">
+      <div style="font-family:&#39;DM Mono&#39;,monospace;font-size:8px;letter-spacing:1.5px;text-transform:uppercase;color:#e8c96a;font-weight:700;">Global TAM</div>
+      <div style="background:rgba(232,201,106,0.12); border:1px solid rgba(232,201,106,0.3); border-radius:8px; padding:6px 14px; font-family:&#39;DM Mono&#39;,monospace; font-size:11px; color:#e8c96a; font-weight:700;">Sports Data · ~$8.4B</div>
+      <div style="font-size:9px;color:rgba(255,255,255,0.3);font-family:&#39;DM Mono&#39;,monospace;">Весь рынок спортивных данных</div>
+    </div>
+
+    <div style="color:rgba(255,255,255,0.2);font-size:20px;padding-bottom:14px;">→</div>
+
+    <!-- GLOBAL SAM -->
+    <div style="display:flex;flex-direction:column;gap:3px;align-items:center;">
+      <div style="font-family:&#39;DM Mono&#39;,monospace;font-size:8px;letter-spacing:1.5px;text-transform:uppercase;color:rgba(39,174,96,0.8);font-weight:700;">Global SAM</div>
+      <div style="border:1.5px solid rgba(39,174,96,0.4);border-radius:8px;padding:6px 10px;background:rgba(39,174,96,0.06);display:flex;align-items:center;gap:6px;">
+        <div style="text-align:center;">
+          <div style="font-size:8px;color:rgba(255,255,255,0.3);font-family:&#39;DM Mono&#39;,monospace;margin-bottom:2px;">Вид спорта</div>
+          <div style="font-family:&#39;DM Mono&#39;,monospace;font-size:10px;color:rgba(255,255,255,0.7);background:rgba(255,255,255,0.07);padding:3px 8px;border-radius:5px;">⚽ Football · ~$3.8B</div>
+        </div>
+        <div style="color:rgba(39,174,96,0.4);font-size:12px;">→</div>
+        <div style="text-align:center;">
+          <div style="font-size:8px;color:rgba(255,255,255,0.3);font-family:&#39;DM Mono&#39;,monospace;margin-bottom:2px;">Канал</div>
+          <div style="font-family:&#39;DM Mono&#39;,monospace;font-size:10px;color:rgba(255,255,255,0.7);background:rgba(255,255,255,0.07);padding:3px 8px;border-radius:5px;">B2B Analytics · ~$1.1B</div>
+        </div>
+        <div style="color:rgba(39,174,96,0.4);font-size:12px;">→</div>
+        <div style="text-align:center;">
+          <div style="font-size:8px;color:rgba(255,255,255,0.3);font-family:&#39;DM Mono&#39;,monospace;margin-bottom:2px;">Сегмент</div>
+          <div style="font-family:&#39;DM Mono&#39;,monospace;font-size:10px;color:rgba(255,255,255,0.7);background:rgba(255,255,255,0.07);padding:3px 8px;border-radius:5px;">Junior &amp; Amateur · ~$80M</div>
+        </div>
+      </div>
+      <div style="font-size:9px;color:rgba(255,255,255,0.3);font-family:&#39;DM Mono&#39;,monospace;">Выбранный сегмент и канал</div>
+    </div>
+
+    <div style="color:rgba(255,255,255,0.2);font-size:20px;padding-bottom:14px;">→</div>
+
+    <!-- GLOBAL SOM -->
+    <div style="display:flex;flex-direction:column;gap:3px;align-items:center;">
+      <div style="font-family:&#39;DM Mono&#39;,monospace;font-size:8px;letter-spacing:1.5px;text-transform:uppercase;color:#27ae60;font-weight:700;">Global SOM ✓</div>
+      <div style="background:rgba(39,174,96,0.2); border:2px solid #27ae60; border-radius:8px; padding:6px 14px; font-family:&#39;DM Mono&#39;,monospace; font-size:11px; color:#6aef8a; font-weight:700;">Junior &amp; Amateur · ~$80M</div>
+      <div style="font-size:9px;color:rgba(255,255,255,0.3);font-family:&#39;DM Mono&#39;,monospace;">Реально достижимый рынок</div>
+    </div>
+
+  </div>
+
+  <!-- Main content -->
+  <div style="display:grid; grid-template-columns:1fr 1fr 1fr; gap:20px;">
+
+    <div>
+      <div style="font-family:&#39;DM Mono&#39;,monospace; font-size:8px; letter-spacing:2px; text-transform:uppercase; color:rgba(255,255,255,0.35); margin-bottom:8px;">Домен</div>
+      <div style="font-size:22px; font-weight:800; color:#fff; line-height:1.2; margin-bottom:8px;">⚽ Football<br>Junior &amp; Amateur</div>
+      <div style="font-size:11px; color:rgba(255,255,255,0.4); line-height:1.6; margin-bottom:8px;">Университетский футбол (NCAA), amateur лиги, академии молодёжного развития</div>
+      <div style="background:rgba(39,174,96,0.12); border:1px solid rgba(39,174,96,0.3); border-radius:6px; padding:6px 10px; font-size:10px; color:rgba(255,255,255,0.55); line-height:1.5;">Клиент: <span style="color:#6aef8a; font-weight:600;">B2B Analytics компании</span> — поставляем им данные по junior &amp; amateur сегменту</div>
+    </div>
+
+    <div style="border-left:1px solid rgba(255,255,255,0.08); padding-left:20px;">
+      <div style="font-family:&#39;DM Mono&#39;,monospace; font-size:8px; letter-spacing:2px; text-transform:uppercase; color:rgba(255,255,255,0.35); margin-bottom:8px;">Почему выбран</div>
+      <div style="display:flex; flex-direction:column; gap:8px;">
+        <div style="display:flex; align-items:flex-start; gap:8px;"><div style="width:6px;height:6px;border-radius:50%;background:#27ae60;flex-shrink:0;margin-top:4px;"></div><div style="font-size:11px;color:rgba(255,255,255,0.55);line-height:1.5;">Крупнейший TAM — <span style="color:#6aef8a;">$3.8B</span></div></div>
+        <div style="display:flex; align-items:flex-start; gap:8px;"><div style="width:6px;height:6px;border-radius:50%;background:#27ae60;flex-shrink:0;margin-top:4px;"></div><div style="font-size:11px;color:rgba(255,255,255,0.55);line-height:1.5;">Сезон <span style="color:#6aef8a;">10–11 мес</span> — долгосрочные контракты</div></div>
+        <div style="display:flex; align-items:flex-start; gap:8px;"><div style="width:6px;height:6px;border-radius:50%;background:#27ae60;flex-shrink:0;margin-top:4px;"></div><div style="font-size:11px;color:rgba(255,255,255,0.55);line-height:1.5;">Маржа <span style="color:#6aef8a;">50–60%</span> — выше порога</div></div>
+        <div style="display:flex; align-items:flex-start; gap:8px;"><div style="width:6px;height:6px;border-radius:50%;background:#27ae60;flex-shrink:0;margin-top:4px;"></div><div style="font-size:11px;color:rgba(255,255,255,0.55);line-height:1.5;">Предсказуемый P&amp;L — решает исходную проблему</div></div>
+      </div>
+    </div>
+
+    <div style="border-left:1px solid rgba(255,255,255,0.08); padding-left:20px;">
+      <div style="font-family:&#39;DM Mono&#39;,monospace; font-size:8px; letter-spacing:2px; text-transform:uppercase; color:rgba(255,255,255,0.35); margin-bottom:8px;">Ключевые метрики</div>
+      <div style="display:flex; flex-direction:column; gap:10px;">
+        <div><div style="font-family:&#39;DM Mono&#39;,monospace; font-size:18px; font-weight:700; color:#e8c96a;">~$80M</div><div style="font-size:10px; color:rgba(255,255,255,0.35);">Реалистичный SOM</div></div>
+        <div><div style="font-family:&#39;DM Mono&#39;,monospace; font-size:18px; font-weight:700; color:#6aef8a;">50–60%</div><div style="font-size:10px; color:rgba(255,255,255,0.35);">Целевая маржа</div></div>
+        <div><div style="font-family:&#39;DM Mono&#39;,monospace; font-size:18px; font-weight:700; color:#fff;">10–11 мес</div><div style="font-size:10px; color:rgba(255,255,255,0.35);">Длина сезона / контракта</div></div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+
+
+</div></body></html>
