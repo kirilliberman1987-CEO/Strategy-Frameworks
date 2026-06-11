@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<!-- saved from url=(0076)file:///C:/Users/Admin/Downloads/operational_management_architecture_EN.html -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Operational Management Architecture</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
+    background: #f5f5f3;
+    color: #1a1a18;
+    padding: 32px 20px 48px;
+  }
+  .page { max-width: 900px; margin: 0 auto; }
+
+  /* TITLE */
+  .page-title {
+    font-size: 20px; font-weight: 600; text-align: center;
+    color: #1a1a18; margin-bottom: 20px; letter-spacing: -0.01em;
+  }
+
+  /* FOUNDATION */
+  .foundation {
+    border: 1.5px solid #7F77DD; border-radius: 12px;
+    padding: 18px 22px; margin-bottom: 8px; background: #fff;
+  }
+  .foundation-header { display: flex; align-items: center; gap: 10px; margin-bottom: 10px; }
+  .f-icon { font-size: 22px; }
+  .f-title { font-size: 15px; font-weight: 600; color: #534AB7; }
+  .f-desc { font-size: 13px; color: #555; line-height: 1.65; margin-bottom: 14px; }
+  .f-pills { display: flex; gap: 8px; flex-wrap: wrap; }
+  .fpill {
+    font-size: 12px; padding: 4px 14px; border-radius: 999px;
+    border: 1px solid #AFA9EC; color: #3C3489; background: #fff;
+  }
+  .applies-all {
+    text-align: center; font-size: 12px; color: #534AB7;
+    margin: 10px 0 12px; font-style: italic;
+  }
+
+  /* RHYTHM */
+  .rhythm {
+    border: 1.5px solid #5DCAA5; border-radius: 12px;
+    overflow: hidden; background: #fff; margin-bottom: 16px;
+  }
+  .rhythm-head {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 14px 20px 12px;
+  }
+  .rh-left { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+  .rh-icon { font-size: 18px; }
+  .rh-title { font-size: 15px; font-weight: 600; color: #0F6E56; }
+  .rh-sub { font-size: 13px; color: #666; }
+  .rh-badge {
+    font-size: 11px; color: #0F6E56; border: 1px solid #5DCAA5;
+    border-radius: 6px; padding: 3px 10px; white-space: nowrap;
+  }
+  .rhythm-cols {
+    display: grid; grid-template-columns: 1fr 1fr 1fr;
+    border-top: 0.5px solid #9FE1CB;
+  }
+  .rcol { padding: 14px 16px; }
+  .rcol:not(:last-child) { border-right: 0.5px solid #9FE1CB; }
+  .rbadge {
+    display: inline-block; font-size: 11px; font-weight: 600;
+    padding: 2px 12px; border-radius: 999px; margin-bottom: 8px;
+  }
+  .rb1 { background: #E1F5EE; color: #085041; border: 1px solid #9FE1CB; }
+  .rb2 { background: #EEEDFE; color: #3C3489; border: 1px solid #AFA9EC; }
+  .rb3 { background: #FAEEDA; color: #633806; border: 1px solid #FAC775; }
+  .rtempo { font-size: 13px; font-weight: 600; color: #1a1a18; margin-bottom: 8px; }
+  .rlist { list-style: none; padding: 0; }
+  .rlist li {
+    font-size: 12px; color: #555; padding-left: 14px;
+    position: relative; margin-bottom: 5px; line-height: 1.55;
+  }
+  .rlist li::before { content: '•'; position: absolute; left: 2px; }
+  .d1 li::before { color: #1D9E75; }
+  .d2 li::before { color: #7F77DD; }
+  .d3 li::before { color: #BA7517; }
+  .rlabel { font-weight: 600; color: #1a1a18; }
+
+  /* BLOCK 2 */
+  .b2-wrap {
+    border: 1px solid #AFA9EC; border-radius: 12px;
+    padding: 16px 18px; background: #fff; margin-bottom: 0;
+  }
+  .b2-head { display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; }
+  .b2-badge {
+    font-size: 11px; font-weight: 600; padding: 3px 12px; border-radius: 999px;
+    background: #EEEDFE; color: #3C3489; border: 1px solid #AFA9EC;
+  }
+  .b2-meta { display: flex; gap: 6px; align-items: center; }
+  .b2-kmeta {
+    font-size: 11px; padding: 2px 9px; border-radius: 999px;
+    border: 1px solid #AFA9EC; color: #3C3489;
+  }
+  .b2-period { font-size: 11px; color: #888; }
+  .b2-title { font-size: 14px; font-weight: 600; color: #1a1a18; margin-bottom: 14px; }
+  .b2-body { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+  .section-label {
+    font-size: 10px; font-weight: 700; letter-spacing: .07em;
+    color: #999; margin-bottom: 7px; text-transform: uppercase;
+  }
+  .algo { list-style: none; padding: 0; }
+  .algo li {
+    display: flex; gap: 8px; font-size: 12px; color: #555;
+    margin-bottom: 5px; line-height: 1.55;
+  }
+  .anum {
+    font-size: 10px; font-weight: 700; width: 17px; height: 17px; min-width: 17px;
+    border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-top: 1px;
+  }
+  .an1 { background: #E1F5EE; color: #085041; }
+  .an2 { background: #EEEDFE; color: #3C3489; }
+  .an3 { background: #FAEEDA; color: #633806; }
+  .mt-title { font-size: 12px; font-weight: 600; color: #1a1a18; margin-bottom: 5px; }
+  .mt-sub { font-size: 12px; color: #1a1a18; margin: 6px 0 4px; }
+  .mpills { display: flex; flex-wrap: wrap; gap: 5px; margin-bottom: 7px; }
+  .mp { font-size: 11px; padding: 3px 10px; border-radius: 999px; }
+  .mp1 { background: #E1F5EE; color: #085041; border: 1px solid #9FE1CB; }
+  .mp2 { background: #EEEDFE; color: #3C3489; border: 1px solid #AFA9EC; }
+  .mp3 { background: #FAEEDA; color: #633806; border: 1px solid #FAC775; }
+  .mnote { font-size: 11px; color: #999; font-style: italic; line-height: 1.5; }
+  .card-footer {
+    display: flex; justify-content: space-between; align-items: center;
+    margin-top: 12px; padding-top: 10px; border-top: 0.5px solid #e5e5e2;
+  }
+  .f-cal { font-size: 11px; color: #999; }
+  .resp-row { display: flex; gap: 6px; }
+  .rbadge2 { font-size: 11px; font-weight: 600; padding: 2px 9px; border-radius: 6px; }
+  .rp { background: #EEEDFE; color: #3C3489; border: 1px solid #AFA9EC; }
+  .rg { background: #E1F5EE; color: #085041; border: 1px solid #9FE1CB; }
+  .ra { background: #FAEEDA; color: #633806; border: 1px solid #FAC775; }
+
+  /* ARROWS */
+  .arrow-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 0; }
+  .arrow-col { display: flex; flex-direction: column; align-items: center; }
+  .ftag {
+    font-size: 11px; color: #534AB7; padding: 2px 10px;
+    border-radius: 6px; border: 1px solid #AFA9EC; background: #EEEDFE; white-space: nowrap;
+    margin-bottom: 4px;
+  }
+  .arrow-col:first-child { align-items: flex-start; }
+  .arrow-col:last-child { align-items: flex-end; }
+  .arrow-svg { display: block; }
+
+  /* BLOCKS 1 & 3 */
+  .b13-row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-top: 0; }
+  .b1-card { border: 1px solid #9FE1CB; border-radius: 10px; padding: 14px; background: #fff; }
+  .b3-card { border: 1px solid #FAC775; border-radius: 10px; padding: 14px; background: #fff; }
+  .bcard-head { display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; }
+  .bkpill { font-size: 11px; padding: 2px 8px; border-radius: 999px; }
+  .bk1 { border: 1px solid #9FE1CB; color: #085041; }
+  .bk3 { border: 1px solid #FAC775; color: #633806; }
+  .bperiod { font-size: 11px; color: #888; }
+  .bcard-title { font-size: 13px; font-weight: 600; color: #1a1a18; margin-bottom: 10px; }
+
+  /* DRILL DOWN */
+  .drill {
+    margin-top: 14px; border: 0.5px solid #ddd; border-radius: 10px;
+    padding: 14px 16px; background: #fafaf8;
+  }
+  .drill-title { font-size: 12px; color: #555; margin-bottom: 10px; }
+  .drill-flow { display: grid; grid-template-columns: repeat(6, 1fr); gap: 6px; }
+  .df { font-size: 11px; }
+  .dflabel { font-size: 10px; font-weight: 700; letter-spacing: .05em; color: #999; margin-bottom: 3px; text-transform: uppercase; }
+  .dfbadge { font-size: 10px; padding: 1px 7px; border-radius: 4px; margin-bottom: 4px; display: inline-block; }
+  .dfdown { background: #FAEEDA; color: #633806; border: 1px solid #FAC775; }
+  .dfup { background: #E1F5EE; color: #085041; border: 1px solid #9FE1CB; }
+  .dfn { background: #f0f0ee; color: #666; border: 1px solid #ddd; }
+  .dftitle { font-size: 11px; font-weight: 600; color: #1a1a18; margin-bottom: 2px; }
+  .dfsub { font-size: 10px; color: #888; line-height: 1.4; }
+
+  @media print {
+    body { background: #fff; padding: 16px; }
+    .foundation, .rhythm, .b2-wrap, .b1-card, .b3-card { break-inside: avoid; }
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <div class="page-title">Operational Management Architecture</div>
+
+  <!-- FOUNDATION -->
+  <div class="foundation">
+    <div class="foundation-header">
+      <span class="f-icon">🎯</span>
+      <span class="f-title">System Foundation: KPI + OKR</span>
+    </div>
+    <div class="f-desc">To compare plan vs. actual at every level — you must define target indicators in advance. KPI fixes what we measure. OKR sets where we're going and through what results. Without this there are no planned values — nothing to compare against.</div>
+    <div class="f-pills">
+      <span class="fpill">KPI — what we measure</span>
+      <span class="fpill">OKR — goals and key results</span>
+      <span class="fpill">Planned vs Actual — at every level</span>
+    </div>
+  </div>
+  <div class="applies-all">Applies across all three blocks — Block 1, Block 2, Block 3</div>
+
+  <!-- RHYTHM -->
+  <div class="rhythm">
+    <div class="rhythm-head">
+      <div class="rh-left">
+        <span class="rh-icon">🔄</span>
+        <span class="rh-title">Operational Rhythm &amp; Standardization</span>
+        <span class="rh-sub">— unified rules for each management level</span>
+      </div>
+      <span class="rh-badge">Applies across all three blocks</span>
+    </div>
+    <div class="rhythm-cols">
+      <div class="rcol">
+        <span class="rbadge rb1">Block 1</span>
+        <div class="rtempo">Daily · Weekly</div>
+        <ul class="rlist d1">
+          <li><span class="rlabel">Rhythm:</span> daily dashboard + weekly COO meeting with Head of</li>
+          <li><span class="rlabel">Format:</span> 30–45 min, focus on one lagging indicator</li>
+          <li><span class="rlabel">Standard:</span> dashboard open, plan vs actual on screen, action items recorded in writing</li>
+          <li><span class="rlabel">Output:</span> concrete decision + owner + deadline</li>
+        </ul>
+      </div>
+      <div class="rcol">
+        <span class="rbadge rb2">Block 2</span>
+        <div class="rtempo">Monthly</div>
+        <ul class="rlist d2">
+          <li><span class="rlabel">Rhythm:</span> fixed day of month, same agenda every time</li>
+          <li><span class="rlabel">Format:</span> 60–90 min, COO + CEO, dashboard + report prepared in advance</li>
+          <li><span class="rlabel">Standard:</span> unified report template — metric / plan / actual / delta / reason / action</li>
+          <li><span class="rlabel">Output:</span> updated action plan for next month</li>
+        </ul>
+      </div>
+      <div class="rcol">
+        <span class="rbadge rb3">Block 3</span>
+        <div class="rtempo">Quarterly</div>
+        <ul class="rlist d3">
+          <li><span class="rlabel">Rhythm:</span> last week of quarter, full strategic review</li>
+          <li><span class="rlabel">Format:</span> 2–3 hrs, COO + CEO, Block 2 data × 3 months as input</li>
+          <li><span class="rlabel">Standard:</span> quarterly report — trends, patterns, conclusions, OKR correction</li>
+          <li><span class="rlabel">Output:</span> adjusted strategy + KPI plan for Block 2 next quarter</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- BLOCK 2 -->
+  <div class="b2-wrap">
+    <div class="b2-head">
+      <span class="b2-badge">Block 2 · System Core</span>
+      <div class="b2-meta">
+        <span class="b2-kmeta">KPI · OKR</span>
+        <span class="b2-period">Monthly</span>
+      </div>
+    </div>
+    <div class="b2-title">Monthly Monitoring &amp; Control</div>
+    <div class="b2-body">
+      <div>
+        <div class="section-label">Meeting Algorithm</div>
+        <ol class="algo">
+          <li><span class="anum an2">1</span><span><strong>Dashboard data.</strong> Monthly actuals collected automatically</span></li>
+          <li><span class="anum an2">2</span><span><strong>Planned vs actual</strong> for each KPI indicator</span></li>
+          <li><span class="anum an2">3</span><span><strong>Deviation analysis.</strong> What's good, what's lagging and why</span></li>
+          <li><span class="anum an2">4</span><span><strong>Diagnostics via Block 1</strong> on the lagging area</span></li>
+          <li><span class="anum an2">5</span><span><strong>Action plan.</strong> Concrete actions, owner, deadline</span></li>
+          <li><span class="anum an2">6</span><span><strong>Hand-off to Block 3.</strong> Month data feeds into quarterly analysis</span></li>
+        </ol>
+      </div>
+      <div>
+        <div class="mt-title">Business Indicators <span style="font-size:11px;font-weight:400;color:#999">⚠ example only</span></div>
+        <div class="mt-sub">P&amp;L / Service business:</div>
+        <div class="mpills">
+          <span class="mp mp2">Revenue</span><span class="mp mp2">EBITDA</span><span class="mp mp2">COGS</span><span class="mp mp2">Gross margin</span><span class="mp mp2">OpEx</span>
+        </div>
+        <div class="mt-sub">SaaS / Product:</div>
+        <div class="mpills">
+          <span class="mp mp2">MRR / ARR</span><span class="mp mp2">NRR</span><span class="mp mp2">Churn</span><span class="mp mp2">CAC Payback</span>
+        </div>
+        <div class="mnote">Metrics are defined once during system setup. The set depends on business type and model.</div>
+      </div>
+    </div>
+    <div class="card-footer">
+      <span class="f-cal">📅 Monthly meetings</span>
+      <div class="resp-row"><span class="rbadge2 rp">COO</span><span class="rbadge2 rp">CEO</span></div>
+    </div>
+  </div>
+
+  <!-- ARROWS -->
+  <div class="arrow-row">
+    <div class="arrow-col">
+      <span class="ftag">← Defines leading indicators for Block 1</span>
+      <svg class="arrow-svg" width="30" height="28" viewBox="0 0 30 28">
+        <line x1="15" y1="0" x2="15" y2="20" stroke="#9ca3af" stroke-width="1.5"></line>
+        <polyline points="8,14 15,24 22,14" fill="none" stroke="#9ca3af" stroke-width="1.5" stroke-linejoin="round"></polyline>
+      </svg>
+    </div>
+    <div class="arrow-col">
+      <span class="ftag">Data × 3 months → quarterly analysis →</span>
+      <svg class="arrow-svg" width="30" height="28" viewBox="0 0 30 28">
+        <line x1="15" y1="0" x2="15" y2="20" stroke="#9ca3af" stroke-width="1.5"></line>
+        <polyline points="8,14 15,24 22,14" fill="none" stroke="#9ca3af" stroke-width="1.5" stroke-linejoin="round"></polyline>
+      </svg>
+    </div>
+  </div>
+
+  <!-- BLOCKS 1 & 3 -->
+  <div class="b13-row">
+
+    <!-- BLOCK 1 -->
+    <div class="b1-card">
+      <div class="bcard-head">
+        <span class="rbadge rb1">Block 1</span>
+        <div style="display:flex;gap:6px;align-items:center">
+          <span class="mp bkpill bk1">KPI</span>
+          <span class="bperiod">Daily · Weekly</span>
+        </div>
+      </div>
+      <div class="bcard-title">Daily / Weekly Monitoring &amp; Control</div>
+      <div class="section-label">COO Algorithm</div>
+      <ol class="algo" style="margin-bottom:10px">
+        <li><span class="anum an1">1</span><span><strong>Select leading indicators</strong> based on Block 2 metrics</span></li>
+        <li><span class="anum an1">2</span><span><strong>Daily/weekly measurement</strong> via dashboard automatically</span></li>
+        <li><span class="anum an1">3</span><span><strong>Deviation from plan?</strong> Identify the direction and function that's lagging</span></li>
+        <li><span class="anum an1">4</span><span><strong>Enter the process.</strong> Specific funnel stage together with Head of</span></li>
+        <li><span class="anum an1">5</span><span><strong>Corrective actions.</strong> Decision, owner, deadline</span></li>
+        <li><span class="anum an1">6</span><span><strong>Monitor effect.</strong> No improvement — escalate to Block 2</span></li>
+      </ol>
+      <div class="mt-title">Indicators <span style="font-size:11px;font-weight:400;color:#999">⚠ example only</span></div>
+      <div class="mt-sub">If Revenue is lagging:</div>
+      <div class="mpills">
+        <span class="mp mp1">Win rate</span><span class="mp mp1">NRR</span><span class="mp mp1">Lead conv.</span><span class="mp mp1">Sales cycle</span><span class="mp mp1">Pipeline</span><span class="mp mp1">CAC</span><span class="mp mp1">Churn</span>
+      </div>
+      <div class="mt-sub">If Gross margin is lagging:</div>
+      <div class="mpills">
+        <span class="mp mp1">Utilization</span><span class="mp mp1">Cost/delivery</span><span class="mp mp1">Rework rate</span>
+      </div>
+      <div class="mnote">Metric set is determined by the Block 2 indicator that's lagging.</div>
+      <div class="card-footer">
+        <span class="f-cal">📅 Weekly</span>
+        <span class="rbadge2 rg">COO — responsible</span>
+      </div>
+    </div>
+
+    <!-- BLOCK 3 -->
+    <div class="b3-card">
+      <div class="bcard-head">
+        <span class="rbadge rb3">Block 3</span>
+        <div style="display:flex;gap:6px;align-items:center">
+          <span class="mp bkpill bk3">KPI · OKR</span>
+          <span class="bperiod">Quarterly</span>
+        </div>
+      </div>
+      <div class="bcard-title">Quarterly Strategic Review</div>
+      <div class="section-label">Meeting Algorithm</div>
+      <ol class="algo" style="margin-bottom:10px">
+        <li><span class="anum an3">1</span><span><strong>Data aggregation.</strong> Block 2 indicators for 3 months into one picture</span></li>
+        <li><span class="anum an3">2</span><span><strong>Trend analysis.</strong> Growth patterns, systemic deviations</span></li>
+        <li><span class="anum an3">3</span><span><strong>Evaluate action plans</strong> from Blocks 1 &amp; 2 — what worked</span></li>
+        <li><span class="anum an3">4</span><span><strong>Strategic conclusions.</strong> Where we are vs annual OKR goals</span></li>
+        <li><span class="anum an3">5</span><span><strong>Strategy adjustment.</strong> Goals, priorities, resources</span></li>
+        <li><span class="anum an3">6</span><span><strong>Next quarter plan</strong> — target KPIs for Block 2</span></li>
+      </ol>
+      <div class="mt-title">Input Data <span style="font-size:11px;font-weight:400;color:#999">⚠ example only</span></div>
+      <div class="mt-sub">Block 2 Dynamics × Quarter:</div>
+      <div class="mpills">
+        <span class="mp mp3">Revenue × 3M</span><span class="mp mp3">EBITDA trend</span><span class="mp mp3">GM delta</span><span class="mp mp3">OpEx dynamics</span>
+      </div>
+      <div class="mt-sub">Additional quarterly inputs:</div>
+      <div class="mpills">
+        <span class="mp mp3">Market position</span><span class="mp mp3">Headcount plan</span><span class="mp mp3">Budget revision</span><span class="mp mp3">Roadmap review</span>
+      </div>
+      <div class="mnote">Strategic decisions are made based on accumulated data, not a single month.</div>
+      <div class="card-footer">
+        <span class="f-cal">📅 Quarterly</span>
+        <div class="resp-row"><span class="rbadge2 rg">COO</span><span class="rbadge2 ra">CEO — responsible</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- DRILL DOWN -->
+  <div class="drill">
+    <div class="drill-title">
+      🔍 <strong>Drill-down example</strong> — Block 2 signals → COO works in Block 1 → action plan → result recorded in Block 2
+    </div>
+    <div class="drill-flow">
+      <div class="df">
+        <div class="dflabel">Block 2 · COO+CEO</div>
+        <span class="dfbadge dfdown">↓ plan</span>
+        <div class="dftitle">Revenue</div>
+        <div class="dfsub">Actual below plan for the month</div>
+      </div>
+      <div class="df">
+        <div class="dflabel">Block 1 · COO</div>
+        <span class="dfbadge dfdown">↓ plan</span>
+        <div class="dftitle">Win rate</div>
+        <div class="dfsub">Below target 3 weeks running</div>
+      </div>
+      <div class="df">
+        <div class="dflabel">Funnel</div>
+        <span class="dfbadge dfn">Stage</span>
+        <div class="dftitle">Opportunity → Deal</div>
+        <div class="dfsub">Bottleneck here</div>
+      </div>
+      <div class="df">
+        <div class="dflabel">COO + Head of Sales</div>
+        <span class="dfbadge dfn">Reason</span>
+        <div class="dftitle">Payment terms</div>
+        <div class="dfsub">15 days — a barrier for clients</div>
+      </div>
+      <div class="df">
+        <div class="dflabel">Action · COO</div>
+        <span class="dfbadge dfn">Solution</span>
+        <div class="dftitle">Deferred → 30 days</div>
+        <div class="dfsub">Owner: Head of Sales</div>
+      </div>
+      <div class="df">
+        <div class="dflabel">Block 1 · Weekly</div>
+        <span class="dfbadge dfup">↑ growing</span>
+        <div class="dftitle">Win rate ↑</div>
+        <div class="dfsub">Recorded in Block 2 next month</div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+
+</body></html>

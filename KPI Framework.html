@@ -1,589 +1,385 @@
 <!DOCTYPE html>
-<!-- saved from url=(0051)file:///C:/Users/Admin/Downloads/kpi-framework.html -->
-<html lang="ru"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<!-- saved from url=(0054)file:///C:/Users/Admin/Downloads/kpi_framework_EN.html -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>KPI Framework</title>
 <style>
-  @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=IBM+Plex+Mono:wght@400;600&family=IBM+Plex+Sans:wght@300;400;600&display=swap');
-
-  :root {
-    --bg: #0a0a0f;
-    --surface: #12121a;
-    --border: #1e1e2e;
-    --accent1: #00e5ff;
-    --accent2: #ff6b35;
-    --accent3: #7fff6b;
-    --text: #e8e8f0;
-    --muted: #6b6b80;
-  }
-
-  * { margin: 0; padding: 0; box-sizing: border-box; }
-
+  * { box-sizing: border-box; margin: 0; padding: 0; }
   body {
-    background: var(--bg);
-    color: var(--text);
-    font-family: 'IBM Plex Sans', sans-serif;
-    min-height: 100vh;
-    padding: 40px 24px;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
+    background: #ffffff;
+    color: #1a1a18;
+    padding: 48px 32px 64px;
+  }
+  .page { max-width: 960px; margin: 0 auto; }
+
+  /* ── HEADER ── */
+  .hero { text-align: center; margin-bottom: 56px; }
+  .hero-title {
+    font-size: 64px; font-weight: 900; letter-spacing: -0.02em;
+    line-height: 1; margin-bottom: 16px;
+    background: linear-gradient(90deg, #3ecfb2 0%, #f5a623 50%, #e05c2a 100%);
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+  }
+  .hero-sub {
+    font-size: 12px; font-weight: 600; letter-spacing: .25em;
+    color: #888; text-transform: uppercase;
   }
 
-  .header {
-    text-align: center;
-    margin-bottom: 60px;
+  /* ── SECTION LABEL ── */
+  .section-label {
+    display: flex; align-items: center; gap: 8px;
+    font-size: 11px; font-weight: 700; letter-spacing: .18em;
+    color: #999; text-transform: uppercase; margin-bottom: 20px;
   }
+  .section-label::before { content: '//'; color: #ccc; font-weight: 400; }
+  .section-divider { border: none; border-top: 1px solid #e8e8e5; margin: 40px 0 28px; }
 
-  .header h1 {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: clamp(48px, 8vw, 96px);
-    letter-spacing: 6px;
-    background: linear-gradient(90deg, var(--accent1), var(--accent2), var(--accent3));
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    line-height: 1;
-  }
+  /* ── DEFINITIONS ── */
+  .defs-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0; border: 1px solid #e0e0dc; border-radius: 8px; overflow: hidden; margin-bottom: 0; }
+  .def-card { padding: 22px 24px; background: #fafaf8; }
+  .def-card:first-child { border-right: 1px solid #e0e0dc; }
+  .def-type { font-size: 10px; font-weight: 700; letter-spacing: .15em; color: #888; text-transform: uppercase; margin-bottom: 10px; padding-bottom: 8px; border-bottom: 2px solid; display: inline-block; }
+  .def-type-kpi { border-color: #3ecfb2; color: #3ecfb2; }
+  .def-type-proc { border-color: #f5a623; color: #f5a623; }
+  .def-text { font-size: 14px; color: #333; line-height: 1.65; }
+  .def-text strong { color: #e05c2a; }
 
-  .header p {
-    font-family: 'IBM Plex Mono', monospace;
-    color: var(--muted);
-    font-size: 13px;
-    letter-spacing: 3px;
-    margin-top: 12px;
-    text-transform: uppercase;
-  }
-
-  .container {
-    max-width: 1100px;
-    margin: 0 auto;
-  }
-
-  /* DEFINITION BLOCK */
-  .definitions {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 16px;
-    margin-bottom: 48px;
-  }
-
-  .def-card {
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-left: 3px solid var(--accent1);
-    padding: 20px 24px;
-  }
-
-  .def-card:last-child {
-    border-left-color: var(--accent2);
-  }
-
-  .def-label {
-    font-family: 'IBM Plex Mono', monospace;
-    font-size: 10px;
-    letter-spacing: 3px;
-    color: var(--muted);
-    text-transform: uppercase;
-    margin-bottom: 8px;
-  }
-
-  .def-text {
-    font-size: 14px;
-    line-height: 1.6;
-    color: var(--text);
-  }
-
-  .def-text strong {
-    color: var(--accent1);
-  }
-
-  /* SECTION TITLE */
-  .section-title {
-    font-family: 'IBM Plex Mono', monospace;
-    font-size: 11px;
-    letter-spacing: 4px;
-    color: var(--muted);
-    text-transform: uppercase;
-    margin-bottom: 24px;
-    padding-bottom: 12px;
-    border-bottom: 1px solid var(--border);
-  }
-
-  /* KPI TYPES */
-  .types-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    gap: 0;
-    margin-bottom: 48px;
-    border: 1px solid var(--border);
-  }
-
+  /* ── THREE TYPES ── */
+  .types-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 12px; }
   .type-card {
-    padding: 28px 24px;
-    border-right: 1px solid var(--border);
-    position: relative;
-    transition: background 0.3s;
+    background: #fafaf8; border: 1px solid #e0e0dc; border-radius: 8px;
+    padding: 20px; position: relative; overflow: hidden;
   }
-
-  .type-card:last-child { border-right: none; }
-  .type-card:hover { background: #16161f; }
-
-  .type-number {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 64px;
-    line-height: 1;
-    margin-bottom: 12px;
-    opacity: 0.15;
-    position: absolute;
-    top: 16px;
-    right: 20px;
+  .type-num {
+    position: absolute; top: 14px; right: 16px;
+    font-size: 52px; font-weight: 900; line-height: 1; opacity: 0.12;
   }
-
-  .type-card:nth-child(1) .type-number { color: var(--accent1); }
-  .type-card:nth-child(2) .type-number { color: var(--accent2); }
-  .type-card:nth-child(3) .type-number { color: var(--accent3); }
-
+  .type-num-1 { color: #3ecfb2; }
+  .type-num-2 { color: #f5a623; }
+  .type-num-3 { color: #e05c2a; }
   .type-tag {
-    font-family: 'IBM Plex Mono', monospace;
-    font-size: 10px;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    padding: 4px 10px;
-    margin-bottom: 16px;
-    display: inline-block;
+    font-size: 10px; font-weight: 700; letter-spacing: .12em;
+    padding: 3px 10px; border-radius: 3px; text-transform: uppercase;
+    display: inline-block; margin-bottom: 12px;
   }
-
-  .type-card:nth-child(1) .type-tag { background: rgba(0,229,255,0.1); color: var(--accent1); }
-  .type-card:nth-child(2) .type-tag { background: rgba(255,107,53,0.1); color: var(--accent2); }
-  .type-card:nth-child(3) .type-tag { background: rgba(127,255,107,0.1); color: var(--accent3); }
-
-  .type-title {
-    font-family: 'IBM Plex Sans', sans-serif;
-    font-weight: 600;
-    font-size: 15px;
-    margin-bottom: 12px;
-    line-height: 1.3;
+  .tag-1 { background: #3ecfb2; color: #fff; }
+  .tag-2 { background: #f5a623; color: #fff; }
+  .tag-3 { background: #e05c2a; color: #fff; }
+  .type-title { font-size: 16px; font-weight: 700; color: #1a1a18; margin-bottom: 10px; }
+  .type-desc { font-size: 13px; color: #555; line-height: 1.6; margin-bottom: 14px; }
+  .logic-box {
+    background: #f0f0ed; border-left: 3px solid;
+    padding: 10px 12px; border-radius: 0 4px 4px 0;
+    font-family: 'Courier New', monospace; font-size: 12px;
+    color: #444; line-height: 1.7; margin-bottom: 12px;
   }
+  .logic-1 { border-color: #3ecfb2; }
+  .logic-2 { border-color: #f5a623; }
+  .logic-3 { border-color: #e05c2a; }
+  .type-example { font-size: 12px; color: #888; font-style: italic; line-height: 1.6; }
 
-  .type-desc {
-    font-size: 13px;
-    line-height: 1.7;
-    color: #b0b0c0;
-    margin-bottom: 16px;
+  /* ── RANGE VISUALIZATION ── */
+  .range-section {
+    background: #fafaf8; border: 1px solid #e0e0dc; border-radius: 8px;
+    padding: 28px 28px 24px;
   }
-
-  .type-formula {
-    font-family: 'IBM Plex Mono', monospace;
-    font-size: 12px;
-    padding: 10px 14px;
-    background: rgba(255,255,255,0.04);
-    border-left: 2px solid;
-    color: var(--muted);
-    line-height: 1.6;
+  .range-intro { font-size: 13px; color: #555; margin-bottom: 22px; line-height: 1.6; }
+  .range-tracks { margin-bottom: 20px; }
+  .range-row { display: flex; align-items: center; gap: 12px; margin-bottom: 10px; }
+  .range-row-label { font-size: 10px; font-weight: 700; letter-spacing: .1em; color: #999; text-transform: uppercase; width: 90px; flex-shrink: 0; line-height: 1.3; }
+  .track-wrap { flex: 1; position: relative; height: 10px; }
+  .track-bg { height: 10px; border-radius: 5px; width: 100%; }
+  .track-1 { background: linear-gradient(90deg, #3ecfb2 0%, #2bb8a0 100%); }
+  .track-2 { background: linear-gradient(90deg, #e05c2a 0%, #c0461c 100%); }
+  .track-combined { height: 12px; border-radius: 6px; background: linear-gradient(90deg, #3ecfb2 0%, #3ecfb2 45%, #f5a623 45%, #f5a623 68%, #e05c2a 68%, #e05c2a 100%); position: relative; }
+  .track-highlight {
+    position: absolute; top: -2px; left: 35%; width: 33%;
+    height: 16px; border: 2px solid #3ecfb2; border-radius: 4px;
   }
-
-  .type-card:nth-child(1) .type-formula { border-color: var(--accent1); }
-  .type-card:nth-child(2) .type-formula { border-color: var(--accent2); }
-  .type-card:nth-child(3) .type-formula { border-color: var(--accent3); }
-
-  .type-example {
-    margin-top: 14px;
-    font-size: 12px;
-    color: var(--muted);
-    font-style: italic;
-    line-height: 1.6;
+  .track-x-min { position: absolute; left: 0; top: -2px; font-size: 12px; color: #3ecfb2; font-weight: 700; }
+  .track-x-max { position: absolute; right: 0; top: -2px; font-size: 12px; color: #e05c2a; font-weight: 700; }
+  .track-arrow-right { position: absolute; right: -8px; top: 0; font-size: 12px; color: #e05c2a; }
+  .type3-label {
+    position: absolute; left: 50%; transform: translateX(-50%); top: -28px;
+    background: #3ecfb2; color: #fff; font-size: 10px; font-weight: 700;
+    padding: 3px 10px; border-radius: 3px; white-space: nowrap; letter-spacing: .05em;
   }
+  .combined-row { position: relative; margin-top: 28px; margin-bottom: 12px; }
+  .range-labels { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 20px; padding: 0 2px; }
+  .rl-min { text-align: left; }
+  .rl-mid { text-align: center; }
+  .rl-max { text-align: right; }
+  .rl-value { font-size: 13px; font-weight: 700; }
+  .rl-v-min { color: #3ecfb2; }
+  .rl-v-max { color: #e05c2a; }
+  .rl-sub { font-size: 11px; color: #999; line-height: 1.4; margin-top: 2px; }
+  .rl-check { font-size: 11px; color: #3ecfb2; }
+  .zones-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 10px; }
+  .zone-card { background: #fff; border: 1px solid #e0e0dc; border-radius: 6px; padding: 12px 14px; }
+  .zone-card-mid { border-color: #3ecfb2; background: #f0fdf9; }
+  .zone-label { font-size: 10px; font-weight: 700; letter-spacing: .12em; color: #999; text-transform: uppercase; margin-bottom: 6px; }
+  .zone-label-mid { color: #3ecfb2; }
+  .zone-text { font-size: 12px; color: #555; line-height: 1.6; }
+  .zone-text strong { color: #1a1a18; }
 
-  /* VISUAL SCALE */
-  .scale-section {
-    margin-bottom: 48px;
-    background: var(--surface);
-    border: 1px solid var(--border);
-    padding: 32px;
+  /* ── ALGORITHM ── */
+  .algo-table { border: 1px solid #e0e0dc; border-radius: 8px; overflow: hidden; }
+  .algo-row { display: grid; grid-template-columns: 56px 1fr 180px; border-bottom: 1px solid #e0e0dc; }
+  .algo-row:last-child { border-bottom: none; }
+  .algo-row.highlight { border-left: 3px solid #e05c2a; }
+  .algo-num-cell {
+    display: flex; align-items: center; justify-content: center;
+    font-size: 24px; font-weight: 900; padding: 20px 0;
+    border-right: 1px solid #e0e0dc;
   }
-
-  .scale-wrap {
-    position: relative;
-    margin: 32px 0 16px;
+  .an-1 { color: #3ecfb2; background: #f0fdf9; }
+  .an-2 { color: #e05c2a; background: #fff8f5; }
+  .an-3 { color: #1a1a18; background: #fafaf8; }
+  .algo-content { padding: 18px 20px; border-right: 1px solid #e0e0dc; }
+  .algo-title { font-size: 14px; font-weight: 700; color: #1a1a18; margin-bottom: 5px; }
+  .algo-title.orange { color: #e05c2a; }
+  .algo-desc { font-size: 13px; color: #555; line-height: 1.6; }
+  .algo-tag-cell { display: flex; align-items: center; justify-content: center; padding: 0 16px; }
+  .algo-tag {
+    font-size: 11px; font-weight: 700; padding: 5px 12px; border-radius: 4px;
+    text-align: center; white-space: nowrap;
+    font-family: 'Courier New', monospace; letter-spacing: .03em;
   }
+  .atag-gray { background: #f0f0ed; color: #666; border: 1px solid #ddd; }
+  .atag-orange { background: #fff0e8; color: #e05c2a; border: 1px solid #f5c4a8; }
+  .atag-teal { background: #e8fdf8; color: #0F6E56; border: 1px solid #9FE1CB; }
+  .atag-amber { background: #fff8e8; color: #8a5a00; border: 1px solid #FAC775; }
 
-  .scale-bar {
-    height: 12px;
-    background: linear-gradient(90deg, 
-      rgba(0,229,255,0.3) 0%, 
-      rgba(0,229,255,0.8) 20%, 
-      rgba(127,255,107,0.8) 50%, 
-      rgba(255,107,53,0.8) 80%, 
-      rgba(255,107,53,0.3) 100%
-    );
-    border-radius: 2px;
-    position: relative;
+  /* ── METHODOLOGICAL NOTE ── */
+  .method-note {
+    border: 1px solid #e8c4b0; border-left: 4px solid #e05c2a;
+    background: #fff8f5; border-radius: 0 8px 8px 0;
+    padding: 20px 22px; margin-top: 0;
   }
-
-  .scale-markers {
-    display: flex;
-    justify-content: space-between;
-    margin-top: 12px;
+  .mn-label {
+    font-size: 10px; font-weight: 700; letter-spacing: .18em;
+    color: #e05c2a; text-transform: uppercase; margin-bottom: 12px;
+    display: flex; align-items: center; gap: 6px;
   }
+  .mn-label::before { content: '//'; color: #f5c4a8; }
+  .mn-text { font-size: 13px; color: #444; line-height: 1.7; margin-bottom: 10px; }
+  .mn-text:last-child { margin-bottom: 0; }
+  .mn-text strong { color: #e05c2a; }
 
-  .scale-marker {
-    font-family: 'IBM Plex Mono', monospace;
-    font-size: 11px;
-    text-align: center;
-  }
-
-  .scale-marker.min { color: var(--accent1); }
-  .scale-marker.target { color: var(--accent3); }
-  .scale-marker.max { color: var(--accent2); }
-
-  .scale-marker span {
-    display: block;
-    font-size: 10px;
-    color: var(--muted);
-    margin-top: 4px;
-  }
-
-  .scale-zones {
-    display: flex;
-    justify-content: space-between;
-    margin-top: 24px;
-    gap: 16px;
-  }
-
-  .zone {
-    flex: 1;
-    padding: 14px;
-    border: 1px solid var(--border);
-    font-size: 12px;
-    line-height: 1.6;
-  }
-
-  .zone-label {
-    font-family: 'IBM Plex Mono', monospace;
-    font-size: 10px;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    margin-bottom: 6px;
-  }
-
-  .zone:nth-child(1) .zone-label { color: var(--accent1); }
-  .zone:nth-child(2) .zone-label { color: var(--accent3); }
-  .zone:nth-child(3) .zone-label { color: var(--accent2); }
-
-  .zone-text { color: var(--muted); }
-
-  /* ALGORITHM */
-  .algo-section {
-    margin-bottom: 48px;
-  }
-
-  .algo-steps {
-    display: flex;
-    flex-direction: column;
-    gap: 0;
-    border: 1px solid var(--border);
-  }
-
-  .algo-step {
-    display: grid;
-    grid-template-columns: 60px 1fr auto;
-    align-items: stretch;
-    border-bottom: 1px solid var(--border);
-  }
-
-  .algo-step:last-child { border-bottom: none; }
-
-  .step-num {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 28px;
-    background: var(--surface);
-    border-right: 1px solid var(--border);
-    color: var(--muted);
-  }
-
-  .step-content {
-    padding: 20px 24px;
-  }
-
-  .step-title {
-    font-weight: 600;
-    font-size: 14px;
-    margin-bottom: 6px;
-  }
-
-  .step-desc {
-    font-size: 13px;
-    color: var(--muted);
-    line-height: 1.6;
-  }
-
-  .step-outcome {
-    padding: 20px 24px;
-    display: flex;
-    align-items: center;
-    border-left: 1px solid var(--border);
-    min-width: 180px;
-  }
-
-  .outcome-badge {
-    font-family: 'IBM Plex Mono', monospace;
-    font-size: 11px;
-    padding: 6px 12px;
-    letter-spacing: 1px;
-  }
-
-  .badge-1 { background: rgba(0,229,255,0.1); color: var(--accent1); }
-  .badge-2 { background: rgba(127,255,107,0.1); color: var(--accent3); }
-  .badge-mixed { background: rgba(255,255,255,0.05); color: var(--muted); }
-
-  /* NOTE */
-  .note {
-    background: rgba(255,107,53,0.06);
-    border: 1px solid rgba(255,107,53,0.2);
-    border-left: 3px solid var(--accent2);
-    padding: 20px 24px;
-    margin-bottom: 48px;
-  }
-
-  .note-label {
-    font-family: 'IBM Plex Mono', monospace;
-    font-size: 10px;
-    letter-spacing: 3px;
-    color: var(--accent2);
-    text-transform: uppercase;
-    margin-bottom: 8px;
-  }
-
-  .note-text {
-    font-size: 13px;
-    line-height: 1.7;
-    color: #b0b0c0;
-  }
-
-  /* ARROW */
-  .arrow {
-    text-align: center;
-    color: var(--muted);
-    font-size: 20px;
-    margin: 8px 0;
-  }
-
-  @media (max-width: 768px) {
-    .definitions { grid-template-columns: 1fr; }
-    .types-grid { grid-template-columns: 1fr; }
-    .type-card { border-right: none; border-bottom: 1px solid var(--border); }
-    .algo-step { grid-template-columns: 48px 1fr; }
-    .step-outcome { display: none; }
+  @media print {
+    body { padding: 16px; }
+    .types-grid { grid-template-columns: 1fr 1fr 1fr; }
   }
 </style>
 </head>
 <body>
+<div class="page">
 
-<div class="container">
-
-  <div class="header">
-    <h1>KPI Framework</h1>
-    <p>Структура построения и типологии показателей эффективности</p>
+  <!-- HERO -->
+  <div class="hero">
+    <div class="hero-title">KPI FRAMEWORK</div>
+    <div class="hero-sub">Structure, typology and construction of performance indicators</div>
   </div>
 
-  <!-- DEFINITIONS -->
-  <div class="section-title">// Базовые определения</div>
-  <div class="definitions">
+  <!-- BASIC DEFINITIONS -->
+  <div class="section-label">Basic Definitions</div>
+  <div class="defs-grid">
     <div class="def-card">
-      <div class="def-label">KPI</div>
-      <div class="def-text">Показатели для <strong>измерения и корректировки</strong> эффективности процессов. Не самоцель — инструмент управления.</div>
+      <div class="def-type def-type-kpi">KPI</div>
+      <div style="margin-top:10px"></div>
+      <div class="def-text">Indicators for <strong>measuring and adjusting</strong> process performance. Not an end in itself — a management tool.</div>
     </div>
     <div class="def-card">
-      <div class="def-label">Процесс</div>
-      <div class="def-text">Циклично повторяемые действия для достижения определённой цели. KPI существует только если есть повторяемость.</div>
+      <div class="def-type def-type-proc">Process</div>
+      <div style="margin-top:10px"></div>
+      <div class="def-text">Cyclically repeated actions aimed at achieving a specific goal. A KPI only exists where there is repetition.</div>
     </div>
   </div>
+
+  <hr class="section-divider">
 
   <!-- THREE TYPES -->
-  <div class="section-title">// Три типа KPI</div>
+  <div class="section-label">Three Types of KPI</div>
   <div class="types-grid">
 
+    <!-- TYPE 1 -->
     <div class="type-card">
-      <div class="type-number">1</div>
-      <div class="type-tag">Работоспособность</div>
-      <div class="type-title">KPI минимального порога</div>
-      <div class="type-desc">Циклично повторяемые действия для достижения минимально требуемых значений.</div>
-      <div class="type-formula">
-        Логика: ≥ MIN<br>
-        Вопрос: процесс вообще<br>
-        работает?
+      <span class="type-num type-num-1">1</span>
+      <span class="type-tag tag-1">Operability</span>
+      <div class="type-title">Minimum Threshold KPI</div>
+      <div class="type-desc">Cyclically repeated actions to achieve the minimally required values.</div>
+      <div class="logic-box logic-1">
+        Logic: ≥ MIN<br>
+        Question: does the process<br>work at all?
       </div>
-      <div class="type-example">Пример: менеджер делает 1 звонок в день → продаж нет. KPI = минимум 50 звонков/день чтобы процесс "завёлся".</div>
+      <div class="type-example">Example: a manager makes 1 call per day → no sales. KPI = minimum 50 calls/day for the process to activate.</div>
     </div>
 
+    <!-- TYPE 2 -->
     <div class="type-card">
-      <div class="type-number">2</div>
-      <div class="type-tag">Эффективность</div>
-      <div class="type-title">KPI допустимого максимума</div>
-      <div class="type-desc">Циклично повторяемые действия для достижения максимально возможных значений, при которых процесс остаётся эффективным. При превышении этих значений процесс ломается или перестаёт быть эффективным.</div>
-      <div class="type-formula">
-        Логика: ≤ MAX<br>
-        Вопрос: процесс не<br>
-        разрушает себя?
+      <span class="type-num type-num-2">2</span>
+      <span class="type-tag tag-2">Efficiency</span>
+      <div class="type-title">Maximum Threshold KPI</div>
+      <div class="type-desc">Cyclically repeated actions to achieve the maximum values at which the process remains effective. Exceeding these values breaks or degrades the process.</div>
+      <div class="logic-box logic-2">
+        Logic: ≤ MAX<br>
+        Question: does the process<br>destroy itself?
       </div>
-      <div class="type-example">Пример: машина едет 150 км/ч → убивает двигатель. KPI = не выше 100 км/ч. Цель достигается, ресурс сохраняется.</div>
+      <div class="type-example">Example: a car drives at 150 km/h → engine damage. KPI = no more than 100 km/h. Goal achieved, resource preserved.</div>
     </div>
 
+    <!-- TYPE 3 -->
     <div class="type-card">
-      <div class="type-number">3</div>
-      <div class="type-tag">Норматив</div>
-      <div class="type-title">KPI целевого значения</div>
-      <div class="type-desc">Производное Типов 1 и 2. Когда определён минимальный порог работоспособности и максимальный порог эффективности — KPI превращается из граничного условия в точное целевое значение внутри допустимого диапазона.</div>
-      <div class="type-formula">
-        Логика: MIN ≤ X ≤ MAX<br>
-        Вопрос: какое точное<br>
-        значение оптимально?
+      <span class="type-num type-num-3">3</span>
+      <span class="type-tag tag-3">Standard</span>
+      <div class="type-title">Target Value KPI</div>
+      <div class="type-desc">Derived from Types 1 and 2. Once the minimum operability threshold and the maximum efficiency ceiling are defined — the KPI becomes a precise target value within the acceptable range.</div>
+      <div class="logic-box logic-3">
+        Logic: MIN ≤ X ≤ MAX<br>
+        Question: what exact value<br>is optimal?
       </div>
-      <div class="type-example">Пример: звонков ≥ 50, конверсия не падает при &gt; 80 → целевой KPI = 65 звонков/день как оптимальная точка.</div>
+      <div class="type-example">Example: calls ≥ 50, conversion doesn't drop above 80 → target KPI = 65 calls/day as the optimal point.</div>
     </div>
-
   </div>
 
-  <!-- SCALE -->
-  <div class="section-title">// Визуализация диапазона</div>
-  <div class="scale-section">
-    <p style="font-size:13px; color: var(--muted); margin-bottom: 8px;">Все три типа KPI живут на одной шкале. Тип определяется тем, какую точку или границу вы контролируете:</p>
+  <hr class="section-divider">
 
-    <!-- ROW LABELS -->
-    <div style="display:flex; margin-top:28px; margin-bottom:6px; padding: 0 2px;">
-      <div style="width:120px; font-family:&#39;IBM Plex Mono&#39;,monospace; font-size:10px; color:var(--muted); letter-spacing:2px; text-transform:uppercase; flex-shrink:0;">Работоспо-<br>собность</div>
-      <div style="flex:1; position:relative; height:18px;">
-        <div style="position:absolute; left:0; right:50%; height:3px; background: var(--accent1); top:7px;"></div>
-        <div style="position:absolute; left:0; top:0; width:10px; height:18px; display:flex; align-items:center; justify-content:center; color:var(--accent1); font-size:16px;">✓</div>
-        <div style="position:absolute; left:50%; right:0; height:3px; background: rgba(0,229,255,0.2); top:7px;"></div>
-        <div style="position:absolute; right:0; top:0; width:10px; height:18px; display:flex; align-items:center; justify-content:center; color:var(--muted); font-size:16px;">✗</div>
-      </div>
-    </div>
+  <!-- RANGE VISUALIZATION -->
+  <div class="section-label">Range Visualization</div>
+  <div class="range-section">
+    <div class="range-intro">All three KPI types live on the same scale. The type is determined by which point or boundary you are controlling:</div>
 
-    <div style="display:flex; margin-bottom:6px; padding: 0 2px;">
-      <div style="width:120px; font-family:&#39;IBM Plex Mono&#39;,monospace; font-size:10px; color:var(--muted); letter-spacing:2px; text-transform:uppercase; flex-shrink:0;">Эффектив-<br>ность</div>
-      <div style="flex:1; position:relative; height:18px;">
-        <div style="position:absolute; left:0; right:50%; height:3px; background: rgba(255,107,53,0.2); top:7px;"></div>
-        <div style="position:absolute; left:0; top:0; width:10px; height:18px; display:flex; align-items:center; justify-content:center; color:var(--muted); font-size:16px;">✗</div>
-        <div style="position:absolute; left:50%; right:0; height:3px; background: var(--accent2); top:7px;"></div>
-        <div style="position:absolute; right:0; top:0; width:10px; height:18px; display:flex; align-items:center; justify-content:center; color:var(--accent2); font-size:16px;">✓</div>
-      </div>
-    </div>
-
-    <!-- MAIN SCALE BAR -->
-    <div class="scale-wrap" style="margin-top:16px;">
-      <div style="position:relative;">
-        <!-- background full bar -->
-        <div style="height:16px; background: var(--border); border-radius:2px;"></div>
-        <!-- TYPE 1 zone: left half, cyan -->
-        <div style="position:absolute; top:0; left:0; width:50%; height:16px; background: linear-gradient(90deg, rgba(0,229,255,0.15), rgba(0,229,255,0.5)); border-radius:2px 0 0 2px;"></div>
-        <!-- TYPE 2 zone: right half, orange -->
-        <div style="position:absolute; top:0; left:50%; width:50%; height:16px; background: linear-gradient(90deg, rgba(255,107,53,0.5), rgba(255,107,53,0.15)); border-radius:0 2px 2px 0;"></div>
-        <!-- TYPE 3 overlap zone: center band -->
-        <div style="position:absolute; top:-4px; left:35%; width:30%; height:24px; border:2px solid var(--accent3); border-radius:3px; background: rgba(127,255,107,0.08);"></div>
-        <!-- TYPE 3 label above -->
-        <div style="position:absolute; top:-28px; left:50%; transform:translateX(-50%); font-family:&#39;IBM Plex Mono&#39;,monospace; font-size:10px; color:var(--accent3); letter-spacing:1px; white-space:nowrap; background:var(--surface); padding: 2px 8px; border:1px solid var(--accent3);">ТИП 3 — работоспособен + эффективен</div>
-        <!-- MIN marker -->
-        <div style="position:absolute; top:0; left:0; width:2px; height:16px; background:var(--accent1);"></div>
-        <!-- MAX marker -->
-        <div style="position:absolute; top:0; right:0; width:2px; height:16px; background:var(--accent2);"></div>
-      </div>
-
-      <div class="scale-markers" style="margin-top:16px;">
-        <div class="scale-marker min">MIN<span>Тип 1 — floor<br>процесс включается</span></div>
-        <div class="scale-marker target" style="text-align:center;">
-          <span style="display:block; font-family:&#39;IBM Plex Mono&#39;,monospace; font-size:11px; color:var(--accent3);">✓ работает<br>✓ эффективен</span>
+    <div class="range-tracks">
+      <!-- Row 1: Operability -->
+      <div class="range-row">
+        <div class="range-row-label">Operability</div>
+        <div class="track-wrap" style="position:relative">
+          <div class="track-bg track-1"></div>
+          <span style="position:absolute;right:-18px;top:-3px;font-size:16px;color:#3ecfb2;font-weight:700">✕</span>
         </div>
-        <div class="scale-marker max">MAX<span>Тип 2 — ceiling<br>процесс ломается</span></div>
+      </div>
+      <!-- Row 2: Efficiency -->
+      <div class="range-row">
+        <div class="range-row-label">Efficiency</div>
+        <div class="track-wrap" style="position:relative">
+          <span style="position:absolute;left:-14px;top:-3px;font-size:16px;color:#e05c2a;font-weight:700">✕</span>
+          <div class="track-bg track-2"></div>
+          <span style="position:absolute;right:-18px;top:-3px;font-size:18px;color:#e05c2a;font-weight:700">→</span>
+        </div>
+      </div>
+      <!-- Row 3: Combined -->
+      <div class="combined-row" style="padding-left:102px">
+        <div style="position:relative">
+          <div class="type3-label">TYPE 3 — operable + efficient</div>
+          <div class="track-combined">
+            <div class="track-highlight"></div>
+          </div>
+        </div>
       </div>
     </div>
 
-    <div class="scale-zones" style="margin-top:24px;">
-      <div class="zone">
-        <div class="zone-label" style="color:var(--muted);">Ниже MIN</div>
-        <div class="zone-text">Процесс не работает. Применяем Тип 1 — поднимаем до минимального порога.</div>
+    <div class="range-labels" style="padding-left:102px">
+      <div class="rl-min">
+        <div class="rl-value rl-v-min">MIN</div>
+        <div class="rl-sub">Type 1 — floor<br>process activates</div>
       </div>
-      <div class="zone" style="border-color: rgba(127,255,107,0.3); background: rgba(127,255,107,0.04);">
-        <div class="zone-label" style="color:var(--accent3);">Тип 3 — зона таргета</div>
-        <div class="zone-text">Процесс <strong style="color:var(--accent3);">работоспособен и эффективен</strong> одновременно. Здесь определяется точное целевое значение.</div>
+      <div class="rl-mid">
+        <div class="rl-check">✓ operational</div>
+        <div class="rl-check">✓ efficient</div>
       </div>
-      <div class="zone">
-        <div class="zone-label" style="color:var(--muted);">Выше MAX</div>
-        <div class="zone-text">Процесс ломается или теряет эффективность. Применяем Тип 2 — снижаем до допустимого потолка.</div>
+      <div class="rl-max">
+        <div class="rl-value rl-v-max">MAX</div>
+        <div class="rl-sub">Type 2 — ceiling<br>process breaks</div>
+      </div>
+    </div>
+
+    <div class="zones-grid">
+      <div class="zone-card">
+        <div class="zone-label">Below MIN</div>
+        <div class="zone-text">Process is not working. Apply Type 1 — raise to the minimum threshold.</div>
+      </div>
+      <div class="zone-card zone-card-mid">
+        <div class="zone-label zone-label-mid">Type 3 — Target Zone</div>
+        <div class="zone-text">Process is <strong>operable and efficient</strong> simultaneously. This is where the precise target value is set.</div>
+      </div>
+      <div class="zone-card">
+        <div class="zone-label">Above MAX</div>
+        <div class="zone-text">Process breaks or loses efficiency. Apply Type 2 — reduce to the acceptable ceiling.</div>
       </div>
     </div>
   </div>
+
+  <hr class="section-divider">
 
   <!-- ALGORITHM -->
-  <div class="section-title">// Алгоритм определения KPI для процесса</div>
-  <div class="algo-section">
-    <div class="algo-steps">
+  <div class="section-label">Algorithm for Defining KPI for a Process</div>
+  <div class="algo-table">
 
-      <div class="algo-step">
-        <div class="step-num">1</div>
-        <div class="step-content">
-          <div class="step-title">Визуализировать и выписать все процессы</div>
-          <div class="step-desc">Собрать полный список циклично повторяемых действий. Без этого шага невозможно определить что измерять.</div>
-        </div>
-        <div class="step-outcome"><div class="outcome-badge badge-mixed">Map of processes</div></div>
+    <div class="algo-row">
+      <div class="algo-num-cell an-3">1</div>
+      <div class="algo-content">
+        <div class="algo-title">Visualize and list all processes</div>
+        <div class="algo-desc">Collect a complete list of cyclically repeated actions. Without this step it is impossible to determine what to measure.</div>
       </div>
-
-      <div class="algo-step" style="background: rgba(255,107,53,0.04); border-left: 3px solid var(--accent2);">
-        <div class="step-num" style="color: var(--accent2);">2</div>
-        <div class="step-content">
-          <div class="step-title" style="color: var(--accent2);">Этот процесс вообще нужен?</div>
-          <div class="step-desc">Прежде чем измерять — убедиться что процесс создаёт ценность. Процесс может быть работоспособным и эффективным, но не тем. Если процесс не нужен — его устранить, а не оптимизировать.</div>
-        </div>
-        <div class="step-outcome"><div class="outcome-badge" style="background:rgba(255,107,53,0.1); color:var(--accent2);">Validate purpose</div></div>
-      </div>
-
-      <div class="algo-step">
-        <div class="step-num">3</div>
-        <div class="step-content">
-          <div class="step-title">Процесс работоспособен?</div>
-          <div class="step-desc">Даёт ли процесс хоть какой-то результат при текущей интенсивности? Если нет — процесс не включился. Нужно определить минимальный порог запуска.</div>
-        </div>
-        <div class="step-outcome"><div class="outcome-badge badge-1">→ Тип 1 KPI (MIN)</div></div>
-      </div>
-
-      <div class="algo-step" style="background: rgba(255,107,53,0.04); border-left: 3px solid var(--accent2);">
-        <div class="step-num" style="color: var(--accent2);">4</div>
-        <div class="step-content">
-          <div class="step-title" style="color: var(--accent2);">Есть ли данные для определения MIN?</div>
-          <div class="step-desc">Если процесс новый и исторических данных нет — минимальный порог нельзя взять из воздуха. Запустить эксперимент: поставить гипотезу, собрать первые данные, скорректировать MIN по факту. Не ставить пороговые значения без измерений.</div>
-        </div>
-        <div class="step-outcome"><div class="outcome-badge" style="background:rgba(255,107,53,0.1); color:var(--accent2);">Experiment → Baseline</div></div>
-      </div>
-
-      <div class="algo-step">
-        <div class="step-num">5</div>
-        <div class="step-content">
-          <div class="step-title">Процесс эффективен?</div>
-          <div class="step-desc">Можно ли получить тот же результат дешевле — по времени или деньгам — без потери качества? Если процесс перегружен или избыточен — определить потолок после которого начинается деградация.</div>
-        </div>
-        <div class="step-outcome"><div class="outcome-badge badge-2">→ Тип 2 KPI (MAX)</div></div>
-      </div>
-
-      <div class="algo-step">
-        <div class="step-num">6</div>
-        <div class="step-content">
-          <div class="step-title">Известны MIN и MAX?</div>
-          <div class="step-desc">Если оба порога определены — рассчитать оптимальную рабочую точку внутри допустимого диапазона. KPI превращается из граничного условия в точное целевое значение для ежедневного управления.</div>
-        </div>
-        <div class="step-outcome"><div class="outcome-badge badge-mixed">→ Тип 3 KPI (TARGET)</div></div>
-      </div>
-
+      <div class="algo-tag-cell"><span class="algo-tag atag-gray">Map of processes</span></div>
     </div>
+
+    <div class="algo-row highlight">
+      <div class="algo-num-cell an-2">2</div>
+      <div class="algo-content">
+        <div class="algo-title orange">Is this process even necessary?</div>
+        <div class="algo-desc">Before measuring — verify that the process creates value. A process can be operable and efficient, but unnecessary. If the process is not needed — eliminate it, don't optimize it.</div>
+      </div>
+      <div class="algo-tag-cell"><span class="algo-tag atag-orange">Validate purpose</span></div>
+    </div>
+
+    <div class="algo-row">
+      <div class="algo-num-cell an-3">3</div>
+      <div class="algo-content">
+        <div class="algo-title">Is the process operable?</div>
+        <div class="algo-desc">Does the process produce any result at the current intensity? If not — the process has not activated. You need to define the minimum launch threshold.</div>
+      </div>
+      <div class="algo-tag-cell"><span class="algo-tag atag-teal">→ Type 1 KPI (MIN)</span></div>
+    </div>
+
+    <div class="algo-row highlight">
+      <div class="algo-num-cell an-2">4</div>
+      <div class="algo-content">
+        <div class="algo-title orange">Is there data to define MIN?</div>
+        <div class="algo-desc">If the process is new and no historical data exists — the minimum threshold cannot be pulled from thin air. Run an experiment: set a hypothesis, collect initial data, adjust MIN based on actuals. Never set threshold values without measurement.</div>
+      </div>
+      <div class="algo-tag-cell"><span class="algo-tag atag-orange">Experiment → Baseline</span></div>
+    </div>
+
+    <div class="algo-row">
+      <div class="algo-num-cell an-3">5</div>
+      <div class="algo-content">
+        <div class="algo-title">Is the process efficient?</div>
+        <div class="algo-desc">Can the same result be achieved cheaper — in time or money — without quality loss? If the process is overloaded or excessive — define the ceiling beyond which degradation begins.</div>
+      </div>
+      <div class="algo-tag-cell"><span class="algo-tag atag-amber">→ Type 2 KPI (MAX)</span></div>
+    </div>
+
+    <div class="algo-row">
+      <div class="algo-num-cell an-3">6</div>
+      <div class="algo-content">
+        <div class="algo-title">Are both MIN and MAX known?</div>
+        <div class="algo-desc">If both thresholds are defined — calculate the optimal operating point within the acceptable range. The KPI transforms from a boundary condition into a precise target value for daily management.</div>
+      </div>
+      <div class="algo-tag-cell"><span class="algo-tag atag-teal">→ Type 3 KPI (TARGET)</span></div>
+    </div>
+
   </div>
 
-  <!-- NOTE -->
-  <div class="note">
-    <div class="note-label">// Методологическое замечание</div>
-    <div class="note-text">
-      <strong style="color: var(--accent2);">Тип 3 — производный, не самостоятельный.</strong> Он не существует без предварительного определения Типов 1 и 2. Попытка поставить целевое значение без понимания floor и ceiling — это либо случайное число, либо экспертная интуиция. Оба варианта нестабильны при изменении условий.<br><br>
-      <strong style="color: var(--accent2);">Последовательность обязательна:</strong> работоспособность → эффективность → норматив. Оптимизировать сломанный процесс бессмысленно.
-    </div>
+  <hr class="section-divider" style="margin-top:28px">
+
+  <!-- METHODOLOGICAL NOTE -->
+  <div class="method-note">
+    <div class="mn-label">Methodological Note</div>
+    <div class="mn-text"><strong>Type 3 is derived, not standalone.</strong> It cannot exist without first defining Types 1 and 2. Attempting to set a target value without understanding the floor and ceiling is either a random number or expert intuition. Both are unstable when conditions change.</div>
+    <div class="mn-text"><strong>The sequence is mandatory:</strong> operability → efficiency → standard. Optimizing a broken process is pointless.</div>
   </div>
 
 </div>
