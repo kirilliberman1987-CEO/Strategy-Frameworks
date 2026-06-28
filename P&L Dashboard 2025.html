@@ -1,0 +1,2041 @@
+<!DOCTYPE html>
+<!-- saved from url=(0063)file:///C:/Users/Admin/Downloads/P_L_Dashboard_2025%20(32).html -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>P&amp;L Dashboard 2025</title>
+<script src="./P&amp;L Dashboard 2025_files/xlsx.full.min.js.download"></script>
+<style>
+  :root {
+    --bg: #f5f5f3;
+    --surface: #ffffff;
+    --surface2: #f0efeb;
+    --border: rgba(0,0,0,0.08);
+    --border-strong: rgba(0,0,0,0.15);
+    --text: #1a1a18;
+    --text2: #6b6b67;
+    --text3: #9e9e9a;
+    --accent: #185FA5;
+    --accent-bg: #e6f1fb;
+    --green: #1D9E75;
+    --green-bg: #EAF3DE;
+    --green-border: #C0DD97;
+    --red: #A32D2D;
+    --red-bg: #FCEBEB;
+    --red-border: #F09595;
+    --amber: #854F0B;
+    --amber-bg: #FAEEDA;
+    --radius: 8px;
+    --radius-lg: 12px;
+  }
+  [data-theme="dark"] {
+    --bg: #1a1a18;
+    --surface: #242422;
+    --surface2: #2e2e2b;
+    --border: rgba(255,255,255,0.08);
+    --border-strong: rgba(255,255,255,0.15);
+    --text: #f0efeb;
+    --text2: #9e9e9a;
+    --text3: #6b6b67;
+    --accent: #378ADD;
+    --accent-bg: #042C53;
+    --green: #5DCAA5;
+    --green-bg: #04342C;
+    --green-border: #0F6E56;
+    --red: #F09595;
+    --red-bg: #501313;
+    --red-border: #A32D2D;
+    --amber: #EF9F27;
+    --amber-bg: #412402;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: -apple-system, BlinkMacSystemFont, 'Inter', 'Segoe UI', sans-serif; background: var(--bg); color: var(--text); font-size: 13px; min-height: 100vh; }
+
+  /* Layout */
+  .app { display: flex; min-height: 100vh; }
+  .sidebar { width: 220px; background: var(--surface); border-right: 0.5px solid var(--border); padding: 0; flex-shrink: 0; display: flex; flex-direction: column; position: fixed; top: 0; left: 0; height: 100vh; z-index: 100; }
+  .main { margin-left: 220px; flex: 1; display: flex; flex-direction: column; min-height: 100vh; }
+  .topbar { background: var(--surface); border-bottom: 0.5px solid var(--border); padding: 14px 24px; display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: wrap; position: sticky; top: 0; z-index: 50; }
+  .content { padding: 24px; flex: 1; }
+
+  /* Sidebar */
+  .sidebar-logo { padding: 20px 20px 16px; border-bottom: 0.5px solid var(--border); }
+  .sidebar-logo .company { display: none; }
+  .sidebar-logo .sub { font-size: 17px; font-weight: 700; color: var(--text); letter-spacing: -0.02em; margin-top: 0; line-height: 1.3; }
+  .sidebar-nav { padding: 12px 0; flex: 1; overflow-y: auto; }
+  .nav-section { padding: 0 12px; margin-bottom: 4px; }
+  .nav-section-title { font-size: 10px; font-weight: 600; color: var(--text3); letter-spacing: .08em; text-transform: uppercase; padding: 8px 8px 4px; }
+  .nav-item { display: flex; align-items: center; gap: 8px; padding: 7px 8px; border-radius: var(--radius); cursor: pointer; color: var(--text2); font-size: 13px; transition: background .12s; text-decoration: none; }
+  .nav-item:hover { background: var(--surface2); color: var(--text); }
+  .nav-item.active { background: var(--accent-bg); color: var(--accent); font-weight: 500; }
+  .nav-item svg { width: 16px; height: 16px; flex-shrink: 0; stroke: currentColor; fill: none; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+  .sidebar-bottom { padding: 12px; border-top: 0.5px solid var(--border); }
+
+  /* Topbar */
+  .topbar-left { display: flex; align-items: center; gap: 12px; }
+  .page-title { font-size: 16px; font-weight: 600; color: var(--text); }
+  .breadcrumb { font-size: 12px; color: var(--text3); }
+  .topbar-right { display: flex; align-items: center; gap: 8px; }
+
+  /* Buttons */
+  .btn { display: inline-flex; align-items: center; gap: 6px; font-size: 12px; font-weight: 500; padding: 7px 13px; border-radius: var(--radius); border: 0.5px solid var(--border-strong); background: var(--surface); color: var(--text); cursor: pointer; transition: background .12s; white-space: nowrap; font-family: inherit; }
+  .btn:hover { background: var(--surface2); }
+  .btn svg { width: 14px; height: 14px; stroke: currentColor; fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+  .btn-primary { background: var(--accent); color: #fff; border-color: var(--accent); }
+  .btn-primary:hover { opacity: .88; }
+  .btn-success { background: var(--green-bg); color: var(--green); border-color: var(--green-border); }
+  .btn-icon { padding: 7px; }
+
+  /* Period tabs */
+  .period-bar { display: flex; align-items: center; gap: 6px; flex-wrap: wrap; }
+  .period-tab { font-size: 12px; font-weight: 500; padding: 5px 14px; border-radius: 20px; border: 0.5px solid var(--border); background: transparent; color: var(--text2); cursor: pointer; transition: all .12s; font-family: inherit; }
+  .period-tab:hover { background: var(--surface2); color: var(--text); }
+  .period-tab.active { background: var(--accent); color: #fff; border-color: var(--accent); }
+
+  /* KPI cards */
+  .kpi-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 12px; margin-bottom: 20px; }
+  .kpi-card { background: var(--surface); border: 0.5px solid var(--border); border-radius: var(--radius-lg); padding: 16px 18px; }
+  .kpi-label { font-size: 11px; color: var(--text2); margin-bottom: 6px; letter-spacing: .01em; }
+  .kpi-val { font-size: 22px; font-weight: 600; letter-spacing: -0.03em; }
+  .kpi-val.pos { color: var(--green); }
+  .kpi-val.neg { color: var(--red); }
+  .kpi-val.neutral { color: var(--text); }
+  .kpi-val.accent { color: var(--accent); }
+  .kpi-sub { font-size: 11px; color: var(--text3); margin-top: 4px; }
+
+  /* Chart area */
+  .chart-row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-bottom: 20px; }
+  .chart-card { background: var(--surface); border: 0.5px solid var(--border); border-radius: var(--radius-lg); padding: 18px 20px; }
+  .chart-title { font-size: 13px; font-weight: 500; color: var(--text2); margin-bottom: 14px; }
+  .chart-wrap { position: relative; width: 100%; }
+
+  /* Table */
+  .table-card { background: var(--surface); border: 0.5px solid var(--border); border-radius: var(--radius-lg); overflow: hidden; }
+  .table-toolbar { display: flex; align-items: center; justify-content: space-between; padding: 14px 18px; border-bottom: 0.5px solid var(--border); gap: 10px; flex-wrap: wrap; }
+  .table-toolbar-title { font-size: 14px; font-weight: 600; color: var(--text); }
+  .table-wrap { overflow-x: auto; }
+  table { width: 100%; border-collapse: collapse; table-layout: fixed; }
+  th { font-size: 11px; font-weight: 600; color: var(--text2); text-align: right; padding: 8px 16px; border-bottom: 0.5px solid var(--border); white-space: nowrap; background: var(--surface2); letter-spacing: .01em; }
+  th:first-child { text-align: left; width: 28%; padding-left: 18px; }
+  th:nth-child(2), th:nth-child(3) { width: 26%; }
+  th:nth-child(4) { width: 20%; }
+  td { padding: 5px 16px; border-bottom: 0.5px solid var(--border); text-align: right; color: var(--text); vertical-align: middle; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  td:first-child { text-align: left; padding-left: 18px; }
+  tr:last-child td { border-bottom: none; }
+  tr:hover td { background: var(--surface2); }
+
+  /* Special rows */
+  .row-section td { background: var(--surface2) !important; font-weight: 600; font-size: 11px; color: var(--text) !important; padding: 9px 18px; letter-spacing: .05em; text-transform: uppercase; border-top: 0.5px solid var(--border-strong); }
+  .row-sub td { background: transparent !important; font-size: 11px; color: var(--text3) !important; padding: 6px 18px; font-weight: 500; }
+  .row-total td { background: var(--surface2) !important; font-weight: 600; color: var(--text) !important; border-top: 0.5px solid var(--border-strong); }
+  .row-profit td { background: var(--green-bg) !important; color: var(--green) !important; font-weight: 700; border-top: 1px solid var(--green-border); font-size: 13px; }
+  .row-loss td { background: var(--red-bg) !important; color: var(--red) !important; font-weight: 700; border-top: 1px solid var(--red-border); font-size: 13px; }
+  .row-margin td { background: var(--accent-bg) !important; color: var(--accent) !important; font-weight: 600; }
+  .row-ebitda td { background: var(--surface2) !important; color: var(--text) !important; font-weight: 700; font-size: 13px; border-top: 1px solid var(--border-strong) !important; border-left: 3px solid var(--border-strong) !important; }
+  .row-ebitda-spacer td { height: 8px; background: var(--bg) !important; border: none !important; }
+  .indent { padding-left: 32px !important; }
+  .val-neg { color: var(--red) !important; }
+  .val-pos { color: var(--green) !important; }
+  .val-income { color: var(--green) !important; }
+
+  /* Editable input */
+  .editable-cell { position: relative; }
+  .editable-cell input { width: 100%; min-width: 80px; text-align: right; border: none; background: var(--accent-bg); font-size: 13px; font-family: inherit; color: var(--accent); padding: 2px 4px; border-radius: 4px; outline: none; }
+  .editable-cell input:focus { box-shadow: 0 0 0 2px var(--accent); }
+
+  /* Variance badge */
+  .var-badge { display: inline-block; font-size: 10px; font-weight: 600; padding: 1px 6px; border-radius: 10px; }
+  .var-pos { background: var(--green-bg); color: var(--green); }
+  .var-neg { background: var(--red-bg); color: var(--red); }
+
+  /* Toast */
+  .toast { position: fixed; bottom: 24px; right: 24px; background: var(--text); color: var(--bg); font-size: 13px; padding: 10px 18px; border-radius: var(--radius); z-index: 9999; opacity: 0; transition: opacity .2s; pointer-events: none; max-width: 320px; }
+  .toast.show { opacity: 1; }
+
+  /* Import overlay */
+  .drop-overlay { display: none; position: fixed; inset: 0; background: rgba(24,95,165,.18); z-index: 200; align-items: center; justify-content: center; border: 3px dashed var(--accent); border-radius: 12px; margin: 12px; }
+  .drop-overlay.active { display: flex; }
+  .drop-box { background: var(--surface); border-radius: var(--radius-lg); padding: 40px 60px; text-align: center; }
+  .drop-box p { font-size: 18px; font-weight: 600; color: var(--accent); margin-bottom: 8px; }
+  .drop-box span { font-size: 13px; color: var(--text2); }
+
+  /* Inline edit names */
+  .inline-edit-name:hover { background: var(--accent-bg); border-radius: 3px; }
+  .inline-edit-name:focus { background: var(--accent-bg); border-radius: 3px; color: var(--accent); }
+  @keyframes spin { to { transform: rotate(360deg); } }
+
+  /* Scrollbar */
+  ::-webkit-scrollbar { width: 6px; height: 6px; }
+  ::-webkit-scrollbar-track { background: transparent; }
+  ::-webkit-scrollbar-thumb { background: var(--border-strong); border-radius: 3px; }
+
+  /* Responsive */
+  @media (max-width: 768px) {
+    .sidebar { width: 0; overflow: hidden; }
+    .main { margin-left: 0; }
+    .chart-row { grid-template-columns: 1fr; }
+  }
+
+  /* Theme toggle */
+  .theme-toggle { background: none; border: 0.5px solid var(--border); border-radius: 20px; padding: 5px 10px; cursor: pointer; color: var(--text2); font-size: 12px; font-family: inherit; }
+
+  /* Status bar */
+  .status-bar { font-size: 11px; color: var(--text3); padding: 6px 24px; background: var(--surface2); border-bottom: 0.5px solid var(--border); }
+
+  /* Section toggle */
+  .section-toggle { cursor: pointer; user-select: none; }
+  .section-toggle:hover td { background: var(--amber-bg) !important; }
+  .chevron { display: inline-block; transition: transform .15s; margin-right: 6px; font-size: 10px; }
+  .collapsed .chevron { transform: rotate(-90deg); }
+</style>
+</head>
+<body data-theme="dark">
+
+<div class="drop-overlay" id="dropOverlay">
+  <div class="drop-box">
+    <p>📂 Drop your file here</p>
+    <span>Excel (.xlsx, .xls) or CSV</span>
+  </div>
+</div>
+
+<div class="toast" id="toast">✓ Changes saved</div>
+
+<!-- Add Row Modal -->
+<div id="addRowModal" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,0.45);z-index:500;align-items:center;justify-content:center">
+  <div id="addRowBox" style="background:var(--surface);border:0.5px solid var(--border-strong);border-radius:var(--radius-lg);padding:28px 32px;width:480px;max-width:92vw;box-shadow:0 20px 60px rgba(0,0,0,0.3)">
+    <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:20px">
+      <div style="font-size:15px;font-weight:600;color:var(--text)" id="modalTitle">Add new row</div>
+      <button onclick="closeAddModal()" style="background:none;border:none;cursor:pointer;color:var(--text3);font-size:18px;line-height:1;padding:2px 6px">✕</button>
+    </div>
+    <div style="margin-bottom:14px">
+      <label style="font-size:11px;color:var(--text2);display:block;margin-bottom:5px;font-weight:600;letter-spacing:.04em;text-transform:uppercase">Name</label>
+      <input id="newRowName" type="text" placeholder="e.g. Acme Corp" style="width:100%;padding:9px 12px;border:0.5px solid var(--border-strong);border-radius:var(--radius);background:var(--surface2);color:var(--text);font-size:13px;font-family:inherit;outline:none">
+    </div>
+    <div style="margin-bottom:18px">
+      <label style="font-size:11px;color:var(--text2);display:block;margin-bottom:8px;font-weight:600;letter-spacing:.04em;text-transform:uppercase">Monthly values ($) — optional, can edit later</label>
+      <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:6px" id="monthInputs"></div>
+    </div>
+    <div style="display:flex;gap:8px;justify-content:flex-end">
+      <button onclick="closeAddModal()" class="btn">Cancel</button>
+      <button onclick="confirmAddRow()" class="btn btn-primary">Add row</button>
+    </div>
+  </div>
+</div>
+
+<div class="app">
+  <!-- Sidebar -->
+  <aside class="sidebar">
+    <div class="sidebar-logo">
+      <div class="company">Outforz</div>
+      <div class="sub">Financial Dashboard</div>
+    </div>
+    <nav class="sidebar-nav">
+      <div class="nav-section">
+        <div class="nav-section-title">Reports</div>
+        <a class="nav-item active" onclick="showView(&#39;pl&#39;)">
+          <svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"></rect><line x1="3" y1="9" x2="21" y2="9"></line><line x1="9" y1="21" x2="9" y2="9"></line></svg>
+          P&amp;L Planning &amp; Analysis
+        </a>
+        <a class="nav-item" onclick="showView(&#39;chart&#39;)">
+          <svg viewBox="0 0 24 24"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline></svg>
+          Trend Analysis
+        </a>
+        <a class="nav-item" onclick="showView(&#39;breakdown&#39;)">
+          <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+          Cost Breakdown
+        </a>
+        <a class="nav-item" onclick="showView(&#39;insights&#39;)">
+          <svg viewBox="0 0 24 24"><path d="M12 2a7 7 0 0 1 7 7c0 3.5-2.5 6-4 7.5V18a1 1 0 0 1-1 1h-4a1 1 0 0 1-1-1v-1.5C7.5 15 5 12.5 5 9a7 7 0 0 1 7-7z"></path><line x1="9" y1="21" x2="15" y2="21"></line><line x1="9" y1="23" x2="15" y2="23"></line></svg>
+          Smart Insights
+        </a>
+      </div>
+      <div class="nav-section">
+        <div class="nav-section-title">Data</div>
+        <a class="nav-item" onclick="document.getElementById(&#39;importFile&#39;).click()">
+          <svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="17 8 12 3 7 8"></polyline><line x1="12" y1="3" x2="12" y2="15"></line></svg>
+          Import Excel / CSV
+        </a>
+        <a class="nav-item" onclick="exportCSV()">
+          <svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+          Export CSV
+        </a>
+      </div>
+    </nav>
+    <div class="sidebar-bottom">
+      <button class="theme-toggle" onclick="toggleTheme()">☀️ Light mode</button>
+    </div>
+  </aside>
+
+  <!-- Main content -->
+  <div class="main">
+    <!-- Topbar -->
+    <div class="topbar">
+      <div class="topbar-left">
+        <div>
+          <div class="page-title" id="viewTitle">P&amp;L Planning &amp; Analysis</div>
+        </div>
+      </div>
+      <div class="topbar-right">
+        <div class="period-bar" id="periodBar"><button class="period-tab active" onclick="switchPeriod(0)">Jan</button><button class="period-tab" onclick="switchPeriod(1)">Feb</button><button class="period-tab" onclick="switchPeriod(2)">Mar</button><button class="period-tab" onclick="switchPeriod(3)">Apr</button><button class="period-tab" onclick="switchPeriod(4)">May</button><button class="period-tab" onclick="switchPeriod(5)">Jun</button><button class="period-tab" onclick="switchPeriod(6)">Jul</button><button class="period-tab" onclick="switchPeriod(7)">Aug</button><button class="period-tab" onclick="switchPeriod(8)">Sep</button><button class="period-tab" onclick="switchPeriod(9)">Oct</button><button class="period-tab" onclick="switchPeriod(10)">Nov</button><button class="period-tab" onclick="switchPeriod(11)">Dec</button><button class="period-tab" onclick="switchPeriod(-1)">Total</button></div>
+        <button class="btn btn-success" onclick="toggleEdit()" style="">
+          <svg viewBox="0 0 24 24"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path></svg>
+          <span id="editBtnTxt">Edit Mode</span>
+        </button>
+        <button class="btn" onclick="resetAllData()" title="Reset all changes to original" style="opacity:0.6;font-size:11px" onmouseover="this.style.opacity=1" onmouseout="this.style.opacity=0.6">↺ Reset</button>
+        <label class="btn btn-primary" style="cursor:pointer">
+          <svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="17 8 12 3 7 8"></polyline><line x1="12" y1="3" x2="12" y2="15"></line></svg>
+          Import
+          <input type="file" id="importFile" accept=".csv,.xlsx,.xls" style="display:none" onchange="handleImport(event)">
+        </label>
+        <button class="btn btn-icon" onclick="exportCSV()" title="Export CSV">
+          <svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+        </button>
+      </div>
+    </div>
+
+    <!-- Content area -->
+    <div class="content" id="mainContent"><div class="kpi-grid" id="kpiRow"><div class="kpi-card"><div class="kpi-label">Total Revenue</div><div class="kpi-val accent">$92,081</div><div class="kpi-sub">Invoiced to clients</div></div><div class="kpi-card"><div class="kpi-label">Gross Margin</div><div class="kpi-val accent">$37,505</div><div class="kpi-sub">After agency share &nbsp;<span class="var-badge var-pos">+4.1% vs plan</span></div></div><div class="kpi-card"><div class="kpi-label">Total OpEx</div><div class="kpi-val neg">$23,053</div><div class="kpi-sub">Direct + Overheads</div></div><div class="kpi-card"><div class="kpi-label">EBITDA</div><div class="kpi-val pos">$14,451</div><div class="kpi-sub">Rev − Direct − Overheads</div></div><div class="kpi-card"><div class="kpi-label">Net Profit</div><div class="kpi-val pos">$14,972</div><div class="kpi-sub">Op Margin: 39.9% &nbsp;<span class="var-badge var-pos">+83.9% vs plan</span></div></div></div><div class="table-card"><div class="table-toolbar"><div class="table-toolbar-title">P&amp;L Planning &amp; Analysis · January 2025</div><div style="display:flex;gap:8px;flex-wrap:wrap"></div></div><div class="table-wrap"><table><thead><tr><th>Line item</th><th>Plan $</th><th>Actual $</th><th>Var %</th></tr></thead><tbody><tr class="row-section section-toggle" onclick="toggleSection(&#39;s-billings&#39;)"><td colspan="4"><span class="chevron">▼</span>REVENUE</td></tr><tr class="row-sub"><td colspan="4">Existing Clients</td></tr><tr><td class="indent">Client 1</td><td style="color:var(--text3);font-size:11px;text-align:right;padding-right:8px">34,675</td><td class="">88,510</td><td><span class="var-badge var-pos">+155.3%</span></td></tr><tr><td class="indent">Client 2</td><td style="color:var(--text3);font-size:11px;text-align:right;padding-right:8px"><span style="color:var(--text3)">–</span></td><td class="">218</td><td></td></tr><tr><td class="indent">Client 3</td><td style="color:var(--text3);font-size:11px;text-align:right;padding-right:8px">500</td><td class="">–</td><td><span class="var-badge var-neg">-100.0%</span></td></tr><tr><td class="indent">Client 4</td><td style="color:var(--text3);font-size:11px;text-align:right;padding-right:8px">500</td><td class="">1,833</td><td><span class="var-badge var-pos">+266.6%</span></td></tr><tr><td class="indent">Client 5</td><td style="color:var(--text3);font-size:11px;text-align:right;padding-right:8px">200</td><td class="">1,035</td><td><span class="var-badge var-pos">+417.6%</span></td></tr><tr><td class="indent">Client 6</td><td style="color:var(--text3);font-size:11px;text-align:right;padding-right:8px">350</td><td class="">485</td><td><span class="var-badge var-pos">+38.6%</span></td></tr><tr class="row-sub"><td colspan="4">New Business</td></tr><tr><td class="indent">New client</td><td style="color:var(--text3);font-size:11px;text-align:right;padding-right:8px"><span style="color:var(--text3)">–</span></td><td class="">–</td><td></td></tr><tr class="row-sub"><td colspan="4">Intercompany</td></tr><tr><td class="indent">External</td><td style="color:var(--text3);font-size:11px;text-align:right;padding-right:8px"><span style="color:var(--text3)">–</span></td><td class="">–</td><td></td></tr><tr class="row-total"><td>TOTAL REVENUE</td><td style="color:var(--text3);font-size:11px;text-align:right;padding-right:8px">36,039</td><td class="">92,081</td><td><span class="var-badge var-pos">+155.5%</span></td></tr><tr style="height:6px"><td colspan="4" style="border:none;background:var(--bg)"></td></tr><tr class="row-section section-toggle" onclick="toggleSection(&#39;s-revenue&#39;)"><td colspan="4"><span class="chevron">▼</span>GROSS MARGIN</td></tr><tr class="row-sub"><td colspan="4">Existing Clients</td></tr><tr><td class="indent">Client 1</td><td style="color:var(--text3);font-size:11px;text-align:right;padding-right:8px">34,675</td><td class="">35,865</td><td><span class="var-badge var-pos">+3.4%</span></td></tr><tr><td class="indent">Client 2</td><td style="color:var(--text3);font-size:11px;text-align:right;padding-right:8px"><span style="color:var(--text3)">–</span></td><td class="">60</td><td></td></tr><tr><td class="indent">Client 3</td><td style="color:var(--text3);font-size:11px;text-align:right;padding-right:8px">500</td><td class="">–</td><td><span class="var-badge var-neg">-100.0%</span></td></tr><tr><td class="indent">Client 4</td><td style="color:var(--text3);font-size:11px;text-align:right;padding-right:8px">500</td><td class="">892</td><td><span class="var-badge var-pos">+78.4%</span></td></tr><tr><td class="indent">Client 5</td><td style="color:var(--text3);font-size:11px;text-align:right;padding-right:8px">200</td><td class="">402</td><td><span class="var-badge var-pos">+101.2%</span></td></tr><tr><td class="indent">Client 6</td><td style="color:var(--text3);font-size:11px;text-align:right;padding-right:8px">350</td><td class="">285</td><td><span class="var-badge var-neg">-18.5%</span></td></tr><tr class="row-sub"><td colspan="4">New Business</td></tr><tr><td class="indent">New client</td><td style="color:var(--text3);font-size:11px;text-align:right;padding-right:8px"><span style="color:var(--text3)">–</span></td><td class="">–</td><td></td></tr><tr class="row-sub"><td colspan="4">AVB / CNB</td></tr><tr><td class="indent">AVB/CNB</td><td style="color:var(--text3);font-size:11px;text-align:right;padding-right:8px"><span style="color:var(--text3)">–</span></td><td class="">–</td><td></td></tr><tr class="row-total"><td>TOTAL GROSS MARGIN</td><td style="color:var(--text3);font-size:11px;text-align:right;padding-right:8px">36,039</td><td class="">37,505</td><td><span class="var-badge var-pos">+4.1%</span></td></tr><tr style="height:6px"><td colspan="4" style="border:none;background:var(--bg)"></td></tr><tr class="row-section section-toggle" onclick="toggleSection(&#39;s-opex&#39;)"><td colspan="4"><span class="chevron">▼</span>OPEX</td></tr><tr class="row-sub"><td colspan="4">SA001 · Salaries &amp; Related</td></tr><tr><td class="indent">Salaries</td><td style="color:var(--text3);font-size:11px;text-align:right;padding-right:8px">15,900</td><td class="">12,207</td><td><span class="var-badge var-neg">-23.2%</span></td></tr><tr><td class="indent">Bonuses (RS001)</td><td style="color:var(--text3);font-size:11px;text-align:right;padding-right:8px"><span style="color:var(--text3)">–</span></td><td class="">–</td><td></td></tr><tr><td class="indent">Outsourcers (RS002)</td><td style="color:var(--text3);font-size:11px;text-align:right;padding-right:8px"><span style="color:var(--text3)">–</span></td><td class="">–</td><td></td></tr><tr><td class="indent">Outsrcr Taxes</td><td style="color:var(--text3);font-size:11px;text-align:right;padding-right:8px">280</td><td class="">168</td><td><span class="var-badge var-neg">-40.1%</span></td></tr><tr><td class="indent">Income Tax &amp; Pension</td><td style="color:var(--text3);font-size:11px;text-align:right;padding-right:8px">1,958</td><td class="">1,488</td><td><span class="var-badge var-neg">-24.0%</span></td></tr><tr><td class="indent">Vacation Comp</td><td style="color:var(--text3);font-size:11px;text-align:right;padding-right:8px"><span style="color:var(--text3)">–</span></td><td class="">–</td><td></td></tr><tr class="row-total"><td>Total Salaries &amp; Related</td><td style="color:var(--text3);font-size:11px;text-align:right;padding-right:8px">18,138</td><td class="">13,862</td><td><span class="var-badge var-neg">-23.6%</span></td></tr><tr class="row-sub"><td colspan="4">CL — Client Services</td></tr><tr><td class="indent">Agency errors</td><td style="color:var(--text3);font-size:11px;text-align:right;padding-right:8px"><span style="color:var(--text3)">–</span></td><td class="">–</td><td></td></tr><tr><td class="indent">Unbillable Research</td><td style="color:var(--text3);font-size:11px;text-align:right;padding-right:8px"><span style="color:var(--text3)">–</span></td><td class="">–</td><td></td></tr><tr><td class="indent">Consulting services</td><td style="color:var(--text3);font-size:11px;text-align:right;padding-right:8px"><span style="color:var(--text3)">–</span></td><td class="">–</td><td></td></tr><tr class=""><td>Total Client Services</td><td style="color:var(--text3);font-size:11px;text-align:right;padding-right:8px">–</td><td class="">–</td><td></td></tr><tr class="row-sub"><td colspan="4">TE — Travel &amp; Entertainment</td></tr><tr><td class="indent">Travel (TE001)</td><td style="color:var(--text3);font-size:11px;text-align:right;padding-right:8px"><span style="color:var(--text3)">–</span></td><td class="">–</td><td></td></tr><tr><td class="indent">Business Meals</td><td style="color:var(--text3);font-size:11px;text-align:right;padding-right:8px"><span style="color:var(--text3)">–</span></td><td class="">–</td><td></td></tr><tr class=""><td>Total Travel &amp; Entertainment</td><td style="color:var(--text3);font-size:11px;text-align:right;padding-right:8px">–</td><td class="">–</td><td></td></tr><tr class="row-sub"><td colspan="4">DM — Depreciation &amp; Maintenance</td></tr><tr><td class="indent">Amortization &amp; Depr</td><td style="color:var(--text3);font-size:11px;text-align:right;padding-right:8px">161</td><td class="">161</td><td><span class="var-badge var-neg">-0.2%</span></td></tr><tr><td class="indent">Repairs &amp; Maintenance</td><td style="color:var(--text3);font-size:11px;text-align:right;padding-right:8px"><span style="color:var(--text3)">–</span></td><td class="">–</td><td></td></tr><tr class=""><td>Total Depreciation &amp; Maintenance</td><td style="color:var(--text3);font-size:11px;text-align:right;padding-right:8px">–</td><td class="">161</td><td></td></tr><tr class="row-sub"><td colspan="4">RE — Rent, Space &amp; Equipment</td></tr><tr><td class="indent">Rental Office</td><td style="color:var(--text3);font-size:11px;text-align:right;padding-right:8px">341</td><td class="">341</td><td><span class="var-badge var-neg">-0.0%</span></td></tr><tr><td class="indent">Utilities &amp; Other</td><td style="color:var(--text3);font-size:11px;text-align:right;padding-right:8px">48</td><td class="">46</td><td><span class="var-badge var-neg">-4.7%</span></td></tr><tr><td class="indent">Moving/Relocation</td><td style="color:var(--text3);font-size:11px;text-align:right;padding-right:8px"><span style="color:var(--text3)">–</span></td><td class="">–</td><td></td></tr><tr class=""><td>Total Rent, Space &amp; Equipment</td><td style="color:var(--text3);font-size:11px;text-align:right;padding-right:8px">–</td><td class="">387</td><td></td></tr><tr class="row-sub"><td colspan="4">CS — Communications &amp; Stationery</td></tr><tr><td class="indent">Internet</td><td style="color:var(--text3);font-size:11px;text-align:right;padding-right:8px">81</td><td class="">81</td><td><span class="var-badge var-pos">+0.1%</span></td></tr><tr><td class="indent">Mobile</td><td style="color:var(--text3);font-size:11px;text-align:right;padding-right:8px">12</td><td class="">11</td><td><span class="var-badge var-neg">-10.2%</span></td></tr><tr><td class="indent">Postage &amp; Delivery</td><td style="color:var(--text3);font-size:11px;text-align:right;padding-right:8px">5</td><td class="">–</td><td><span class="var-badge var-neg">-100.0%</span></td></tr><tr class=""><td>Total Communications &amp; Stationery</td><td style="color:var(--text3);font-size:11px;text-align:right;padding-right:8px">–</td><td class="">92</td><td></td></tr><tr class="row-sub"><td colspan="4">DS — Dues &amp; Subscriptions</td></tr><tr><td class="indent">Books &amp; Periodicals</td><td style="color:var(--text3);font-size:11px;text-align:right;padding-right:8px">75</td><td class="">660</td><td><span class="var-badge var-pos">+780.4%</span></td></tr><tr><td class="indent">Club Dues</td><td style="color:var(--text3);font-size:11px;text-align:right;padding-right:8px"><span style="color:var(--text3)">–</span></td><td class="">–</td><td></td></tr><tr class=""><td>Total Dues &amp; Subscriptions</td><td style="color:var(--text3);font-size:11px;text-align:right;padding-right:8px">–</td><td class="">660</td><td></td></tr><tr class="row-sub"><td colspan="4">NB — New Business &amp; Promotion</td></tr><tr><td class="indent">Our Advertising</td><td style="color:var(--text3);font-size:11px;text-align:right;padding-right:8px"><span style="color:var(--text3)">–</span></td><td class="">–</td><td></td></tr><tr><td class="indent">Festivals &amp; Tenders</td><td style="color:var(--text3);font-size:11px;text-align:right;padding-right:8px">594</td><td class="">620</td><td><span class="var-badge var-pos">+4.4%</span></td></tr><tr class=""><td>Total New Business &amp; Promotion</td><td style="color:var(--text3);font-size:11px;text-align:right;padding-right:8px">–</td><td class="">620</td><td></td></tr><tr class="row-sub"><td colspan="4">CE — Corporate Expenses</td></tr><tr><td class="indent">Corporate Affairs</td><td style="color:var(--text3);font-size:11px;text-align:right;padding-right:8px">546</td><td class="">595</td><td><span class="var-badge var-pos">+9.0%</span></td></tr><tr><td class="indent">Consulting IT</td><td style="color:var(--text3);font-size:11px;text-align:right;padding-right:8px">1,346</td><td class="">1,025</td><td><span class="var-badge var-neg">-23.8%</span></td></tr><tr><td class="indent">Audit &amp; Legal</td><td style="color:var(--text3);font-size:11px;text-align:right;padding-right:8px">676</td><td class="">175</td><td><span class="var-badge var-neg">-74.1%</span></td></tr><tr><td class="indent">IT needs</td><td style="color:var(--text3);font-size:11px;text-align:right;padding-right:8px">86</td><td class="">87</td><td><span class="var-badge var-pos">+1.2%</span></td></tr><tr><td class="indent">Seminars &amp; Corp Ent</td><td style="color:var(--text3);font-size:11px;text-align:right;padding-right:8px"><span style="color:var(--text3)">–</span></td><td class="">–</td><td></td></tr><tr><td class="indent">Trainings</td><td style="color:var(--text3);font-size:11px;text-align:right;padding-right:8px"><span style="color:var(--text3)">–</span></td><td class="">–</td><td></td></tr><tr><td class="indent">Others</td><td style="color:var(--text3);font-size:11px;text-align:right;padding-right:8px">48</td><td class="">48</td><td><span class="var-badge var-neg">-0.8%</span></td></tr><tr class=""><td>Total Corporate Expenses</td><td style="color:var(--text3);font-size:11px;text-align:right;padding-right:8px">–</td><td class="">1,930</td><td></td></tr><tr class="row-sub"><td colspan="4">FE — Financial Expenses</td></tr><tr><td class="indent">Banking services</td><td style="color:var(--text3);font-size:11px;text-align:right;padding-right:8px">847</td><td class="">904</td><td><span class="var-badge var-pos">+6.7%</span></td></tr><tr class=""><td>Total Financial Expenses</td><td style="color:var(--text3);font-size:11px;text-align:right;padding-right:8px">–</td><td class="">904</td><td></td></tr><tr class="row-sub"><td colspan="4">CO — Coordination Expenses</td></tr><tr><td class="indent">Central cost</td><td style="color:var(--text3);font-size:11px;text-align:right;padding-right:8px">4,605</td><td class="">4,437</td><td><span class="var-badge var-neg">-3.7%</span></td></tr><tr class=""><td>Total Coordination Expenses</td><td style="color:var(--text3);font-size:11px;text-align:right;padding-right:8px">–</td><td class="">4,437</td><td></td></tr><tr class="row-total"><td>TOTAL OPEX</td><td style="color:var(--text3);font-size:11px;text-align:right;padding-right:8px">27,610</td><td class="">23,053</td><td><span class="var-badge var-neg">-16.5%</span></td></tr><tr class="row-ebitda-spacer"><td colspan="4"></td></tr><tr class="row-ebitda"><td>EBITDA</td><td style="color:var(--text3);font-size:11px;text-align:right;padding-right:8px">8,429</td><td class="">14,451</td><td><span class="var-badge var-pos">+71.4%</span></td></tr><tr class="row-ebitda-spacer"><td colspan="4"></td></tr><tr style="height:6px"><td colspan="4" style="border:none;background:var(--bg)"></td></tr><tr class="row-section section-toggle" onclick="toggleSection(&#39;s-nonop&#39;)"><td colspan="4"><span class="chevron">▼</span>NON-OPERATION ITEMS</td></tr><tr><td class="indent">Financial Income</td><td style="color:var(--text3);font-size:11px;text-align:right;padding-right:8px">238</td><td class=" val-income">521</td><td><span class="var-badge var-pos">+118.8%</span></td></tr><tr><td class="indent">Gain/Loss Fixed Assets</td><td style="color:var(--text3);font-size:11px;text-align:right;padding-right:8px"><span style="color:var(--text3)">–</span></td><td class="">–</td><td></td></tr><tr><td class="indent">FX Gain/Loss</td><td style="color:var(--text3);font-size:11px;text-align:right;padding-right:8px"><span style="color:var(--text3)">–</span></td><td class="">–</td><td></td></tr><tr class="row-profit"><td>PROFIT BEFORE TAX</td><td style="color:var(--text3);font-size:11px;text-align:right;padding-right:8px">8,143</td><td class="">14,972</td><td><span class="var-badge var-pos">+83.9%</span></td></tr><tr style="height:6px"><td colspan="4" style="border:none;background:var(--bg)"></td></tr><tr class="row-sub"><td colspan="4">Tax</td></tr><tr><td class="indent">Profit Tax Paid</td><td style="color:var(--text3);font-size:11px;text-align:right;padding-right:8px">48</td><td class="">–</td><td><span class="var-badge var-neg">-100.0%</span></td></tr><tr class="row-profit"><td>NET PROFIT</td><td style="color:var(--text3);font-size:11px;text-align:right;padding-right:8px">8,143</td><td class="">14,972</td><td><span class="var-badge var-pos">+83.9%</span></td></tr><tr class="row-margin"><td>OPERATION MARGIN</td><td style="color:var(--text3);font-size:11px;text-align:right;padding-right:8px">–</td><td class="">39.9%</td><td></td></tr></tbody></table></div></div></div>
+  </div>
+</div>
+
+<script src="./P&amp;L Dashboard 2025_files/chart.umd.min.js.download"></script>
+<script>
+// ─── State ──────────────────────────────────────────────────────────────────
+var PERIODS = ['January','February','March','April','May','June','July','August','September','October','November','December'];
+var ACTIVE_PERIOD = 0;
+var EDIT_MODE = false;
+var CURRENT_VIEW = 'pl';
+var COLLAPSED = {};
+var chartInstances = {};
+
+// ─── Data ────────────────────────────────────────────────────────────────────
+var DATA = {
+  billings: {
+    existing: {
+      'Alegion': [88510.3, 79539.14, 83532.58, 54162.47, 38420.5, 9870.3, 4120.8, 11650.4, 79340.2, 58920.6, 69450.3, 57800.0],
+      'Growe': [217.55, 0, 0, 0, 385.2, 410.5, 398.7, 415.3, 402.1, 388.6, 421.0, 395.4],
+      'Playmaker': [0, 2340, 3962.5, 6840, 6950.3, 7280.6, 7420.1, 7390.8, 7510.2, 7480.5, 7520.9, 7460.3],
+      'Jungo': [1833, 1068, 1203, 1149, 1020.4, 980.7, 1045.2, 1010.6, 985.3, 1025.8, 1060.4, 1030.2],
+      'ReSpo.Vision': [1035.3, 3394.82, 5969.63, 7318.4, 5840.6, 5760.3, 6480.9, 6520.4, 6595.7, 7280.3, 7350.6, 7410.2],
+      'Footurelab': [485, 525, 490, 540, 1020.3, 980.6, 1480.2, 1520.8, 1495.4, 1980.7, 2010.3, 1960.5],
+    },
+    new_business: {
+      'New client': [0, 0, 0, 0, 4850.3, 18640.7, 20380.5, 21250.8, 23680.4, 24120.6, 26540.3, 27180.9],
+    },
+    intercompany: {
+      'Tabasco': [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+    }
+  },
+  revenue: {
+    existing: {
+      'Alegion': [35865.09, 31347.17, 37261.58, 23197.47, 17289.2, 4441.6, 1854.4, 5242.7, 35703.1, 26514.3, 31252.6, 26010.0],
+      'Growe': [60.05, 0, 0, 0, 173.3, 184.7, 179.4, 186.9, 181.0, 174.9, 189.5, 177.9],
+      'Playmaker': [0, 1134.65, 1727.22, 2910.15, 3427.6, 3626.4, 3710.1, 3695.4, 3755.1, 3740.3, 3760.5, 3730.2],
+      'Jungo': [891.95, 492.42, 575.75, 547.7, 510.2, 490.4, 522.6, 505.3, 492.7, 512.9, 530.2, 515.1],
+      'ReSpo.Vision': [402.36, 1182.44, 2437.96, 2937.48, 2920.3, 2880.2, 3240.5, 3260.2, 3297.9, 3640.2, 3675.3, 3705.1],
+      'Footurelab': [285.12, 290.77, 271.01, 323.96, 510.2, 490.3, 740.1, 760.4, 747.7, 990.4, 1005.2, 980.3],
+    },
+    new_business: {
+      'New client': [0, 0, 0, 0, 2425.2, 9320.4, 10190.3, 10625.4, 11840.2, 12060.3, 13270.2, 13590.5],
+    },
+    avb: {
+      'AVB/CNB': [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+    }
+  },
+  direct: {
+    salaries: {
+      'Salaries': [12206.67, 12730.97, 13594.32, 14302.25, 14850.4, 15120.6, 15380.3, 15620.8, 15840.5, 16050.2, 16280.7, 16480.3],
+      'Bonuses (RS001)': [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2500.0, 3200.0],
+      'Outsourcers (RS002)': [0, 0, 0, 0, 2850.3, 0, 0, 0, 0, 0, 0, 0],
+      'Outsrcr Taxes': [167.62, 85.02, 127.54, 85.04, 280.5, 260.3, 275.8, 268.4, 271.2, 278.6, 285.3, 279.1],
+      'Income Tax & Pension': [1488.13, 1215.07, 964.72, 977.47, 1820.4, 1950.6, 2006.3, 2006.3, 2006.3, 2006.3, 2006.3, 2006.3],
+      'Vacation Comp': [0, 1797.85, 0, 0, 0, 1850.4, 0, 0, 0, 0, 1920.5, 0],
+    }
+  },
+  overheads: {
+    client_services: {
+      'Agency errors': [0, 0, 182.7, 0, 0, 0, 0, 145.3, 0, 0, 0, 210.5],
+      'Unbillable Research': [0, 0, 24.14, 24.16, 0, 0, 35.8, 28.4, 0, 0, 42.1, 0],
+      'Consulting services': [0, 0, 0, 0, 0, 0, 0, 0, 0, 850.0, 0, 0],
+    },
+    travel: {
+      'Travel (TE001)': [0, 0, 0, 0, 0, 2840.6, 0, 0, 2950.3, 0, 0, 3100.0],
+      'Business Meals': [0, 0, 0, 0, 125.4, 0, 0, 98.6, 0, 0, 142.3, 0],
+    },
+    depreciation: {
+      'Amortization & Depr': [160.72, 163.05, 136.16, 191.41, 161.0, 161.0, 161.0, 161.0, 161.0, 161.0, 161.0, 161.0],
+      'Repairs & Maintenance': [0, 0, 0, 0, 0, 385.0, 0, 0, 0, 0, 0, 0],
+    },
+    rent: {
+      'Rental Office': [340.89, 345.83, 345.83, 345.91, 341.0, 341.0, 341.0, 341.0, 341.0, 341.0, 341.0, 341.0],
+      'Utilities & Other': [45.76, 52.42, 44.06, 26.62, 48.3, 51.7, 46.2, 49.8, 47.5, 50.1, 48.9, 47.3],
+      'Moving/Relocation': [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+    },
+    communications: {
+      'Internet': [81.11, 80.71, 83.86, 83.35, 81.0, 81.0, 81.0, 81.0, 81.0, 81.0, 81.0, 81.0],
+      'Mobile': [10.78, 69.64, 7.67, 7.33, 12.4, 11.8, 12.1, 11.9, 12.3, 12.0, 12.5, 11.7],
+      'Postage & Delivery': [0, 0, 0, 387.66, 0, 0, 5.2, 4.8, 0, 0, 5.5, 4.3],
+    },
+    subscriptions: {
+      'Books & Periodicals': [660.32, 95.19, 94.88, 94.88, 75.0, 75.0, 75.0, 75.0, 75.0, 75.0, 75.0, 75.0],
+      'Club Dues': [0, 10.09, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+    },
+    promo: {
+      'Our Advertising': [0, 0, 0, 0, 0, 0, 480.5, 0, 0, 0, 520.3, 0],
+      'Festivals & Tenders': [620.43, 0, 0, 0, 0, 0, 0, 0, 0, 580.2, 0, 0],
+    },
+    corporate: {
+      'Corporate Affairs': [594.89, 643.11, 248.84, 201.43, 152.3, 148.7, 151.2, 149.8, 152.0, 150.4, 153.1, 148.5],
+      'Consulting IT': [1025.44, 1023.35, 1196.2, 1100.17, 1050.3, 1042.6, 1036.0, 1058.4, 1179.2, 1060.5, 1151.3, 1060.0],
+      'Audit & Legal': [175.29, 668.19, 250.44, 160.71, 176.0, 176.0, 176.0, 176.0, 176.0, 2176.0, 176.0, 176.0],
+      'IT needs': [87.05, 1013.19, 96.81, 100.26, 86.0, 86.0, 86.0, 86.0, 86.0, 86.0, 86.0, 86.0],
+      'Seminars & Corp Ent': [0, 0, 0, 0, 0, 420.5, 0, 0, 0, 380.2, 0, 450.0],
+      'Trainings': [0, 500.37, 0, 0, 0, 0, 0, 480.2, 0, 0, 0, 520.0],
+      'Others': [47.62, 36.23, 36.23, 36.24, 48.0, 48.0, 48.0, 48.0, 48.0, 48.0, 48.0, 48.0],
+    },
+    financial: {
+      'Banking services': [903.94, 392.88, 243.56, 641.95, 205.3, 198.7, 201.4, 203.8, 200.6, 199.2, 204.5, 201.0],
+    },
+    coordination: {
+      'Central cost': [4436.65, 4028.03, 4508.7, 4872.78, 5320.4, 4920.6, 4780.3, 4750.9, 4880.5, 4750.9, 4780.3, 4880.5],
+    }
+  },
+  non_op: {
+    items: {
+      'Financial Income': [520.76, 331, 1121.57, 1272.44, 286.3, 290.8, 357.2, 354.6, 351.4, 355.8, 358.2, 352.0],
+      'Gain/Loss Fixed Assets': [0, 0, 618.22, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+      'FX Gain/Loss': [0, 0, 0, 0, -124.5, 0, 0, 218.3, 0, -85.6, 0, 142.4],
+    }
+  },
+  tax: {
+    items: {
+      'Profit Tax Paid': [0, 602.97, 0, 0, 48.0, 48.0, 48.0, 48.0, 48.0, 48.0, 48.0, 48.0],
+    }
+  }
+};
+
+// Plan data (OB data from Excel — Outforz Data sheet, planned Jan/Feb/Mar/Apr)
+var PLAN = {
+  revenue:   { total: [36039, 38487, 47484, 35700, 28694, 22701, 21480, 25341, 58268, 49652, 55916, 50150] },
+  direct:    { total: [18138, 18186, 19186, 21476, 22476, 19476, 19476, 19476, 19476, 19476, 19476, 19476] },
+  overheads: { total: [9472,  8179,  10362, 9614,  7902,  10436, 7260,  7269,  10494, 7271,  7367,  10375] },
+  opex:      { total: [27610, 26365, 29548, 31090, 30378, 29912, 26736, 26745, 29970, 26747, 26843, 29851] },
+  netProfit: { total: [8143,  11837, 17649, 4278,  -1970, -7496, -5613, -1761, 27941, 22548, 28716, 9942 ] },
+  // Per-line plan values [Jan, Feb, Mar, Apr]
+  lines: {
+    // BILLINGS
+    'Alegion_b':       [77056, 80972, 90408, 56890, 41318, 10780, 4400, 12980, 82818, 62227, 72813, 60000],
+    'Growe_b':         [0,     0,     0,     400,   400,   400,   400,  400,  400,   400,  400,   400],
+    'Playmaker_b':     [1000,  2000,  6500,  7000,  7000,  7500,  7500, 7500, 7500,  7500, 7500,  7500],
+    'Jungo_b':         [1000,  1000,  1000,  1000,  1000,  1000,  1000, 1000, 1000,  1000, 1000,  1000],
+    'ReSpo.Vision_b':  [400,   400,   400,   5800,  5800,  5800,  6600, 6600, 6600,  7400, 7400,  7400],
+    'Footurelab_b':    [700,   700,   700,   1000,  1000,  1000,  1500, 1500, 1500,  2000, 2000,  2000],
+    'New client_b':    [0,     0,     5000,  5000,  5000,  20000, 22000,22000,25000, 25000,28000, 28000],
+    'Tabasco_b':       [0,     0,     0,     0,     0,     0,     0,    0,    0,     0,    0,     0],
+    // REVENUE (gross margin)
+    'Alegion':         [34675, 36437, 40684, 25600, 18593, 4851,  1980, 5841, 37268, 28002, 32766, 27000],
+    'Growe':           [0,     0,     0,     200,   200,   200,   200,  200,  200,   200,  200,   200],
+    'Playmaker':       [500,   1000,  3250,  3500,  3500,  3750,  3750, 3750, 3750,  3750, 3750,  3750],
+    'Jungo':           [500,   500,   500,   500,   500,   500,   500,  500,  500,   500,  500,   500],
+    'ReSpo.Vision':    [200,   200,   200,   2900,  2900,  2900,  3300, 3300, 3300,  3700, 3700,  3700],
+    'Footurelab':      [350,   350,   350,   500,   500,   500,   750,  750,  750,   1000, 1000,  1000],
+    'New client':      [0,     0,     2500,  2500,  2500,  10000, 11000,11000,12500, 12500,14000, 14000],
+    'AVB/CNB':         [0,     0,     0,     0,     0,     0,     0,    0,    0,     0,    0,     0],
+    // DIRECT COSTS
+    'Salaries':        [15900, 15900, 15900, 17190, 17190, 17190, 17190,17190,17190, 17190,17190, 17190],
+    'Bonuses (RS001)': [0,     0,     0,     0,     0,     0,     0,    0,    0,     0,    0,     0],
+    'Outsourcers (RS002)':[0,  0,     1000,  2000,  3000,  0,     0,    0,    0,     0,    0,     0],
+    'Outsrcr Taxes':   [280,   280,   280,   280,   280,   280,   280,  280,  280,   280,  280,   280],
+    'Income Tax & Pension':[1958,2006, 2006,  2006,  2006,  2006,  2006, 2006, 2006,  2006, 2006,  2006],
+    'Vacation Comp':   [0,     0,     0,     0,     0,     0,     0,    0,    0,     0,    0,     0],
+    // OVERHEADS
+    'Agency errors':   [0,     0,     0,     0,     0,     0,     0,    0,    0,     0,    0,     0],
+    'Unbillable Research':[0,  0,     0,     0,     0,     0,     0,    0,    0,     0,    0,     0],
+    'Consulting services':[0,  0,     0,     0,     0,     0,     0,    0,    0,     0,    0,     0],
+    'Travel (TE001)':  [0,     0,     3000,  0,     0,     3000,  0,    0,    3000,  0,    0,     3000],
+    'Business Meals':  [0,     0,     0,     0,     0,     0,     0,    0,    0,     0,    0,     0],
+    'Amortization & Depr':[161,161,   161,   161,   161,   161,   161,  161,  161,   161,  161,   161],
+    'Repairs & Maintenance':[0, 0,    0,     0,     0,     0,     0,    0,    0,     0,    0,     0],
+    'Rental Office':   [341,   341,   341,   341,   341,   341,   341,  341,  341,   341,  341,   341],
+    'Utilities & Other':[48,   48,    48,    48,    48,    48,    48,   48,   48,    48,   48,    48],
+    'Moving/Relocation':[0,    0,     0,     0,     0,     0,     0,    0,    0,     0,    0,     0],
+    'Internet':        [81,    81,    81,    81,    81,    81,    81,   81,   81,    81,   81,    81],
+    'Mobile':          [12,    12,    12,    12,    12,    12,    12,   12,   12,    12,   12,    12],
+    'Postage & Delivery':[5,   5,     5,     5,     5,     5,     5,    5,    5,     5,    5,     5],
+    'Books & Periodicals':[75, 75,    75,    75,    75,    75,    75,   75,   75,    75,   75,    75],
+    'Club Dues':       [0,     0,     0,     0,     0,     0,     0,    0,    0,     0,    0,     0],
+    'Our Advertising': [0,     0,     0,     0,     0,     0,     0,    0,    0,     0,    0,     0],
+    'Festivals & Tenders':[594,0,     0,     0,     0,     0,     0,    0,    0,     0,    0,     0],
+    'Corporate Affairs':[546,  1150,  150,   150,   150,   150,   150,  150,  150,   150,  150,   150],
+    'Consulting IT':   [1346,  1036,  1036,  1036,  1050,  1043,  1036, 1058, 1179,  1060, 1151,  1060],
+    'Audit & Legal':   [676,   176,   176,   2176,  176,   176,   176,  176,  176,   176,  176,   176],
+    'IT needs':        [86,    86,    86,    86,    86,    86,    86,   86,   86,    86,   86,    86],
+    'Seminars & Corp Ent':[0,  0,     0,     0,     0,     0,     0,    0,    0,     0,    0,     0],
+    'Trainings':       [0,     0,     0,     0,     0,     0,     0,    0,    0,     0,    0,     0],
+    'Others':          [48,    48,    48,    48,    48,    48,    48,   48,   48,    48,   48,    48],
+    'Banking services':[847,   200,   200,   200,   200,   200,   200,  200,  200,   200,  200,   200],
+    'Central cost':    [4605,  4759,  4942,  5193,  5468,  5008,  4840, 4827, 4931,  4827, 4831,  4931],
+    // NON-OP
+    'Financial Income':[238,   238,   238,   286,   286,   286,   357,  357,  357,   357,  357,   357],
+    'Gain/Loss Fixed Assets':[0,0,    0,     0,     0,     0,     0,    0,    0,     0,    0,     0],
+    'FX Gain/Loss':    [0,     0,     0,     0,     0,     0,     0,    0,    0,     0,    0,     0],
+    // TAX
+    'Profit Tax Paid': [48,    48,    48,    48,    48,    48,    48,   48,   48,    48,   48,    48],
+  }
+};
+
+// ─── Calculations ─────────────────────────────────────────────────────────────
+function sumGroup(obj, ci) {
+  return Object.values(obj).reduce(function(s, arr) { return s + (arr[ci] || 0); }, 0);
+}
+function sumSection(obj, ci) {
+  return Object.values(obj).reduce(function(s, group) { return s + sumGroup(group, ci); }, 0);
+}
+function sumSectionAllMonths(obj) {
+  var total = 0;
+  Object.values(obj).forEach(function(group) {
+    Object.values(group).forEach(function(arr) {
+      if (Array.isArray(arr)) arr.forEach(function(v) { total += (v || 0); });
+    });
+  });
+  return total;
+}
+function sumGroupAllMonths(obj) {
+  return Object.values(obj).reduce(function(s, arr) {
+    return s + (Array.isArray(arr) ? arr.reduce(function(a,b){return a+(b||0);},0) : 0);
+  }, 0);
+}
+function sumSectionTotal(obj) {
+  return Object.values(obj).reduce(function(s, group) { return s + sumGroupAllMonths(group); }, 0);
+}
+function calcKPIs(ci) {
+  var isTotal = (ci === -1);
+  var totalBillings  = isTotal ? sumSectionTotal(DATA.billings)  : sumSection(DATA.billings, ci);
+  var totalRevenue   = isTotal ? sumSectionTotal(DATA.revenue)   : sumSection(DATA.revenue, ci);
+  var totalDirect    = isTotal ? sumSectionTotal(DATA.direct)    : sumSection(DATA.direct, ci);
+  var totalOverheads = isTotal ? sumSectionTotal(DATA.overheads) : sumSection(DATA.overheads, ci);
+  var totalOpEx      = totalDirect + totalOverheads;
+  var grossProfit    = totalRevenue - totalDirect;
+  var ebitda         = grossProfit - totalOverheads;
+  var nonOp          = isTotal ? sumSectionTotal(DATA.non_op) : sumSection(DATA.non_op, ci);
+  var taxPaid        = isTotal ? sumSectionTotal(DATA.tax)    : sumSection(DATA.tax, ci);
+  var profitBT       = ebitda + nonOp;
+  var netProfit      = profitBT - taxPaid;
+  var grossMargin    = totalRevenue > 0 ? grossProfit / totalRevenue : 0;
+  var opMargin       = totalRevenue > 0 ? netProfit / totalRevenue : 0;
+  return { totalBillings, totalRevenue, totalDirect, totalOverheads,
+           totalOpEx, grossProfit, ebitda, nonOp, taxPaid,
+           profitBT, netProfit, grossMargin, opMargin };
+}
+
+// ─── Format helpers ──────────────────────────────────────────────────────────
+function fmt(v) {
+  if (v === 0 || v === null || v === undefined) return '–';
+  var n = Math.round(v);
+  if (n < 0) return '(' + Math.abs(n).toLocaleString('en-US') + ')';
+  return n.toLocaleString('en-US');
+}
+function fmtPct(v) {
+  if (isNaN(v) || !isFinite(v)) return '–';
+  return (v * 100).toFixed(1) + '%';
+}
+function fmtK(v) {
+  var a = Math.abs(v);
+  if (a >= 1000000) return (v/1000000).toFixed(1)+'M';
+  if (a >= 1000) return (v/1000).toFixed(0)+'K';
+  return Math.round(v).toString();
+}
+
+// ─── Toast ───────────────────────────────────────────────────────────────────
+function toast(msg, dur) {
+  var el = document.getElementById('toast');
+  el.textContent = msg;
+  el.classList.add('show');
+  setTimeout(function() { el.classList.remove('show'); }, dur || 2500);
+}
+
+// ─── Theme ───────────────────────────────────────────────────────────────────
+var isDark = false;
+function toggleTheme() {
+  isDark = !isDark;
+  document.body.setAttribute('data-theme', isDark ? 'dark' : '');
+  document.querySelector('.theme-toggle').textContent = isDark ? '☀️ Light mode' : '🌙 Dark mode';
+  render();
+}
+
+// ─── Edit mode ───────────────────────────────────────────────────────────────
+function toggleEdit() {
+  EDIT_MODE = !EDIT_MODE;
+  document.getElementById('editBtnTxt').textContent = EDIT_MODE ? 'Save' : 'Edit Mode';
+  document.querySelector('.btn-success').style.background = EDIT_MODE ? 'var(--amber-bg)' : '';
+  document.querySelector('.btn-success').style.color = EDIT_MODE ? 'var(--amber)' : '';
+  if (!EDIT_MODE) toast('✓ Changes saved');
+  renderContent();
+}
+
+function updateVal(name, ci, val) {
+  var v = parseFloat(val) || 0;
+  [DATA.billings, DATA.revenue, DATA.direct, DATA.overheads, DATA.non_op, DATA.tax].forEach(function(section) {
+    Object.values(section).forEach(function(group) {
+      if (group[name] !== undefined) group[name][ci] = v;
+    });
+  });
+  renderKPIs();
+}
+
+// ─── Add / Delete rows ────────────────────────────────────────────────────────
+var _addTarget = null; // { section, group }
+
+var ADD_TARGETS = {
+  'billing_existing':   { section: 'billings',  group: 'existing',      label: 'Revenue — Existing Client' },
+  'billing_new':        { section: 'billings',  group: 'new_business',  label: 'Revenue — New Business' },
+  'revenue_existing':   { section: 'revenue',   group: 'existing',      label: 'Gross Margin — Existing Client' },
+  'revenue_new':        { section: 'revenue',   group: 'new_business',  label: 'Gross Margin — New Business' },
+  'direct_salaries':    { section: 'direct',    group: 'salaries',      label: 'Direct Cost — Salaries' },
+  'oh_client':          { section: 'overheads', group: 'client_services',label: 'Overhead — Client Services' },
+  'oh_travel':          { section: 'overheads', group: 'travel',         label: 'Overhead — Travel' },
+  'oh_corporate':       { section: 'overheads', group: 'corporate',      label: 'Overhead — Corporate' },
+  'oh_financial':       { section: 'overheads', group: 'financial',      label: 'Overhead — Financial' },
+  'oh_coordination':    { section: 'overheads', group: 'coordination',   label: 'Overhead — Coordination' },
+};
+
+function openAddModal(targetKey) {
+  _addTarget = ADD_TARGETS[targetKey];
+  if (!_addTarget) return;
+  document.getElementById('modalTitle').textContent = 'Add row: ' + _addTarget.label;
+  document.getElementById('newRowName').value = '';
+  var grid = document.getElementById('monthInputs');
+  grid.innerHTML = PERIODS.map(function(p, i) {
+    return '<div>'
+      + '<div style="font-size:10px;color:var(--text3);margin-bottom:3px;text-align:center">'+p.substring(0,3)+'</div>'
+      + '<input type="number" id="mv'+i+'" placeholder="0" style="width:100%;padding:6px 8px;border:0.5px solid var(--border-strong);border-radius:6px;background:var(--surface2);color:var(--text);font-size:12px;font-family:inherit;text-align:right;outline:none" />'
+      + '</div>';
+  }).join('');
+  var modal = document.getElementById('addRowModal');
+  modal.style.display = 'flex';
+  setTimeout(function(){ document.getElementById('newRowName').focus(); }, 60);
+}
+
+function closeAddModal() {
+  document.getElementById('addRowModal').style.display = 'none';
+  _addTarget = null;
+}
+
+function confirmAddRow() {
+  var name = document.getElementById('newRowName').value.trim();
+  if (!name) { document.getElementById('newRowName').style.boxShadow = '0 0 0 2px var(--red)'; return; }
+  document.getElementById('newRowName').style.boxShadow = '';
+
+  // Check duplicate
+  var targetGroup = DATA[_addTarget.section][_addTarget.group];
+  if (targetGroup[name] !== undefined) {
+    document.getElementById('newRowName').style.boxShadow = '0 0 0 2px var(--amber)';
+    document.getElementById('newRowName').placeholder = 'Name already exists!';
+    return;
+  }
+
+  var vals = PERIODS.map(function(_, i) {
+    return parseFloat(document.getElementById('mv'+i).value) || 0;
+  });
+
+  targetGroup[name] = vals;
+
+  // Also add to billings if adding revenue_existing/new (keep billings = revenue for new rows unless user edits)
+  if (_addTarget.section === 'revenue' && _addTarget.group === 'existing') {
+    if (!DATA.billings.existing[name]) DATA.billings.existing[name] = vals.slice();
+  }
+  if (_addTarget.section === 'revenue' && _addTarget.group === 'new_business') {
+    if (!DATA.billings.new_business[name]) DATA.billings.new_business[name] = vals.slice();
+  }
+
+  closeAddModal();
+  toast('✓ "' + name + '" added');
+  render();
+}
+
+// Delete a custom row (only non-original rows can be deleted)
+var ORIGINAL_KEYS = (function(){
+  var keys = {};
+  function scan(obj){ Object.values(obj).forEach(function(g){ Object.keys(g).forEach(function(k){ keys[k]=1; }); }); }
+  scan(DATA.billings); scan(DATA.revenue); scan(DATA.direct); scan(DATA.overheads); scan(DATA.non_op); scan(DATA.tax);
+  return keys;
+})();
+
+function deleteRow(name) {
+  if (!confirm('Delete row "' + name + '"?')) return;
+  [DATA.billings, DATA.revenue, DATA.direct, DATA.overheads, DATA.non_op, DATA.tax].forEach(function(section) {
+    Object.values(section).forEach(function(group) { delete group[name]; });
+  });
+  toast('✓ "' + name + '" removed');
+  render();
+}
+
+// ─── Inline rename ─────────────────────────────────────────────────────────────
+var _renaming = false;
+function renameRow(el) {
+  if (_renaming) return;
+  var oldName = el.getAttribute('data-orig');
+  var newName = (el.getAttribute('data-pending') || el.textContent || '').trim();
+  if (!newName || newName === oldName) { el.textContent = oldName; return; }
+
+  // Check duplicate
+  var exists = false;
+  [DATA.billings, DATA.revenue, DATA.direct, DATA.overheads, DATA.non_op, DATA.tax].forEach(function(section) {
+    Object.values(section).forEach(function(group) { if (group[newName] !== undefined) exists = true; });
+  });
+  if (exists) { el.textContent = oldName; toast('⚠ Name already exists'); return; }
+
+  _renaming = true;
+
+  // Rename in all DATA sections
+  [DATA.billings, DATA.revenue, DATA.direct, DATA.overheads, DATA.non_op, DATA.tax].forEach(function(section) {
+    Object.values(section).forEach(function(group) {
+      if (group[oldName] !== undefined) {
+        group[newName] = group[oldName];
+        delete group[oldName];
+      }
+    });
+  });
+  // Rename in PLAN.lines
+  if (PLAN.lines[oldName]) {
+    PLAN.lines[newName] = PLAN.lines[oldName];
+    delete PLAN.lines[oldName];
+  }
+  // Update ORIGINAL_KEYS so renamed original rows stay protected
+  if (ORIGINAL_KEYS[oldName]) {
+    ORIGINAL_KEYS[newName] = 1;
+    delete ORIGINAL_KEYS[oldName];
+  }
+
+  toast('✓ Renamed to "' + newName + '"');
+  setTimeout(function() { _renaming = false; render(); }, 0);
+}
+
+// Mutable label store for sub-headers and section titles
+var CUSTOM_LABELS = {};
+
+var _renamingLabel = false;
+function renameSublabel(el) {
+  if (_renamingLabel) return;
+  var oldName = el.getAttribute('data-orig');
+  var newName = (el.getAttribute('data-pending') || el.textContent || '').trim();
+  if (!newName || newName === oldName) { el.textContent = oldName; return; }
+  _renamingLabel = true;
+  CUSTOM_LABELS[oldName] = newName;
+  toast('✓ Label updated');
+  setTimeout(function() { _renamingLabel = false; render(); }, 0);
+}
+
+function getLabel(name) {
+  return CUSTOM_LABELS[name] || name;
+}
+
+// ─── Period tabs ─────────────────────────────────────────────────────────────
+function renderPeriodTabs() {
+  var bar = document.getElementById('periodBar');
+  bar.innerHTML = PERIODS.map(function(p, i) {
+    return '<button class="period-tab'+(i===ACTIVE_PERIOD?' active':'')+'" onclick="switchPeriod('+i+')">'+p.substring(0,3)+'</button>';
+  }).join('') + '<button class="period-tab'+(ACTIVE_PERIOD===-1?' active':'')+'" onclick="switchPeriod(-1)">Total</button>';
+}
+
+function switchPeriod(i) {
+  ACTIVE_PERIOD = i;
+  renderPeriodTabs();
+  renderContent();
+}
+
+// ─── KPI Cards ───────────────────────────────────────────────────────────────
+function renderKPIs() {
+  var ci = ACTIVE_PERIOD;
+  var k = calcKPIs(ci);
+  var planIdx = ci < 0 ? 0 : ci;
+  var planRev    = ci < 0 ? PLAN.revenue.total.reduce(function(a,b){return a+b;},0)   : (PLAN.revenue.total[ci] || 0);
+  var planProfit = ci < 0 ? PLAN.netProfit.total.reduce(function(a,b){return a+b;},0) : (PLAN.netProfit.total[ci] || 0);
+  var varRev     = planRev   > 0 ? (k.totalRevenue - planRev) / planRev : 0;
+  var varProfit  = Math.abs(planProfit) > 100 ? (k.netProfit - planProfit) / Math.abs(planProfit) : 0;
+
+  var varRevHtml  = planRev   ? '<span class="var-badge '+(varRev>=0?'var-pos':'var-neg')+'">'+(varRev>=0?'+':'')+fmtPct(varRev)+' vs plan</span>' : '';
+  var varProfHtml = planProfit? '<span class="var-badge '+(varProfit>=0?'var-pos':'var-neg')+'">'+(varProfit>=0?'+':'')+fmtPct(varProfit)+' vs plan</span>' : '';
+
+  var cards = [
+    { label:'Total Revenue',  val:k.totalBillings, cls:'accent', sub:'Invoiced to clients', extra:''},
+    { label:'Gross Margin',   val:k.totalRevenue,  cls:'accent', sub:'After agency share',  extra:varRevHtml },
+    { label:'Total OpEx',     val:-k.totalOpEx,    cls:'neg',    sub:'Direct + Overheads', extra:''},
+    { label:'EBITDA',         val:k.ebitda,        cls:k.ebitda>=0?'pos':'neg', sub:'Rev − Direct − Overheads', extra:''},
+    { label:'Net Profit',     val:k.netProfit,     cls:k.netProfit>=0?'pos':'neg', sub:'Op Margin: '+fmtPct(k.opMargin), extra:varProfHtml},
+  ];
+
+  var el = document.getElementById('kpiRow');
+  if (!el) return;
+  el.innerHTML = cards.map(function(c) {
+    return '<div class="kpi-card">'
+      + '<div class="kpi-label">'+c.label+'</div>'
+      + '<div class="kpi-val '+c.cls+'">$'+fmt(Math.abs(c.val))+'</div>'
+      + '<div class="kpi-sub">'+c.sub+(c.extra?' &nbsp;'+c.extra:'')+'</div>'
+      + '</div>';
+  }).join('');
+}
+
+// ─── P&L Table ───────────────────────────────────────────────────────────────
+function sumArr(arr) { return Array.isArray(arr) ? arr.reduce(function(a,b){return a+(b||0);},0) : 0; }
+function getVal(arr, ci) { return ci === -1 ? sumArr(arr) : (arr[ci]||0); }
+function buildPLRows(ci) {
+  var rows = [];
+  function sec(id, name)    { rows.push({ type:'section', id:id, name:name }); }
+  function sub(name)        { rows.push({ type:'sub', name:name }); }
+  function data(name, arr, indent, code) {
+    rows.push({ type:'data', name:name, arr:arr, val:getVal(arr,ci), indent:!!indent, code:code||'' });
+  }
+  function total(name, val, cls) { rows.push({ type:'total', name:name, val:val, cls:cls||'' }); }
+  function spacer() { rows.push({ type:'spacer' }); }
+
+  function addrow(targetKey) { rows.push({ type:'addrow', targetKey:targetKey }); }
+
+  var k = calcKPIs(ci);
+
+  sec('s-billings','REVENUE');
+  sub('Existing Clients');
+  Object.entries(DATA.billings.existing).forEach(function(e) { data(e[0], e[1], true); });
+  addrow('billing_existing');
+  sub('New Business');
+  Object.entries(DATA.billings.new_business).forEach(function(e) { data(e[0], e[1], true); });
+  addrow('billing_new');
+  sub('Intercompany');
+  Object.entries(DATA.billings.intercompany).forEach(function(e) { data(e[0], e[1], true); });
+  total('TOTAL REVENUE', k.totalBillings, 'row-total');
+
+  spacer();
+  sec('s-revenue','GROSS MARGIN');
+  sub('Existing Clients');
+  Object.entries(DATA.revenue.existing).forEach(function(e) { data(e[0], e[1], true); });
+  addrow('revenue_existing');
+  sub('New Business');
+  Object.entries(DATA.revenue.new_business).forEach(function(e) { data(e[0], e[1], true); });
+  addrow('revenue_new');
+  sub('AVB / CNB');
+  Object.entries(DATA.revenue.avb).forEach(function(e) { data(e[0], e[1], true); });
+  total('TOTAL GROSS MARGIN', k.totalRevenue, 'row-total');
+
+  spacer();
+  sec('s-opex','OPEX');
+  sub('SA001 · Salaries & Related');
+  Object.entries(DATA.direct.salaries).forEach(function(e) { data(e[0], e[1], true); });
+  addrow('direct_salaries');
+  total('Total Salaries & Related', k.totalDirect, 'row-total');
+
+  var ohMap = {
+    client_services:'CL — Client Services',
+    travel:'TE — Travel & Entertainment',
+    depreciation:'DM — Depreciation & Maintenance',
+    rent:'RE — Rent, Space & Equipment',
+    communications:'CS — Communications & Stationery',
+    subscriptions:'DS — Dues & Subscriptions',
+    promo:'NB — New Business & Promotion',
+    corporate:'CE — Corporate Expenses',
+    financial:'FE — Financial Expenses',
+    coordination:'CO — Coordination Expenses'
+  };
+  var ohAddKeys = {
+    client_services:'oh_client', travel:'oh_travel',
+    corporate:'oh_corporate', financial:'oh_financial', coordination:'oh_coordination'
+  };
+  Object.entries(DATA.overheads).forEach(function(e) {
+    sub(ohMap[e[0]] || e[0]);
+    Object.entries(e[1]).forEach(function(r) { data(r[0], r[1], true); });
+    if (ohAddKeys[e[0]]) addrow(ohAddKeys[e[0]]);
+    total('Total '+(ohMap[e[0]]||e[0]).split('—')[1].trim(), sumGroup(e[1], ci));
+  });
+  total('TOTAL OPEX', k.totalOpEx, 'row-total');
+  total('EBITDA', k.ebitda, k.ebitda>=0?'row-profit':'row-loss');
+
+  spacer();
+  sec('s-nonop','NON-OPERATION ITEMS');
+  Object.entries(DATA.non_op.items).forEach(function(e) { data(e[0], e[1], true); });
+  total('PROFIT BEFORE TAX', k.profitBT, k.profitBT>=0?'row-profit':'row-loss');
+
+  spacer();
+  sub('Tax');
+  Object.entries(DATA.tax.items).forEach(function(e) { data(e[0], e[1], true); });
+  total('NET PROFIT', k.netProfit, k.netProfit>=0?'row-profit':'row-loss');
+  total('OPERATION MARGIN', null, 'row-margin');
+
+  return rows;
+}
+
+function renderPLTable(ci) {
+  var rows = buildPLRows(ci);
+  var k = calcKPIs(ci);
+
+  var head = '<thead><tr>'
+    + '<th>Line item</th>'
+    + '<th>Plan $</th>'
+    + '<th>Actual $</th>'
+    + '<th>Var %</th>'
+    + '</tr></thead>';
+
+  var body = '<tbody>';
+  rows.forEach(function(r) {
+    if (r.type === 'addrow') {
+      if (!EDIT_MODE) return;
+      body += '<tr class="add-row-tr" onclick="openAddModal(\''+r.targetKey+'\')">'
+        + '<td colspan="4" style="padding:5px 18px 5px 32px;cursor:pointer;color:var(--accent);font-size:11px;font-weight:500;opacity:0.7" '
+        + 'onmouseover="this.style.opacity=1" onmouseout="this.style.opacity=0.7">'
+        + '<span style="font-size:14px;line-height:1;margin-right:5px">+</span> Add row</td></tr>';
+      return;
+    }
+    if (r.type === 'spacer') { body += '<tr style="height:6px"><td colspan="4" style="border:none;background:var(--bg)"></td></tr>'; return; }
+    if (r.type === 'section') {
+      var collapsed = COLLAPSED[r.id] ? ' collapsed' : '';
+      if (EDIT_MODE) {
+        body += '<tr class="row-section section-toggle'+collapsed+'" onclick="toggleSection(\''+r.id+'\')">'
+          + '<td colspan="4"><span class="chevron">▼</span>'
+          + '<span class="inline-edit-name" contenteditable="true" spellcheck="false" '
+          + 'data-orig="'+r.name.replace(/"/g,'&quot;')+'" '
+          + 'oninput="this.setAttribute(\'data-pending\',this.textContent.trim())" '
+          + 'onblur="renameSublabel(this)" '
+          + 'onkeydown="if(event.key===\'Enter\'){event.preventDefault();this.setAttribute(\'data-pending\',this.textContent.trim());this.blur();}" '
+          + 'onclick="event.stopPropagation()" '
+          + 'style="outline:none;border-bottom:1px dashed rgba(255,255,255,0.25);cursor:text;display:inline-block">'+r.name+'</span>'
+          + '</td></tr>';
+      } else {
+        body += '<tr class="row-section section-toggle'+collapsed+'" onclick="toggleSection(\''+r.id+'\')">'
+          + '<td colspan="4"><span class="chevron">▼</span>'+r.name+'</td></tr>';
+      }
+      return;
+    }
+    if (r.type === 'sub') {
+      var displaySub = getLabel(r.name);
+      if (EDIT_MODE) {
+        body += '<tr class="row-sub"><td colspan="4">'
+          + '<span class="inline-edit-name" contenteditable="true" spellcheck="false" '
+          + 'data-orig="'+displaySub.replace(/"/g,'&quot;')+'" '
+          + 'oninput="this.setAttribute(\'data-pending\',this.textContent.trim())" '
+          + 'onblur="renameSublabel(this)" '
+          + 'onkeydown="if(event.key===\'Enter\'){event.preventDefault();this.setAttribute(\'data-pending\',this.textContent.trim());this.blur();}" '
+          + 'style="outline:none;border-bottom:1px dashed var(--border-strong);cursor:text;display:inline-block">'+displaySub+'</span>'
+          + '</td></tr>';
+      } else {
+        body += '<tr class="row-sub"><td colspan="4">'+displaySub+'</td></tr>';
+      }
+      return;
+    }
+    if (r.type === 'total') {
+      var planVal = 0;
+      if (r.name === 'TOTAL REVENUE') planVal = PLAN.revenue.total[ci];
+      else if (r.name === 'TOTAL GROSS MARGIN') planVal = PLAN.revenue.total[ci];
+      else if (r.name === 'Total Salaries & Related') planVal = PLAN.direct.total[ci];
+      else if (r.name === 'TOTAL OPEX') planVal = PLAN.opex.total[ci];
+      else if (r.name === 'EBITDA') planVal = PLAN.revenue.total[ci] - PLAN.opex.total[ci];
+      else if (r.name === 'PROFIT BEFORE TAX') planVal = PLAN.netProfit.total[ci];
+      else if (r.name === 'NET PROFIT') planVal = PLAN.netProfit.total[ci];
+
+      var v = r.name === 'OPERATION MARGIN' ? fmtPct(k.opMargin) : fmt(r.val);
+      var cls = r.name === 'OPERATION MARGIN' ? '' : (r.val < 0 ? ' val-neg' : '');
+
+      var planTotalKey = null;
+      if (r.name === 'TOTAL REVENUE' || r.name === 'TOTAL GROSS MARGIN') planTotalKey = 'revenue';
+      else if (r.name === 'Total Salaries & Related') planTotalKey = 'direct';
+      else if (r.name === 'TOTAL OPEX') planTotalKey = 'opex';
+      else if (r.name === 'PROFIT BEFORE TAX' || r.name === 'NET PROFIT') planTotalKey = 'netProfit';
+
+      var planCell;
+      if (EDIT_MODE && planTotalKey) {
+        planCell = '<input type="number" value="'+(planVal||0)+'" '
+          + 'onchange="PLAN[\''+planTotalKey+'\'].total['+ci+']=parseFloat(this.value)||0;renderKPIs();" '
+          + 'style="width:90px;padding:3px 6px;border:0.5px solid var(--amber);border-radius:5px;background:transparent;color:var(--text2);font-size:12px;font-family:inherit;text-align:right;font-weight:600;outline:none" />';
+      } else {
+        planCell = planVal ? fmt(planVal) : '–';
+      }
+      var varCell = '';
+      if (planVal && r.val !== null && r.name !== 'OPERATION MARGIN') {
+        var vv = (r.val - planVal) / Math.abs(planVal);
+        varCell = '<span class="var-badge '+(vv>=0?'var-pos':'var-neg')+'">'+(vv>=0?'+':'')+fmtPct(vv)+'</span>';
+      }
+      // Extra highlight classes for key totals
+      var extraStyle = '';
+      var extraClass = r.cls;
+      if (r.name === 'EBITDA') extraClass = 'row-ebitda';
+      var rowStyle = extraStyle ? ' style="'+extraStyle+'"' : '';
+
+      // Spacer before EBITDA
+      if (r.name === 'EBITDA') {
+        body += '<tr class="row-ebitda-spacer"><td colspan="4"></td></tr>';
+      }
+
+      body += '<tr class="'+extraClass+'"'+rowStyle+'><td>'+r.name+'</td>'
+        + '<td style="color:var(--text3);font-size:11px;text-align:right;padding-right:8px">'+planCell+'</td>'
+        + '<td class="'+cls+'">'+v+'</td>'
+        + '<td>'+varCell+'</td></tr>';
+
+      // Spacer after EBITDA
+      if (r.name === 'EBITDA') {
+        body += '<tr class="row-ebitda-spacer"><td colspan="4"></td></tr>';
+      }
+      return;
+    }
+    if (r.type === 'data') {
+      var valCell;
+      if (EDIT_MODE) {
+        valCell = '<td class="editable-cell"><input type="number" value="'+(r.val||0)+'" onchange="updateVal(\''+r.name.replace(/'/g,"\\'")+ '\','+ci+',this.value)" /></td>';
+      } else {
+        var nc = r.val < 0 ? ' val-neg' : (r.name === 'Financial Income' ? ' val-income' : '');
+        valCell = '<td class="'+nc+'">'+fmt(r.val)+'</td>';
+      }
+      // Plan per line
+      var planLine = PLAN.lines[r.name] ? (PLAN.lines[r.name][ci] || 0) : 0;
+      var safePlanName = r.name.replace(/\\/g,'\\\\').replace(/'/g,"\\'");
+      var planLineCell = EDIT_MODE
+        ? '<input type="number" value="'+(planLine||0)+'" '
+          + 'onchange="if(!PLAN.lines[\''+safePlanName+'\'])PLAN.lines[\''+safePlanName+'\']=new Array(12).fill(0);PLAN.lines[\''+safePlanName+'\']['+ci+']=parseFloat(this.value)||0;renderKPIs();" '
+          + 'style="width:90px;padding:3px 6px;border:0.5px solid var(--amber);border-radius:5px;background:transparent;color:var(--text2);font-size:12px;font-family:inherit;text-align:right;outline:none" />'
+        : (planLine ? fmt(planLine) : '<span style="color:var(--text3)">–</span>');
+      var varLineCell = '';
+      if (planLine && r.val !== undefined) {
+        var vl = (r.val - planLine) / Math.abs(planLine);
+        varLineCell = '<span class="var-badge '+(vl>=0?'var-pos':'var-neg')+'">'+(vl>=0?'+':'')+fmtPct(vl)+'</span>';
+      }
+      // Delete button for custom (non-original) rows
+      var isOriginal = ORIGINAL_KEYS[r.name];
+      var safeOld = r.name.replace(/\\/g,'\\\\').replace(/'/g,"\\'");
+      var nameDisplay = EDIT_MODE
+        ? '<span class="inline-edit-name" '
+          + 'contenteditable="true" '
+          + 'spellcheck="false" '
+          + 'data-orig="'+r.name.replace(/"/g,'&quot;')+'" '
+          + 'oninput="this.setAttribute(\'data-pending\',this.textContent.trim())" '
+          + 'onblur="renameRow(this)" '
+          + 'onkeydown="if(event.key===\'Enter\'){event.preventDefault();this.setAttribute(\'data-pending\',this.textContent.trim());this.blur();}" '
+          + 'style="outline:none;border-bottom:1px dashed var(--accent);cursor:text;min-width:40px;display:inline-block">'+r.name+'</span>'
+          + (!isOriginal ? ' <span onclick="deleteRow(\''+safeOld+'\');" title="Delete" style="cursor:pointer;color:var(--red);font-size:11px;margin-left:5px;opacity:0.6" onmouseover="this.style.opacity=1" onmouseout="this.style.opacity=0.6">✕</span>' : '')
+        : r.name;
+      var nameCell = '<td class="'+(r.indent?'indent':'')+'">' + nameDisplay + '</td>';
+      body += '<tr>' + nameCell
+        + '<td style="color:var(--text3);font-size:11px;text-align:right;padding-right:8px">'+planLineCell+'</td>'
+        + valCell
+        + '<td>'+varLineCell+'</td></tr>';
+    }
+  });
+  body += '</tbody>';
+
+  return '<table>' + head + body + '</table>';
+}
+
+function toggleSection(id) {
+  COLLAPSED[id] = !COLLAPSED[id];
+  renderContent();
+}
+
+// ─── Chart view ──────────────────────────────────────────────────────────────
+function destroyCharts() {
+  Object.values(chartInstances).forEach(function(c) { try { c.destroy(); } catch(e){} });
+  chartInstances = {};
+}
+
+function renderChartView(ciOverride) {
+  var tc = isDark ? '#9e9e9a' : '#6b6b67';
+  var gc = isDark ? 'rgba(255,255,255,0.05)' : 'rgba(0,0,0,0.06)';
+  var labels = PERIODS.map(function(p){ return p.substring(0,3); });
+
+  var revenues    = PERIODS.map(function(_,i){ return Math.round(sumSection(DATA.billings,i)); });
+  var grossMargin = PERIODS.map(function(_,i){ return Math.round(calcKPIs(i).totalRevenue); });
+  var opex        = PERIODS.map(function(_,i){ return Math.round(calcKPIs(i).totalOpEx); });
+  var ebitda      = PERIODS.map(function(_,i){ return Math.round(calcKPIs(i).ebitda); });
+  var gmPct       = PERIODS.map(function(_,i){ var k=calcKPIs(i); return k.totalBillings>0?parseFloat((k.totalRevenue/k.totalBillings*100).toFixed(1)):0; });
+  var ebitdaPct   = PERIODS.map(function(_,i){ var k=calcKPIs(i); return k.totalRevenue>0?parseFloat((k.ebitda/k.totalRevenue*100).toFixed(1)):0; });
+  var planRev     = PLAN.revenue.total;
+
+  // MoM growth %
+  var momGrowth = revenues.map(function(v,i){
+    if (i===0 || revenues[i-1]===0) return 0;
+    return parseFloat(((v-revenues[i-1])/revenues[i-1]*100).toFixed(1));
+  });
+
+  // Waterfall for selected month
+  var ci = (ciOverride !== undefined) ? ciOverride : ACTIVE_PERIOD;
+  var wRev  = Math.round(sumSection(DATA.billings,ci));
+  var wCogs = Math.round(wRev - calcKPIs(ci).totalRevenue);
+  var wGm   = Math.round(calcKPIs(ci).totalRevenue);
+  var wOpex = Math.round(calcKPIs(ci).totalOpEx);
+  var wEb   = Math.round(calcKPIs(ci).ebitda);
+
+  var html = '<div class="kpi-grid" id="kpiRow"></div>';
+
+  // Row 1: Revenue vs Plan (full width)
+  html += '<div style="margin-bottom:16px">'
+    + '<div class="chart-card"><div class="chart-title">Revenue — Actual vs Plan ($)</div>'
+    + '<div class="chart-wrap" style="height:230px"><canvas id="c_rev"></canvas></div></div>'
+    + '</div>';
+
+  // Row 2: GM% + EBITDA% dual axis | MoM Growth
+  html += '<div class="chart-row" style="margin-bottom:16px">'
+    + '<div class="chart-card"><div class="chart-title">Gross Margin % &amp; EBITDA % — monthly</div><div class="chart-wrap" style="height:230px"><canvas id="c_margins"></canvas></div></div>'
+    + '<div class="chart-card"><div class="chart-title">Revenue MoM Growth % — monthly</div><div class="chart-wrap" style="height:230px"><canvas id="c_mom"></canvas></div></div>'
+    + '</div>';
+
+  // Row 3: Waterfall (full width)
+  html += '<div style="margin-bottom:16px">'
+    + '<div class="chart-card"><div class="chart-title">P&amp;L Waterfall — '+PERIODS[ci]+' ($)</div>'
+    + '<div class="chart-wrap" style="height:220px"><canvas id="c_wfall"></canvas></div></div>'
+    + '</div>';
+
+  document.getElementById('mainContent').innerHTML = html;
+  renderKPIs();
+
+  function ttBase() {
+    return { backgroundColor:isDark?'#2e2e2b':'#fff', titleColor:isDark?'#f0efeb':'#1a1a18',
+      bodyColor:tc, borderColor:isDark?'rgba(255,255,255,0.12)':'rgba(0,0,0,0.1)', borderWidth:1, padding:10, cornerRadius:8 };
+  }
+  function scalesXY(yFmt) {
+    return { x:{ticks:{color:tc,font:{size:11}},grid:{color:gc}}, y:{ticks:{color:tc,font:{size:11},callback:yFmt},grid:{color:gc}} };
+  }
+
+  setTimeout(function(){
+
+    // ── Chart 1: Revenue Actual vs Plan — grouped bars + line ──
+    chartInstances.c_rev = new Chart(document.getElementById('c_rev'), {
+      type: 'bar',
+      data: { labels: labels, datasets: [
+        { label:'Actual Revenue', data:revenues,
+          backgroundColor: revenues.map(function(v,i){ return v>=planRev[i]?(isDark?'rgba(29,158,117,0.8)':'rgba(29,158,117,0.75)'):(isDark?'rgba(55,138,221,0.75)':'rgba(24,95,165,0.7)'); }),
+          borderRadius:5, order:2 },
+        { label:'Plan', data:planRev, type:'line',
+          borderColor:isDark?'rgba(239,159,39,0.9)':'rgba(180,100,0,0.85)',
+          borderDash:[6,3], borderWidth:2.5, pointRadius:4,
+          pointBackgroundColor:isDark?'#EF9F27':'#B46400',
+          backgroundColor:'transparent', tension:0.35, order:1 }
+      ]},
+      options:{ responsive:true, maintainAspectRatio:false,
+        interaction:{mode:'index',intersect:false},
+        plugins:{ legend:{display:true,position:'top',labels:{color:tc,font:{size:11},boxWidth:12,padding:12,usePointStyle:true}},
+          tooltip:Object.assign(ttBase(),{ callbacks:{ label:function(ctx){ return ' '+ctx.dataset.label+': $'+ctx.parsed.y.toLocaleString('en-US'); }, afterBody:function(items){
+            var a=items[0]?items[0].parsed.y:0, p=planRev[items[0]?items[0].dataIndex:0]||0;
+            if(!p) return '';
+            var d=a-p, pct=(d/p*100).toFixed(1);
+            return (d>=0?'▲ +':'▼ ')+'$'+Math.abs(d).toLocaleString('en-US')+' ('+pct+'%)';
+          }}}) },
+        scales:scalesXY(function(v){return '$'+fmtK(v);}) }
+    });
+
+    // ── Chart 2: GM% and EBITDA% — dual lines ──
+    chartInstances.c_margins = new Chart(document.getElementById('c_margins'), {
+      type:'line',
+      data:{ labels:labels, datasets:[
+        { label:'Gross Margin %', data:gmPct,
+          borderColor:'#5DCAA5', backgroundColor:'rgba(93,202,165,0.08)',
+          borderWidth:2.5, fill:true, tension:0.35,
+          pointRadius:5, pointBackgroundColor:'#5DCAA5', pointBorderColor:'#fff', pointBorderWidth:2 },
+        { label:'EBITDA %', data:ebitdaPct,
+          borderColor:isDark?'#EF9F27':'#B46400', backgroundColor:'rgba(239,159,39,0.06)',
+          borderWidth:2.5, fill:true, tension:0.35,
+          pointRadius:5,
+          pointBackgroundColor:ebitdaPct.map(function(v){return v>=0?(isDark?'#EF9F27':'#B46400'):'#A32D2D';}),
+          pointBorderColor:'#fff', pointBorderWidth:2 }
+      ]},
+      options:{ responsive:true, maintainAspectRatio:false,
+        interaction:{mode:'index',intersect:false},
+        plugins:{ legend:{display:true,position:'top',labels:{color:tc,font:{size:11},boxWidth:12,padding:12,usePointStyle:true}},
+          tooltip:Object.assign(ttBase(),{callbacks:{label:function(ctx){return ' '+ctx.dataset.label+': '+ctx.parsed.y+'%';}}}) },
+        scales:scalesXY(function(v){return v+'%';}) }
+    });
+
+    // ── Chart 3: MoM Growth % ──
+    var momColors = momGrowth.map(function(v){ return v>0?(isDark?'rgba(93,202,165,0.8)':'rgba(29,158,117,0.75)'):(isDark?'rgba(163,45,45,0.75)':'rgba(163,45,45,0.7)'); });
+    chartInstances.c_mom = new Chart(document.getElementById('c_mom'), {
+      type:'bar',
+      data:{ labels:labels, datasets:[
+        { label:'MoM Growth %', data:momGrowth, backgroundColor:momColors, borderRadius:5 }
+      ]},
+      options:{ responsive:true, maintainAspectRatio:false,
+        plugins:{ legend:{display:false},
+          tooltip:Object.assign(ttBase(),{callbacks:{label:function(ctx){return ' Growth: '+(ctx.parsed.y>0?'+':'')+ctx.parsed.y+'%';}}}) },
+        scales:Object.assign(scalesXY(function(v){return v+'%';}),{
+          y:{ ticks:{color:tc,font:{size:11},callback:function(v){return v+'%';}}, grid:{color:gc},
+            afterDataLimits:function(ax){ ax.min=Math.min(ax.min,-5); } }
+        }) }
+    });
+
+    // ── Chart 4: Waterfall ──
+    // Floating bars: [bottom, top]
+    var wfData = [
+      { label:'Revenue',      val:wRev,   float:null,         color:isDark?'rgba(55,138,221,0.85)':'rgba(24,95,165,0.8)' },
+      { label:'− COGS',       val:-wCogs, float:[wGm,wRev],   color:isDark?'rgba(163,45,45,0.7)':'rgba(163,45,45,0.65)' },
+      { label:'Gross Margin', val:wGm,    float:null,         color:isDark?'rgba(93,202,165,0.85)':'rgba(29,158,117,0.8)' },
+      { label:'− OPEX',       val:-wOpex, float:[wGm-wOpex<0?wGm-wOpex:wEb,wGm], color:isDark?'rgba(239,159,39,0.7)':'rgba(180,100,0,0.65)' },
+      { label:'EBITDA',       val:wEb,    float:null,         color:wEb>=0?(isDark?'rgba(93,202,165,0.85)':'rgba(29,158,117,0.8)'):'rgba(163,45,45,0.7)' },
+    ];
+    chartInstances.c_wfall = new Chart(document.getElementById('c_wfall'), {
+      type:'bar',
+      data:{ labels:wfData.map(function(d){return d.label;}),
+        datasets:[{ data:wfData.map(function(d){ return d.float!==null?d.float:d.val; }),
+          backgroundColor:wfData.map(function(d){return d.color;}),
+          borderRadius:5, borderSkipped:false }]
+      },
+      options:{ responsive:true, maintainAspectRatio:false, indexAxis:'y',
+        plugins:{ legend:{display:false},
+          tooltip:Object.assign(ttBase(),{callbacks:{label:function(ctx){
+            var v=wfData[ctx.dataIndex].val;
+            return ' $'+(v<0?'-':'')+''+Math.abs(v).toLocaleString('en-US');
+          }}}) },
+        scales:{
+          x:{ticks:{color:tc,font:{size:11},callback:function(v){return '$'+fmtK(v);}},grid:{color:gc}},
+          y:{ticks:{color:tc,font:{size:12},font:{weight:'500'}},grid:{display:false}}
+        }
+      }
+    });
+
+  }, 80);
+}
+
+// ─── Breakdown view ───────────────────────────────────────────────────────────
+function renderBreakdownView(ciOverride) {
+  var ci = (ciOverride !== undefined) ? ciOverride : ACTIVE_PERIOD;
+  var periodLabel = PERIODS[ci];
+  var tc = isDark ? '#9e9e9a' : '#6b6b67';
+  var gc = isDark ? 'rgba(255,255,255,0.05)' : 'rgba(0,0,0,0.06)';
+  var labels = PERIODS.map(function(p){ return p.substring(0,3); });
+
+  function sv(arr){ return Array.isArray(arr)?(arr[ci]||0):0; }
+  function svM(arr,i){ return Array.isArray(arr)?(arr[i]||0):0; }
+
+  // ── Categories for selected month ──
+  var rev = sumSection(DATA.billings, ci);
+  var deliveryCosts = rev - sumSection(DATA.revenue, ci);
+
+  var salaryKeys = ['Salaries','Bonuses (RS001)','Outsourcers (RS002)','Outsrcr Taxes','Income Tax & Pension','Vacation Comp'];
+  var salaryCost = 0;
+  salaryKeys.forEach(function(k){ if(DATA.direct.salaries[k]) salaryCost += sv(DATA.direct.salaries[k]); });
+
+  var backOfficeCost = 0;
+  if (DATA.overheads.coordination) Object.values(DATA.overheads.coordination).forEach(function(a){ backOfficeCost += sv(a); });
+
+  var marketingCost = 0;
+  if (DATA.overheads.promo) Object.values(DATA.overheads.promo).forEach(function(a){ marketingCost += sv(a); });
+
+  var otherCost = sumSection(DATA.overheads,ci) - backOfficeCost - marketingCost;
+
+  var cats = [
+    { name:'Delivery Costs',   val:deliveryCosts, color:'#378ADD', icon:'📦' },
+    { name:'Salary & Payroll', val:salaryCost,    color:'#5DCAA5', icon:'👥' },
+    { name:'Back Office',      val:backOfficeCost, color:'#EF9F27', icon:'🏢' },
+    { name:'Marketing',        val:marketingCost,  color:'#C970CF', icon:'📣' },
+    { name:'Other',            val:otherCost,      color:'#7F77DD', icon:'📋' },
+  ].filter(function(c){ return c.val>0; });
+
+  var totalCost = cats.reduce(function(s,c){return s+c.val;},0);
+
+  // ── Cost per $1 revenue (selected month) ──
+  var cpp = cats.map(function(c){ return rev>0?parseFloat((c.val/rev).toFixed(3)):0; });
+
+  // ── Salary % of Revenue — monthly trend ──
+  var salaryPctTrend = PERIODS.map(function(_,i){
+    var r = sumSection(DATA.billings,i);
+    var sal = 0;
+    salaryKeys.forEach(function(k){ if(DATA.direct.salaries[k]) sal += svM(DATA.direct.salaries[k],i); });
+    return r>0?parseFloat((sal/r*100).toFixed(1)):0;
+  });
+
+  // ── Top 5 cost movers vs prev month ──
+  var allLines = {};
+  function collectLines(section){
+    Object.values(section).forEach(function(g){ Object.entries(g).forEach(function(e){ allLines[e[0]]=e[1]; }); });
+  }
+  collectLines(DATA.direct); collectLines(DATA.overheads);
+  var movers = [];
+  Object.entries(allLines).forEach(function(e){
+    var cur = e[1][ci]||0, prev = ci>0?(e[1][ci-1]||0):0;
+    if(prev>0&&cur>0){ movers.push({ name:e[0], cur:cur, prev:prev, chg:cur-prev, pct:parseFloat(((cur-prev)/prev*100).toFixed(1)) }); }
+  });
+  movers.sort(function(a,b){return Math.abs(b.chg)-Math.abs(a.chg);});
+  var top5 = movers.slice(0,5);
+
+  // ── HTML ──
+  var html = '';
+
+  // Row 1: Cost per $1 Revenue (bar) + Donut
+  html += '<div style="display:grid;grid-template-columns:1fr 300px;gap:16px;margin-bottom:16px">';
+
+  // Cost per $1 — horizontal bars
+  html += '<div class="chart-card"><div class="chart-title">Cost per $1 of Revenue — '+periodLabel+'</div>';
+  html += '<div style="padding:8px 0">';
+  cats.forEach(function(c,i){
+    var perDollar = rev>0?(c.val/rev):0;
+    var w = Math.min(100, Math.round(perDollar*100/0.7)); // scale: $0.70 = 100%
+    var label = rev>0?'$'+perDollar.toFixed(2):'–';
+    html += '<div style="margin-bottom:16px">'
+      + '<div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:5px">'
+      + '<span style="font-size:12px;color:var(--text);font-weight:500">'+c.icon+' '+c.name+'</span>'
+      + '<span style="font-size:13px;font-weight:700;color:'+c.color+'">'+label+'</span>'
+      + '</div>'
+      + '<div style="background:var(--surface2);border-radius:6px;height:10px">'
+      + '<div style="background:'+c.color+';width:'+w+'%;height:10px;border-radius:6px;transition:width .5s"></div>'
+      + '</div>'
+      + '<div style="font-size:10px;color:var(--text3);margin-top:3px">'+(totalCost>0?(c.val/totalCost*100).toFixed(1):0)+'% of total costs</div>'
+      + '</div>';
+  });
+  if(rev>0){
+    html += '<div style="padding-top:10px;border-top:0.5px solid var(--border);font-size:11px;color:var(--text3)">'
+      + 'Total cost per $1 revenue: <strong style="color:var(--text)">$'+(totalCost/rev).toFixed(2)+'</strong>'
+      + ' &nbsp;·&nbsp; Margin retained: <strong style="color:#5DCAA5">$'+(1-totalCost/rev>0?(1-totalCost/rev).toFixed(2):'0.00')+'</strong></div>';
+  }
+  html += '</div></div>';
+
+  // Donut
+  html += '<div class="chart-card" style="display:flex;flex-direction:column;align-items:center">'
+    + '<div class="chart-title" style="align-self:flex-start">Cost Mix</div>'
+    + '<div style="position:relative;width:180px;height:180px;margin:12px auto">'
+    + '<canvas id="bdDonut" width="180" height="180"></canvas>'
+    + '<div style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);text-align:center;pointer-events:none">'
+    + '<div style="font-size:10px;color:var(--text3)">Total</div>'
+    + '<div style="font-size:14px;font-weight:700;color:var(--text)">$'+Math.round(totalCost).toLocaleString('en-US')+'</div>'
+    + '</div></div>'
+    + '<div style="width:100%">'
+    + cats.map(function(c){ return '<div style="display:flex;align-items:center;gap:7px;margin-bottom:4px;font-size:11px">'
+      + '<span style="width:8px;height:8px;border-radius:50%;background:'+c.color+';flex-shrink:0;display:inline-block"></span>'
+      + '<span style="color:var(--text2);flex:1">'+c.name+'</span>'
+      + '<span style="color:var(--text3)">'+(totalCost>0?(c.val/totalCost*100).toFixed(1):0)+'%</span>'
+      + '</div>'; }).join('')
+    + '</div></div>';
+  html += '</div>'; // end row 1
+
+  // Row 2: Salary % trend (line) + Top movers table
+  html += '<div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:0">';
+
+  html += '<div class="chart-card"><div class="chart-title">Salary Cost % of Revenue — monthly</div>'
+    + '<div class="chart-wrap" style="height:200px"><canvas id="bdSalTrend"></canvas></div></div>';
+
+  // Top movers table
+  html += '<div class="chart-card"><div class="chart-title">Top Cost Movers — vs previous month</div>';
+  if(ci===0){
+    html += '<div style="color:var(--text3);font-size:12px;padding:20px 0;text-align:center">No previous month data for January</div>';
+  } else if(top5.length===0){
+    html += '<div style="color:var(--text3);font-size:12px;padding:20px 0;text-align:center">No data</div>';
+  } else {
+    html += '<table style="width:100%;border-collapse:collapse;font-size:12px">'
+      + '<thead><tr style="color:var(--text3);font-size:10px;text-transform:uppercase;letter-spacing:.04em">'
+      + '<th style="text-align:left;padding:4px 0 8px;font-weight:500">Line item</th>'
+      + '<th style="text-align:right;padding:4px 8px 8px;font-weight:500">Prev</th>'
+      + '<th style="text-align:right;padding:4px 8px 8px;font-weight:500">Current</th>'
+      + '<th style="text-align:right;padding:4px 0 8px;font-weight:500">Δ %</th>'
+      + '</tr></thead><tbody>';
+    top5.forEach(function(m){
+      var up = m.chg>0;
+      html += '<tr style="border-top:0.5px solid var(--border)">'
+        + '<td style="padding:7px 0;color:var(--text);max-width:130px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">'+m.name+'</td>'
+        + '<td style="padding:7px 8px;text-align:right;color:var(--text3)">$'+Math.round(m.prev).toLocaleString('en-US')+'</td>'
+        + '<td style="padding:7px 8px;text-align:right;color:var(--text)">$'+Math.round(m.cur).toLocaleString('en-US')+'</td>'
+        + '<td style="padding:7px 0;text-align:right"><span class="var-badge '+(up?'var-neg':'var-pos')+'">'+(up?'+':'')+m.pct+'%</span></td>'
+        + '</tr>';
+    });
+    html += '</tbody></table>';
+  }
+  html += '</div>';
+  html += '</div>'; // end row 2
+
+  document.getElementById('mainContent').innerHTML = html;
+
+  setTimeout(function(){
+    // Donut
+    if(document.getElementById('bdDonut')){
+      chartInstances.bdDonut = new Chart(document.getElementById('bdDonut'),{
+        type:'doughnut',
+        data:{ labels:cats.map(function(c){return c.name;}),
+          datasets:[{ data:cats.map(function(c){return Math.round(c.val);}),
+            backgroundColor:cats.map(function(c){return c.color;}),
+            borderColor:isDark?'#1e1e1c':'#f5f5f0', borderWidth:3, hoverOffset:8 }]
+        },
+        options:{ responsive:false, cutout:'66%',
+          plugins:{ legend:{display:false},
+            tooltip:{ backgroundColor:isDark?'#2e2e2b':'#fff', titleColor:isDark?'#f0efeb':'#1a1a18',
+              bodyColor:tc, borderColor:isDark?'rgba(255,255,255,0.12)':'rgba(0,0,0,0.1)', borderWidth:1, padding:10, cornerRadius:8,
+              callbacks:{label:function(ctx){ var v=ctx.parsed,t=ctx.dataset.data.reduce(function(s,n){return s+n;},0);
+                return ' $'+v.toLocaleString('en-US')+' ('+(t>0?(v/t*100).toFixed(1):0)+'%)'; }} } } }
+      });
+    }
+
+    // Salary % trend
+    if(document.getElementById('bdSalTrend')){
+      var salColors = salaryPctTrend.map(function(v,i){ return i===ci?'#EF9F27':(v<=40?'#5DCAA5':v<=55?'#EF9F27':'#A32D2D'); });
+      chartInstances.bdSalTrend = new Chart(document.getElementById('bdSalTrend'),{
+        type:'line',
+        data:{ labels:labels, datasets:[
+          { label:'Salary % of Revenue', data:salaryPctTrend,
+            borderColor:isDark?'#5DCAA5':'#1D9E75',
+            backgroundColor:function(ctx){ var c=ctx.chart,a=c.chartArea; if(!a) return 'rgba(93,202,165,0.1)';
+              var g=c.ctx.createLinearGradient(0,a.top,0,a.bottom); g.addColorStop(0,'rgba(93,202,165,0.25)'); g.addColorStop(1,'rgba(93,202,165,0.02)'); return g; },
+            borderWidth:2.5, fill:true, tension:0.35,
+            pointRadius:5, pointBackgroundColor:salColors, pointBorderColor:'#fff', pointBorderWidth:2 }
+        ]},
+        options:{ responsive:true, maintainAspectRatio:false,
+          plugins:{ legend:{display:false},
+            tooltip:{ backgroundColor:isDark?'#2e2e2b':'#fff', titleColor:isDark?'#f0efeb':'#1a1a18',
+              bodyColor:tc, borderColor:isDark?'rgba(255,255,255,0.12)':'rgba(0,0,0,0.1)', borderWidth:1, padding:10, cornerRadius:8,
+              callbacks:{label:function(ctx){return ' Salary: '+ctx.parsed.y+'% of revenue';}} } },
+          scales:{ x:{ticks:{color:tc,font:{size:11}},grid:{color:gc}},
+            y:{ticks:{color:tc,font:{size:11},callback:function(v){return v+'%';}},grid:{color:gc}} } }
+      });
+    }
+  }, 80);
+}
+
+
+// ─── Total Annual Summary View ────────────────────────────────────────────────
+function renderTotalView() {
+  var months = PERIODS;
+  var rows = [];
+
+  for (var i = 0; i < 12; i++) {
+    // Revenue = BILLINGS total
+    var revenue   = sumSection(DATA.billings, i);
+    // Gross Margin = REVENUE section total (agency net)
+    var grossMargin = sumSection(DATA.revenue, i);
+    // COGS = Revenue - Gross Margin
+    var cogs      = revenue - grossMargin;
+    // GM %
+    var gmPct     = revenue > 0 ? grossMargin / revenue : 0;
+    // OPEX = Direct + Overheads
+    var opex      = sumSection(DATA.direct, i) + sumSection(DATA.overheads, i);
+    // EBITDA = Gross Margin - OPEX
+    var ebitda    = grossMargin - opex;
+    var ebitdaPct = revenue > 0 ? ebitda / revenue : 0;
+    var hasData   = revenue > 0;
+    rows.push({ month: months[i], revenue: revenue, cogs: cogs, gm: grossMargin,
+                gmPct: gmPct, opex: opex, ebitda: ebitda, ebitdaPct: ebitdaPct, hasData: hasData });
+  }
+
+  // Full-year totals
+  var totRevenue = rows.reduce(function(s,r){return s+r.revenue;},0);
+  var totCogs    = rows.reduce(function(s,r){return s+r.cogs;},0);
+  var totGm      = rows.reduce(function(s,r){return s+r.gm;},0);
+  var totGmPct   = totRevenue > 0 ? totGm / totRevenue : 0;
+  var totOpex    = rows.reduce(function(s,r){return s+r.opex;},0);
+  var totEbitda  = rows.reduce(function(s,r){return s+r.ebitda;},0);
+  var totEbitdaPct = totRevenue > 0 ? totEbitda / totRevenue : 0;
+
+  // ── Helpers ──
+  function fc(v, positive_is_good) {
+    if (v === 0) return '<td class="_tc _tz">–</td>';
+    var n = Math.round(Math.abs(v));
+    var s = '$' + n.toLocaleString('en-US');
+    var cls = positive_is_good ? (v >= 0 ? '_tpos' : '_tneg') : (v > 0 ? '_tneg' : '_tpos');
+    return '<td class="_tc ' + cls + '">' + s + '</td>';
+  }
+  function fp(v, rev) {
+    if (rev === 0) return '<td class="_tc _tz">–</td>';
+    var pct = (v * 100).toFixed(1) + '%';
+    var cls = v >= 0.3 ? '_tpos' : v >= 0.1 ? '_tamb' : '_tneg';
+    return '<td class="_tc ' + cls + '">' + pct + '</td>';
+  }
+  function fTotal(v, color) {
+    var n = Math.round(Math.abs(v));
+    var s = '$' + n.toLocaleString('en-US');
+    return '<td class="_tc" style="color:' + color + ';font-weight:700">' + s + '</td>';
+  }
+
+  // ── Month rows ──
+  var bodyRows = rows.map(function(r) {
+    var op = r.hasData ? '' : 'opacity:0.3;';
+    return '<tr style="' + op + '">'
+      + '<td class="_tl">' + r.month + '</td>'
+      + fc(r.revenue, true)
+      + fc(r.cogs, false)
+      + fc(r.gm, true)
+      + fp(r.gmPct, r.revenue)
+      + fc(r.opex, false)
+      + fc(r.ebitda, true)
+      + fp(r.ebitdaPct, r.revenue)
+      + '</tr>';
+  }).join('');
+
+  // ── Total row ──
+  var totalRow = '<tr class="row-total" style="border-top:2px solid var(--border-strong)">'
+    + '<td class="_tl" style="font-size:13px">FULL YEAR 2025</td>'
+    + fTotal(totRevenue, 'var(--accent)')
+    + fTotal(totCogs, 'var(--red)')
+    + fTotal(totGm, 'var(--green)')
+    + '<td class="_tc" style="color:var(--green);font-weight:700">' + (totRevenue>0?(totGmPct*100).toFixed(1)+'%':'–') + '</td>'
+    + fTotal(totOpex, 'var(--red)')
+    + fTotal(totEbitda, totEbitda>=0?'var(--green)':'var(--red)')
+    + '<td class="_tc" style="color:'+(totEbitda>=0?'var(--green)':'var(--red)')+';font-weight:700">' + (totRevenue>0?(totEbitdaPct*100).toFixed(1)+'%':'–') + '</td>'
+    + '</tr>';
+
+  // ── KPI cards ──
+  var kpis = [
+    { label:'Revenue',       val: totRevenue,  cls:'accent', sub: 'Invoiced to clients' },
+    { label:'COGS',          val: totCogs,     cls: totCogs<=0?'pos':'neg',  sub: 'Agency share paid out' },
+    { label:'Gross Margin',  val: totGm,       cls: totGm>=0?'pos':'neg',   sub: (totGmPct*100).toFixed(1)+'% of Revenue' },
+    { label:'OPEX',          val: totOpex,     cls:'neg',    sub: 'Direct costs & overheads' },
+    { label:'EBITDA',        val: totEbitda,   cls: totEbitda>=0?'pos':'neg', sub: (totEbitdaPct*100).toFixed(1)+'% of Revenue' },
+  ];
+  var kpiHtml = '<div class="kpi-grid" id="kpiRow">' + kpis.map(function(c) {
+    var av = Math.round(Math.abs(c.val));
+    return '<div class="kpi-card"><div class="kpi-label">' + c.label + '</div>'
+      + '<div class="kpi-val ' + c.cls + '">$' + av.toLocaleString('en-US') + '</div>'
+      + '<div class="kpi-sub">' + c.sub + '</div></div>';
+  }).join('') + '</div>';
+
+  var tableStyle = '<style>'
+    + '._tl{text-align:left;padding:6px 16px 6px 18px;font-weight:500}'
+    + '._tc{text-align:right;padding:6px 14px;white-space:nowrap}'
+    + '._tpos{color:var(--green)}'
+    + '._tneg{color:var(--red)}'
+    + '._tamb{color:var(--amber)}'
+    + '._tz{color:var(--text3)}'
+    + '.total-table{table-layout:auto !important}'
+    + '</style>';
+
+  var html2 = tableStyle + kpiHtml
+    + '<div class="table-card">'
+    + '<div class="table-toolbar">'
+    + '<div class="table-toolbar-title">Annual P&amp;L · Actual Data 2025</div>'
+    + '<span style="font-size:11px;color:var(--text3)">Faded rows = no data yet</span>'
+    + '</div>'
+    + '<div class="table-wrap"><table class="total-table">'
+    + '<thead><tr>'
+    + '<th style="text-align:left;min-width:110px;padding-left:18px">Month</th>'
+    + '<th style="text-align:right;min-width:110px">Revenue</th>'
+    + '<th style="text-align:right;min-width:110px">COGS</th>'
+    + '<th style="text-align:right;min-width:120px">Gross Margin</th>'
+    + '<th style="text-align:right;min-width:70px">GM %</th>'
+    + '<th style="text-align:right;min-width:110px">OPEX</th>'
+    + '<th style="text-align:right;min-width:110px">EBITDA</th>'
+    + '<th style="text-align:right;min-width:85px">EBITDA %</th>'
+    + '</tr></thead>'
+    + '<tbody>' + bodyRows + totalRow + '</tbody>'
+    + '</table></div></div>';
+
+  document.getElementById('mainContent').innerHTML = html2;
+}
+
+// ─── Views ────────────────────────────────────────────────────────────────────
+function showView(view) {
+  CURRENT_VIEW = view;
+  document.querySelectorAll('.nav-item').forEach(function(el) { el.classList.remove('active'); });
+  var idx = { pl:0, chart:1, breakdown:2, insights:3 };
+  if (idx[view] !== undefined) document.querySelectorAll('.nav-item')[idx[view]].classList.add('active');
+  var titles = { pl:'P&L Planning & Analysis', chart:'Trend Analysis', breakdown:'Cost Breakdown', insights:'Smart Insights' };
+  document.getElementById('viewTitle').textContent = titles[view];
+  renderContent();
+}
+
+function renderContent() {
+  destroyCharts();
+  var ci = ACTIVE_PERIOD;
+  renderKPIs();
+
+  if (CURRENT_VIEW === 'pl') {
+    if (ci === -1) { renderTotalView(); return; }
+    document.getElementById('mainContent').innerHTML =
+      '<div class="kpi-grid" id="kpiRow"></div>'
+      + '<div class="table-card"><div class="table-toolbar">'
+      + '<div class="table-toolbar-title">P&L Planning &amp; Analysis · '+PERIODS[ci]+' 2025</div>'
+      + '<div style="display:flex;gap:8px;flex-wrap:wrap">'
+      + '</div></div>'
+      + '<div class="table-wrap">'+renderPLTable(ci)+'</div></div>';
+    renderKPIs();
+  } else if (CURRENT_VIEW === 'chart') {
+    var chartCi = (ci === -1) ? 0 : ci;
+    document.getElementById('mainContent').innerHTML = '<div class="kpi-grid" id="kpiRow"></div>';
+    renderKPIs();
+    renderChartView(chartCi);
+  } else if (CURRENT_VIEW === 'breakdown') {
+    var bdCi = (ci === -1) ? 0 : ci;
+    document.getElementById('mainContent').innerHTML = '<div class="kpi-grid" id="kpiRow"></div>';
+    renderKPIs();
+    renderBreakdownView(bdCi);
+  } else if (CURRENT_VIEW === 'insights') {
+    if (ci === -1) {
+      var lastCi = 0;
+      for (var m = 11; m >= 0; m--) { if (sumSection(DATA.billings, m) > 0) { lastCi = m; break; } }
+      var savedPeriod = ACTIVE_PERIOD;
+      ACTIVE_PERIOD = lastCi;
+      renderInsightsView();
+      ACTIVE_PERIOD = savedPeriod;
+    } else {
+      renderInsightsView();
+    }
+  }
+}
+
+// ─── Smart Insights View ──────────────────────────────────────────────────────
+function renderInsightsView() {
+  var ci = ACTIVE_PERIOD;
+  var period = PERIODS[ci];
+
+  // ── Collect data snapshot for selected month ──
+  var rev      = sumSection(DATA.billings, ci);
+  var gm       = calcKPIs(ci).totalRevenue;
+  var gmPct    = rev > 0 ? (gm / rev * 100) : 0;
+  var opex     = calcKPIs(ci).totalOpEx;
+  var ebitda   = calcKPIs(ci).ebitda;
+  var ebitdaPct = gm > 0 ? (ebitda / gm * 100) : 0;
+  var cogs     = rev - gm;
+  var cogsPct  = rev > 0 ? (cogs / rev * 100) : 0;
+
+  // Per-client margin
+  var clientData = [];
+  var bilEx = DATA.billings.existing; var revEx = DATA.revenue.existing;
+  Object.keys(bilEx).forEach(function(k){
+    var b = bilEx[k][ci]||0, r = revEx[k]?revEx[k][ci]||0:0;
+    if (b > 0) clientData.push({ name:k, billing:b, margin:r, pct: b>0?(r/b*100):0 });
+  });
+  var bilNb = DATA.billings.new_business; var revNb = DATA.revenue.new_business;
+  Object.keys(bilNb).forEach(function(k){
+    var b = bilNb[k][ci]||0, r = revNb[k]?revNb[k][ci]||0:0;
+    if (b > 0) clientData.push({ name:k, billing:b, margin:r, pct: b>0?(r/b*100):0 });
+  });
+  clientData.sort(function(a,b){ return b.billing - a.billing; });
+
+  // Salary cost
+  var salaryKeys = ['Salaries','Bonuses (RS001)','Outsourcers (RS002)','Outsrcr Taxes','Income Tax & Pension','Vacation Comp'];
+  var salaryCost = 0;
+  salaryKeys.forEach(function(k){ if(DATA.direct.salaries[k]) salaryCost += DATA.direct.salaries[k][ci]||0; });
+  var salaryPct = rev > 0 ? (salaryCost / rev * 100) : 0;
+
+  // Overhead top items
+  var ohItems = [];
+  Object.values(DATA.overheads).forEach(function(g){ Object.entries(g).forEach(function(e){ var v=e[1][ci]||0; if(v>0) ohItems.push({name:e[0],val:v}); }); });
+  ohItems.sort(function(a,b){return b.val-a.val;});
+  var top3oh = ohItems.slice(0,3);
+
+  // MoM revenue change
+  var prevRev = ci > 0 ? sumSection(DATA.billings, ci-1) : null;
+  var momRev = prevRev && prevRev > 0 ? ((rev - prevRev) / prevRev * 100) : null;
+
+  // Plan vs actual
+  var planRev = PLAN.revenue.total[ci] || 0;
+  var planVar = planRev > 0 ? ((rev - planRev) / planRev * 100) : null;
+
+  // ── Health score badges ──
+  var gmOk   = gmPct >= 40;
+  var ebOk   = (ebitda / rev * 100) >= 20;
+  var issues = [];
+  if (!gmOk)  issues.push('GM');
+  if (!ebOk)  issues.push('EBITDA');
+
+  // ── Status cards ──
+  var gmColor   = gmOk   ? '#5DCAA5' : gmPct >= 30 ? '#EF9F27' : '#A32D2D';
+  var ebColor   = ebOk   ? '#5DCAA5' : (ebitda/rev*100) >= 10 ? '#EF9F27' : '#A32D2D';
+
+  var html = '<div style="max-width:900px">';
+
+  // Header
+  html += '<div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:20px">'
+    + '<div>'
+    + '<div style="font-size:18px;font-weight:700;color:var(--text)">Smart Insights — '+period+' 2025</div>'
+    + '<div style="font-size:12px;color:var(--text3);margin-top:3px">AI analysis of your P&L · targets: GM ≥ 40% · EBITDA ≥ 20%</div>'
+    + '</div>'
+
+    + '</div>';
+
+  // Status row
+  html += '<div style="display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:20px">';
+  var statusCards = [
+    { label:'Gross Margin %',  val: gmPct.toFixed(1)+'%',   target:'Target ≥ 40%', color: gmColor },
+    { label:'EBITDA %',        val: (ebitda/rev*100).toFixed(1)+'%', target:'Target ≥ 20%', color: ebColor },
+    { label:'Revenue vs Plan', val: planVar !== null ? (planVar>=0?'+':'')+planVar.toFixed(1)+'%' : '–',
+      target: planRev>0?'Plan $'+Math.round(planRev/1000)+'K':'No plan set',
+      color: planVar===null?'var(--text3)':planVar>=0?'#5DCAA5':'#A32D2D' },
+    { label:'MoM Revenue',     val: momRev !== null ? (momRev>=0?'+':'')+momRev.toFixed(1)+'%' : '–',
+      target: prevRev?'Prev $'+Math.round(prevRev/1000)+'K':'No prior month', color: momRev===null?'var(--text3)':momRev>=0?'#5DCAA5':'#EF9F27' },
+  ];
+  statusCards.forEach(function(s){
+    html += '<div class="kpi-card" style="padding:14px 16px">'
+      + '<div style="font-size:11px;color:var(--text3);margin-bottom:6px;font-weight:500">'+s.label+'</div>'
+      + '<div style="font-size:22px;font-weight:700;color:'+s.color+';margin-bottom:4px">'+s.val+'</div>'
+      + '<div style="font-size:10px;color:var(--text3)">'+s.target+'</div>'
+      + '</div>';
+  });
+  html += '</div>';
+
+  // ── Client performance cards ──
+  // Compute 12-month revenue trend per client for sparkline
+  var clientTrends = {};
+  Object.keys(DATA.billings.existing||{}).forEach(function(k){
+    clientTrends[k] = DATA.billings.existing[k];
+  });
+  Object.keys(DATA.billings.new_business||{}).forEach(function(k){
+    clientTrends[k] = DATA.billings.new_business[k];
+  });
+
+  var maxBilling = clientData.length > 0 ? Math.max.apply(null, clientData.map(function(c){return c.billing;})) : 1;
+
+  html += '<div style="margin-bottom:16px">'
+    + '<div style="font-size:13px;font-weight:600;color:var(--text);margin-bottom:10px">Client Performance — '+period+' 2025</div>'
+    + '<div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:10px">';
+
+  clientData.forEach(function(c){
+    var gmClr = c.pct>=40?'#5DCAA5':c.pct>=25?'#EF9F27':'#A32D2D';
+    var share = rev>0?(c.billing/rev*100):0;
+    var barW = maxBilling>0?(c.billing/maxBilling*100):0;
+
+    // Sparkline: 6-month trend (previous 5 months + current)
+    var trend = clientTrends[c.name]||[];
+    var sparkStart = Math.max(0, ci-5);
+    var sparkVals = [];
+    for(var si=sparkStart; si<=ci; si++){ sparkVals.push(trend[si]||0); }
+    var sparkMax = Math.max.apply(null,sparkVals)||1;
+    var sparkW = 80, sparkH = 28;
+    var pts = sparkVals.map(function(v,i){
+      var x = sparkVals.length>1 ? (i/(sparkVals.length-1))*sparkW : sparkW/2;
+      var y = sparkH - (v/sparkMax)*sparkH*0.85 - 2;
+      return x.toFixed(1)+','+y.toFixed(1);
+    }).join(' ');
+    var sparkColor = sparkVals[sparkVals.length-1] >= (sparkVals[0]||0) ? '#5DCAA5' : '#EF9F27';
+    var sparkSvg = '<svg width="'+sparkW+'" height="'+sparkH+'" style="vertical-align:middle;overflow:visible">'
+      + '<polyline points="'+pts+'" fill="none" stroke="'+sparkColor+'" stroke-width="1.8" stroke-linejoin="round" stroke-linecap="round"/>'
+      + '<circle cx="'+(sparkVals.length>1?sparkW:sparkW/2)+'" cy="'+(sparkH-(sparkVals[sparkVals.length-1]/sparkMax)*sparkH*0.85-2)+'" r="2.5" fill="'+sparkColor+'"/>'
+      + '</svg>';
+
+    // MoM delta for this client
+    var prevBill = ci>0?(trend[ci-1]||0):null;
+    var momDelta = prevBill!==null&&prevBill>0 ? ((c.billing-prevBill)/prevBill*100) : null;
+    var momStr = momDelta!==null ? '<span style="font-size:10px;color:'+(momDelta>=0?'#5DCAA5':'#EF9F27')+';margin-left:6px">'+(momDelta>=0?'▲+':'▼')+Math.abs(momDelta).toFixed(0)+'% MoM</span>' : '';
+
+    html += '<div style="background:var(--surface);border:0.5px solid var(--border);border-radius:var(--radius-lg);padding:14px 16px">'
+      // Client name + sparkline
+      + '<div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:10px">'
+      + '<div style="font-size:13px;font-weight:600;color:var(--text)">'+c.name+'</div>'
+      + sparkSvg
+      + '</div>'
+      // Billing bar
+      + '<div style="margin-bottom:8px">'
+      + '<div style="display:flex;justify-content:space-between;margin-bottom:4px">'
+      + '<span style="font-size:11px;color:var(--text3)">Billing</span>'
+      + '<span style="font-size:12px;font-weight:600;color:var(--text)">$'+Math.round(c.billing).toLocaleString('en-US')+momStr+'</span>'
+      + '</div>'
+      + '<div style="height:5px;background:var(--surface2);border-radius:3px">'
+      + '<div style="height:100%;width:'+barW.toFixed(1)+'%;background:var(--accent);border-radius:3px;transition:width .3s"></div>'
+      + '</div>'
+      + '</div>'
+      // GM % bar
+      + '<div>'
+      + '<div style="display:flex;justify-content:space-between;margin-bottom:4px">'
+      + '<span style="font-size:11px;color:var(--text3)">Gross Margin</span>'
+      + '<span style="font-size:12px;font-weight:700;color:'+gmClr+'">'+c.pct.toFixed(1)+'%</span>'
+      + '</div>'
+      + '<div style="height:5px;background:var(--surface2);border-radius:3px">'
+      + '<div style="height:100%;width:'+Math.min(c.pct,100).toFixed(1)+'%;background:'+gmClr+';border-radius:3px;transition:width .3s"></div>'
+      + '</div>'
+      + '</div>'
+      // Footer: share + GM$
+      + '<div style="display:flex;justify-content:space-between;margin-top:10px;padding-top:8px;border-top:0.5px solid var(--border)">'
+      + '<span style="font-size:10px;color:var(--text3)">Share of revenue: <strong style="color:var(--text2)">'+share.toFixed(1)+'%</strong></span>'
+      + '<span style="font-size:10px;color:var(--text3)">GM$: <strong style="color:var(--text2)">$'+Math.round(c.margin).toLocaleString('en-US')+'</strong></span>'
+      + '</div>'
+      + '</div>';
+  });
+
+  html += '</div></div>';
+
+  // AI analysis output area
+  html += '<div id="aiOutput" style="margin-bottom:16px"></div>';
+
+  html += '</div>';
+  document.getElementById('mainContent').innerHTML = html;
+
+  // Store data and auto-run analysis
+  window._insightData = { period:period, rev:rev, gm:gm, gmPct:gmPct, cogs:cogs, cogsPct:cogsPct,
+    opex:opex, ebitda:ebitda, ebitdaPct:(ebitda/rev*100), salaryCost:salaryCost, salaryPct:salaryPct,
+    clientData:clientData, top3oh:top3oh, momRev:momRev, planVar:planVar, issues:issues };
+  runAIAnalysis();
+}
+
+function runAIAnalysis() {
+  var d = window._insightData;
+  if (!d) return;
+
+  // ── Rule-based CFO analysis engine ──
+  var insights = [];
+  var risks = [];
+  var positives = [];
+  var actions = [];
+
+  var rev = d.rev, gm = d.gm, gmPct = d.gmPct, cogs = d.cogs, cogsPct = d.cogsPct;
+  var opex = d.opex, ebitda = d.ebitda, ebitdaPct = d.ebitdaPct;
+  var salaryCost = d.salaryCost, salaryPct = d.salaryPct;
+  var clients = d.clientData;
+
+  // ── Gross Margin analysis ──
+  if (gmPct < 40) {
+    insights.push({ type:'issue', title:'Gross Margin below target', text:
+      'GM is <strong>'+gmPct.toFixed(1)+'%</strong> vs target ≥ 40%. '
+      + 'COGS of <strong>$'+Math.round(cogs).toLocaleString('en-US')+'</strong> ('
+      + cogsPct.toFixed(1)+'% of revenue) is absorbing too much of billings. '
+      + (cogsPct > 60 ? 'The agency delivery cost share is critically high — review subcontractor rates or billing rates.' : 'Delivery costs need renegotiation or rate increases.')
+    });
+    // Find low-margin clients
+    var lowClients = clients.filter(function(c){ return c.pct < 35 && c.billing > 0; });
+    if (lowClients.length > 0) {
+      actions.push('🔴 <strong>Reprice low-margin clients:</strong> '
+        + lowClients.map(function(c){ return c.name+' ('+c.pct.toFixed(0)+'% GM)'; }).join(', ')
+        + ' — target ≥ 40% GM per client or renegotiate delivery costs');
+    }
+  } else {
+    positives.push('Gross Margin at <strong>'+gmPct.toFixed(1)+'%</strong> — above 40% target ✓');
+  }
+
+  // ── EBITDA analysis ──
+  if (ebitdaPct < 20) {
+    var opexPct = rev > 0 ? (opex / rev * 100) : 0;
+    insights.push({ type:'issue', title:'EBITDA below target', text:
+      'EBITDA is <strong>'+ebitdaPct.toFixed(1)+'%</strong> vs target ≥ 20%. '
+      + 'OPEX of <strong>$'+Math.round(opex).toLocaleString('en-US')+'</strong> ('
+      + opexPct.toFixed(1)+'% of revenue) is the primary drag. '
+      + (salaryPct > 40 ? 'Salary/payroll at <strong>'+salaryPct.toFixed(1)+'%</strong> of revenue is the dominant cost — headcount efficiency is key.' : '')
+    });
+  } else {
+    positives.push('EBITDA at <strong>'+ebitdaPct.toFixed(1)+'%</strong> — above 20% target ✓');
+  }
+
+  // ── Revenue concentration risk ──
+  if (clients.length > 0) {
+    var top1 = clients[0];
+    var top1share = rev > 0 ? (top1.billing / rev * 100) : 0;
+    if (top1share > 60) {
+      risks.push('Revenue concentration: <strong>'+top1.name+'</strong> accounts for <strong>'+top1share.toFixed(0)+'%</strong> of billings — high dependency risk. Accelerate diversification.');
+    } else if (top1share > 40) {
+      risks.push('<strong>'+top1.name+'</strong> is '+top1share.toFixed(0)+'% of revenue — monitor for churn signals.');
+    }
+  }
+
+  // ── MoM trend ──
+  if (d.momRev !== null) {
+    if (d.momRev < -10) {
+      risks.push('Revenue dropped <strong>'+d.momRev.toFixed(1)+'%</strong> MoM — investigate which client billings declined.');
+    } else if (d.momRev > 10) {
+      positives.push('Revenue grew <strong>+'+d.momRev.toFixed(1)+'%</strong> MoM — strong momentum.');
+    }
+  }
+
+  // ── Plan variance ──
+  if (d.planVar !== null) {
+    if (d.planVar < -15) {
+      risks.push('Revenue is <strong>'+d.planVar.toFixed(1)+'%</strong> below plan — review pipeline and revise forecast.');
+    } else if (d.planVar > 5) {
+      positives.push('Revenue <strong>+'+(d.planVar).toFixed(1)+'%</strong> above plan.');
+    }
+  }
+
+  // ── Salary efficiency ──
+  if (salaryPct > 45) {
+    actions.push('🔴 <strong>Salary efficiency:</strong> payroll at '+salaryPct.toFixed(1)+'% of revenue. Target < 40%. Either grow revenue on same headcount or review team utilization rates.');
+  } else if (salaryPct > 35) {
+    actions.push('🟡 <strong>Monitor payroll ratio:</strong> currently '+salaryPct.toFixed(1)+'% of revenue — acceptable but watch as revenue grows.');
+  }
+
+  // ── Top overhead items ──
+  if (d.top3oh.length > 0) {
+    actions.push('🟡 <strong>Top overhead items to review:</strong> '
+      + d.top3oh.map(function(o){ return o.name+' ($'+Math.round(o.val).toLocaleString('en-US')+')'; }).join(', '));
+  }
+
+  // ── Revenue growth action ──
+  if (rev < 50000) {
+    actions.push('🟢 <strong>Revenue growth:</strong> at $'+Math.round(rev/1000)+'K, focus on upselling existing clients before adding headcount.');
+  }
+
+  // ── Render ──
+  function section(title, items, color) {
+    if (!items.length) return '';
+    return '<div style="margin-bottom:14px">'
+      + '<div style="font-size:12px;font-weight:700;color:'+color+';text-transform:uppercase;letter-spacing:.06em;margin-bottom:8px">'+title+'</div>'
+      + items.map(function(t){ return '<div style="font-size:13px;color:var(--text2);line-height:1.6;margin-bottom:6px;padding-left:10px;border-left:2px solid '+color+'40">'+t+'</div>'; }).join('')
+      + '</div>';
+  }
+
+  var issueColor = d.issues.length > 0 ? '#A32D2D' : '#5DCAA5';
+  var issueLabel = d.issues.length > 0 ? '⚠️ '+d.issues.length+' issue'+(d.issues.length>1?'s':'')+' below target' : '✅ All KPI targets met';
+
+  var insightHtml = insights.map(function(ins){
+    return '<div style="background:var(--red-bg);border-left:3px solid var(--red);border-radius:6px;padding:10px 14px;margin-bottom:10px">'
+      + '<div style="font-size:12px;font-weight:700;color:var(--red);margin-bottom:4px">'+ins.title+'</div>'
+      + '<div style="font-size:13px;color:var(--text2);line-height:1.6">'+ins.text+'</div>'
+      + '</div>';
+  }).join('');
+
+  document.getElementById('aiOutput').innerHTML =
+    '<div style="background:var(--surface);border:0.5px solid var(--border);border-left:3px solid '+issueColor+';border-radius:var(--radius-lg);padding:20px 24px">'
+    + '<div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:16px">'
+    + '<span style="font-size:13px;font-weight:700;color:'+issueColor+'">'+issueLabel+'</span>'
+    + '<span style="font-size:11px;color:var(--text3)">CFO analysis · '+d.period+' 2025</span>'
+    + '</div>'
+    + (insightHtml ? '<div style="margin-bottom:14px">'+insightHtml+'</div>' : '')
+    + section('Action Items', actions, '#EF9F27')
+    + section('Risks to Watch', risks, '#A32D2D')
+    + section('What\'s Working', positives, '#5DCAA5')
+    + '</div>';
+
+}
+
+
+function handleImport(e) {
+  var file = e.target.files[0];
+  if (!file) return;
+  var ext = file.name.split('.').pop().toLowerCase();
+  var reader = new FileReader();
+  reader.onload = function(ev) {
+    try {
+      var rows = [];
+      if (ext === 'csv') {
+        rows = ev.target.result.trim().split('\n').map(function(r) { return r.split(','); });
+        parseAndApply(rows, file.name);
+      } else {
+        var wb = XLSX.read(ev.target.result, { type: 'array' });
+        var ws = wb.Sheets[wb.SheetNames[0]];
+        rows = XLSX.utils.sheet_to_json(ws, { header: 1, defval: 0 });
+        parseAndApply(rows, file.name);
+      }
+    } catch(err) {
+      toast('❌ Error: ' + err.message);
+    }
+  };
+  if (ext === 'csv') reader.readAsText(file);
+  else reader.readAsArrayBuffer(file);
+  e.target.value = '';
+}
+
+function parseAndApply(rows, fname) {
+  // Auto-detect Outforz-format Excel (column mapping from actual file)
+  // Actual data columns for Jan/Feb/Mar/Apr = pairs at far right of sheet
+  var applied = 0;
+  var nameCol = -1, colsActual = [];
+
+  // Find header row
+  for (var r = 0; r < Math.min(rows.length, 10); r++) {
+    for (var c = 0; c < rows[r].length; c++) {
+      var cell = String(rows[r][c]||'').toLowerCase();
+      if (cell.includes('name') || cell.includes('client')) { nameCol = c; break; }
+    }
+    if (nameCol >= 0) break;
+  }
+
+  // Try simple Name,Jan,Feb,Mar,Apr format
+  if (nameCol >= 0) {
+    var headerRow = rows[nameCol >= 0 ? (nameCol > 0 ? 0 : 0) : 0];
+    for (var c2 = 0; c2 < headerRow.length; c2++) {
+      var h = String(headerRow[c2]||'').toLowerCase();
+      if (h.includes('jan')) colsActual[0] = c2;
+      if (h.includes('feb')) colsActual[1] = c2;
+      if (h.includes('mar')) colsActual[2] = c2;
+      if (h.includes('apr')) colsActual[3] = c2;
+    }
+  }
+
+  if (colsActual.length >= 4 && nameCol >= 0) {
+    for (var ri = 1; ri < rows.length; ri++) {
+      var rowName = String(rows[ri][nameCol]||'').trim();
+      if (!rowName) continue;
+      var vals = colsActual.map(function(ci) { return parseFloat(rows[ri][ci])||0; });
+      [DATA.billings, DATA.revenue, DATA.direct, DATA.overheads, DATA.non_op, DATA.tax].forEach(function(section) {
+        Object.values(section).forEach(function(group) {
+          Object.keys(group).forEach(function(key) {
+            if (key.toLowerCase() === rowName.toLowerCase()) {
+              group[key] = vals; applied++;
+            }
+          });
+        });
+      });
+    }
+  }
+
+  var msg = applied > 0
+    ? '✓ Imported ' + fname + ' — ' + applied + ' rows matched'
+    : '✓ File loaded: ' + fname + ' (' + rows.length + ' rows). Use Name,Jan,Feb,Mar,Apr columns for auto-mapping.';
+  toast(msg);
+  render();
+}
+
+// ─── Export ───────────────────────────────────────────────────────────────────
+function exportCSV() {
+  var lines = [['Line item','Code','January','February','March','April'].join(',')];
+  function addSection(obj) {
+    Object.entries(obj).forEach(function(e) {
+      Object.entries(e[1]).forEach(function(r) {
+        lines.push([r[0],''].concat(r[1]).join(','));
+      });
+    });
+  }
+  [DATA.billings, DATA.revenue, DATA.direct, DATA.overheads, DATA.non_op, DATA.tax].forEach(addSection);
+  var blob = new Blob([lines.join('\n')], { type: 'text/csv;charset=utf-8;' });
+  var a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = 'pl_export_' + new Date().toISOString().substring(0,10) + '.csv';
+  a.click();
+  toast('✓ CSV exported');
+}
+
+// ─── Drag & drop ──────────────────────────────────────────────────────────────
+document.addEventListener('dragover', function(e) { e.preventDefault(); document.getElementById('dropOverlay').classList.add('active'); });
+document.addEventListener('dragleave', function(e) { if (!e.relatedTarget) document.getElementById('dropOverlay').classList.remove('active'); });
+document.addEventListener('drop', function(e) {
+  e.preventDefault();
+  document.getElementById('dropOverlay').classList.remove('active');
+  var file = e.dataTransfer.files[0];
+  if (file) handleImport({ target: { files: [file], value: '' } });
+});
+
+// ─── Init ─────────────────────────────────────────────────────────────────────
+document.addEventListener('keydown', function(e) {
+  if (e.key === 'Escape') closeAddModal();
+});
+document.getElementById('addRowModal').addEventListener('click', function(e) {
+  if (e.target === this) closeAddModal();
+});
+
+var STORAGE_KEY = 'pl_dashboard_2025_v1';
+
+function resetAllData() {
+  if (!confirm('Reset all changes and restore original data?')) return;
+  try { localStorage.removeItem(STORAGE_KEY); } catch(e) {}
+  location.reload();
+}
+
+function saveState() {
+  try {
+    var state = {
+      DATA: DATA,
+      CUSTOM_LABELS: CUSTOM_LABELS,
+      PLAN_lines: PLAN.lines,
+      PLAN_revenue: PLAN.revenue.total,
+      PLAN_direct: PLAN.direct.total,
+      PLAN_opex: PLAN.opex.total,
+      PLAN_netProfit: PLAN.netProfit.total
+    };
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+  } catch(e) {}
+}
+
+function loadState() {
+  try {
+    var raw = localStorage.getItem(STORAGE_KEY);
+    if (!raw) return;
+    var state = JSON.parse(raw);
+    if (state.DATA)          DATA = state.DATA;
+    if (state.CUSTOM_LABELS) CUSTOM_LABELS = state.CUSTOM_LABELS;
+    if (state.PLAN_lines)    PLAN.lines = state.PLAN_lines;
+    if (state.PLAN_revenue)  PLAN.revenue.total = state.PLAN_revenue;
+    if (state.PLAN_direct)   PLAN.direct.total = state.PLAN_direct;
+    if (state.PLAN_opex)     PLAN.opex.total = state.PLAN_opex;
+    if (state.PLAN_netProfit) PLAN.netProfit.total = state.PLAN_netProfit;
+    // Rebuild ORIGINAL_KEYS from loaded DATA
+    ORIGINAL_KEYS = (function(){
+      var keys = {};
+      function scan(obj){ Object.values(obj).forEach(function(g){ Object.keys(g).forEach(function(k){ keys[k]=1; }); }); }
+      scan(DATA.billings); scan(DATA.revenue); scan(DATA.direct); scan(DATA.overheads); scan(DATA.non_op); scan(DATA.tax);
+      return keys;
+    })();
+  } catch(e) {}
+}
+
+function render() {
+  saveState();
+  renderPeriodTabs();
+  renderContent();
+}
+
+loadState();
+render();
+</script>
+
+
+</body></html>
