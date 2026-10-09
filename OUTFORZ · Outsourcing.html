@@ -1,0 +1,676 @@
+<!DOCTYPE html>
+<!-- saved from url=(0067)file:///C:/Users/Admin/Downloads/Outforz___CEO_Case_Book%20(8).html -->
+<html lang="ru"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>OUTFORZ · CEO Case Book</title>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --black: #0e0e0e;
+    --white: #ffffff;
+    --gray-50: #f7f7f5;
+    --gray-100: #efefeb;
+    --gray-300: #c8c8c0;
+    --gray-500: #888880;
+    --gray-700: #444440;
+    --green: #1a9e5c;
+    --green-light: #e8f7ef;
+    --amber: #d97706;
+    --amber-light: #fef3c7;
+  }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: -apple-system, 'Helvetica Neue', Arial, sans-serif;
+    background: var(--gray-50);
+    color: var(--black);
+    font-size: 15px;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* NAV */
+  nav {
+    position: sticky; top: 0; z-index: 100;
+    background: rgba(14,14,14,0.97);
+    backdrop-filter: blur(8px);
+    padding: 0 3rem;
+    display: flex; align-items: center; justify-content: space-between;
+    height: 54px;
+    border-bottom: 0.5px solid rgba(255,255,255,0.08);
+  }
+  .nav-brand { font-size: 14px; font-weight: 500; color: #fff; }
+  .nav-brand span { color: var(--gray-500); font-weight: 400; }
+  .nav-links { display: flex; gap: 2rem; }
+  .nav-links a { font-size: 13px; color: var(--gray-500); text-decoration: none; transition: color 0.15s; }
+  .nav-links a:hover { color: #fff; }
+
+  /* HERO — full width */
+  .hero {
+    background: var(--black);
+    padding: 5rem 3rem 4rem;
+    width: 100%;
+  }
+  .hero-tag {
+    display: inline-block;
+    font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase;
+    color: var(--green);
+    border: 0.5px solid rgba(26,158,92,0.4);
+    border-radius: 20px; padding: 4px 14px;
+    margin-bottom: 1.75rem;
+  }
+  .hero h1 {
+    font-size: 48px; font-weight: 500; color: #fff;
+    line-height: 1.15; margin-bottom: 0.6rem;
+    letter-spacing: -0.025em;
+    
+  }
+  .hero-sub { font-size: 16px; color: var(--gray-500); margin-bottom: 3rem; }
+  .kpi-row { display: grid; grid-template-columns: repeat(4, minmax(0,1fr)); gap: 12px; max-width: 700px; }
+  .kpi {
+    background: rgba(255,255,255,0.05);
+    border: 0.5px solid rgba(255,255,255,0.1);
+    border-radius: 10px; padding: 1.1rem 1.25rem;
+  }
+  .kpi-val { font-size: 26px; font-weight: 500; color: #fff; margin-bottom: 4px; }
+  .kpi-val.g { color: var(--green); }
+  .kpi-val.y { color: #f59e0b; }
+  .kpi-lbl { font-size: 11px; color: var(--gray-500); }
+
+  /* CONTENT — full width with padding */
+  .content { padding: 0 3rem 6rem; }
+
+  .section { margin: 3.5rem 0; }
+  .sec-eyebrow {
+    font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase;
+    color: var(--gray-500); margin-bottom: 0.5rem;
+  }
+  .sec-title {
+    font-size: 26px; font-weight: 500; color: var(--black);
+    margin-bottom: 0.75rem; letter-spacing: -0.01em;
+  }
+  .sec-body {
+    font-size: 15px; color: var(--gray-700);
+    line-height: 1.8; margin-bottom: 2rem;
+    
+  }
+
+  /* CARDS */
+  .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-bottom: 1.75rem; }
+  .three-col { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 14px; margin-bottom: 1.75rem; }
+  .four-col { display: grid; grid-template-columns: repeat(4,1fr); gap: 12px; margin-bottom: 1.75rem; }
+
+  .card {
+    background: var(--white);
+    border: 0.5px solid var(--gray-100);
+    border-radius: 12px; padding: 1.4rem 1.6rem;
+  }
+  .card-lbl { font-size: 11px; color: var(--gray-500); margin-bottom: 0.6rem; text-transform: uppercase; letter-spacing: 0.08em; }
+  .card-body { font-size: 14px; color: var(--gray-700); line-height: 1.75; }
+
+  /* FLOW */
+  .flow {
+    display: flex; align-items: stretch;
+    background: var(--white); border: 0.5px solid var(--gray-100);
+    border-radius: 12px; overflow: hidden; margin-bottom: 2rem;
+  }
+  .flow-item { flex: 1; padding: 1.1rem 1.4rem; border-right: 0.5px solid var(--gray-100); }
+  .flow-item:last-child { border-right: none; background: var(--green-light); }
+  .flow-item:last-child .flow-val { color: var(--green); }
+  .flow-lbl { font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--gray-500); margin-bottom: 0.35rem; }
+  .flow-val { font-size: 16px; font-weight: 500; color: var(--black); }
+
+  /* CRITERIA */
+  .crit { background: var(--white); border: 0.5px solid var(--gray-100); border-radius: 10px; padding: 1.1rem 1.25rem; }
+  .crit-val { font-size: 20px; font-weight: 500; color: var(--green); margin-bottom: 4px; }
+  .crit-lbl { font-size: 12px; color: var(--gray-500); line-height: 1.45; }
+
+  /* BENCH */
+  .bench { background: var(--amber-light); border: 0.5px solid #fde68a; border-radius: 10px; padding: 1.1rem 1.25rem; }
+  .bench-val { font-size: 20px; font-weight: 500; color: var(--amber); margin-bottom: 4px; }
+  .bench-lbl { font-size: 12px; color: #92400e; }
+
+  /* OPS */
+  .ops-card { background: var(--white); border: 0.5px solid var(--gray-100); border-radius: 12px; padding: 1.4rem 1.6rem; }
+  .ops-freq { font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--gray-500); margin-bottom: 0.5rem; }
+  .ops-name { font-size: 16px; font-weight: 500; color: var(--black); margin-bottom: 0.5rem; }
+  .ops-desc { font-size: 13px; color: var(--gray-700); line-height: 1.65; }
+
+  /* STEPS */
+  .steps { list-style: none; margin-bottom: 1.5rem; }
+  .steps li { display: flex; gap: 18px; margin-bottom: 1.4rem; align-items: flex-start; }
+  .step-num {
+    min-width: 32px; height: 32px; border-radius: 50%;
+    background: var(--black); color: #fff;
+    font-size: 13px; font-weight: 500;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0; margin-top: 1px;
+  }
+  .step-main { font-size: 15px; font-weight: 500; color: var(--black); margin-bottom: 4px; }
+  .step-sub { font-size: 14px; color: var(--gray-700); line-height: 1.65; }
+
+  /* RESULT */
+  .result-block { background: var(--black); border-radius: 12px; padding: 2.25rem 2.5rem; margin-top: 2rem; }
+  .rb-lbl { font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--gray-500); margin-bottom: 1.5rem; }
+  .res-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 2rem; }
+  .res-item { border-left: 2px solid #2a2a2a; padding-left: 1.25rem; }
+  .res-val { font-size: 24px; font-weight: 500; color: var(--green); margin-bottom: 5px; }
+  .res-lbl { font-size: 12px; color: var(--gray-500); }
+
+  /* QUOTE */
+  .quote {
+    border-left: 3px solid var(--gray-300);
+    padding: 0.9rem 1.5rem; margin: 2rem 0;
+    font-size: 15px; color: var(--gray-700);
+    line-height: 1.8; font-style: italic;
+    
+  }
+
+  /* DIVIDER */
+  .divider { border: none; border-top: 0.5px solid var(--gray-100); margin: 3.5rem 0; }
+
+  /* FOOTER */
+  footer {
+    border-top: 0.5px solid var(--gray-100);
+    padding: 2rem 0; margin-top: 2rem;
+    display: flex; justify-content: space-between;
+    font-size: 12px; color: var(--gray-500);
+  }
+
+  @media (max-width: 700px) {
+    nav, .hero, .content { padding-left: 1.25rem; padding-right: 1.25rem; }
+    .hero h1 { font-size: 30px; }
+    .kpi-row, .two-col, .three-col, .four-col, .res-grid { grid-template-columns: 1fr 1fr; }
+    .flow { flex-direction: column; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-brand">OUTFORZ <span>· CEO Case Book</span></div>
+  <div class="nav-links">
+    <a href="file:///C:/Users/Admin/Downloads/outforz_casebook%20(4).html#strategy">Стратегия</a>
+    <a href="file:///C:/Users/Admin/Downloads/outforz_casebook%20(4).html#ops">Операции</a>
+    <a href="file:///C:/Users/Admin/Downloads/outforz_casebook%20(4).html#client">Клиент</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-tag">IT Outsourcing · Case 01</div>
+  <h1>OUTFORZ: с нуля до $16M за 8 лет</h1>
+  <p class="hero-sub">Data Annotation · Data Collection · AI Development · Sports Domain</p>
+  <div class="kpi-row">
+    <div class="kpi"><div class="kpi-val g">$16M</div><div class="kpi-lbl">Annual Revenue</div></div>
+    <div class="kpi"><div class="kpi-val y">20%</div><div class="kpi-lbl">EBITDA Margin</div></div>
+    <div class="kpi"><div class="kpi-val g">45%</div><div class="kpi-lbl">Gross Margin</div></div>
+    <div class="kpi"><div class="kpi-val g">87%</div><div class="kpi-lbl">Utilization Rate</div></div>
+  </div>
+</div>
+
+<div class="content">
+
+  <!-- STRATEGY -->
+  <div class="section" id="strategy">
+    <div class="sec-eyebrow">Часть 1 · Стратегия</div>
+    <div class="sec-title">PIVOT: от AI-аннотации для всех — к Sports Data</div>
+    <div class="sec-body">OUTFORZ стартовал как универсальный AI-аутсорсинг: аннотация данных для медицины, авто, оптики. Проблема вскрылась быстро — как только AI-модель дотренирована, клиент уходит. Короткие проекты, маленькие чеки, непредсказуемый P&amp;L. Я принял решение полностью сменить стратегию и уйти в один домен.</div>
+
+    <!-- Before/After PIVOT -->
+    <div class="two-col">
+      <div class="card">
+        <div class="card-lbl">Проблема до PIVOT</div>
+        <div class="card-body">AI-модель обучена — контракт закончился. Нет повторного спроса. Revenue скачет, команда то растёт, то простаивает. Bench неуправляем. P&amp;L непредсказуем.</div>
+      </div>
+      <div class="card">
+        <div class="card-lbl">Инсайт, который изменил всё</div>
+        <div class="card-body">Sports Data — это не AI-тренировка, это аналитика. Сезон длится 10–11 месяцев. Клиент платит весь сезон. Спрос повторяется каждый год. Наша экспертиза в сборе и обработке данных переносится в спортивную аналитику без наработки новой.</div>
+      </div>
+    </div>
+
+    <!-- TAM -->
+    <div class="sec-eyebrow" style="margin-bottom:0.75rem">TAM — Global Sports Data Market</div>
+    <div style="background:var(--black); border-radius:12px; padding:1.25rem 1.6rem; margin-bottom:1.5rem; display:grid; grid-template-columns:1fr 1fr; gap:2rem; align-items:center;">
+      <div>
+        <div style="font-size:32px; font-weight:500; color:#d97706; margin-bottom:4px;">~$8.4B</div>
+        <div style="font-size:15px; font-weight:500; color:#fff; margin-bottom:6px;">Sports Data — Global TAM</div>
+        <div style="font-size:13px; color:#888; line-height:1.6;">Весь мировой рынок спортивных данных — все виды спорта, все регионы, все сегменты</div>
+      </div>
+      <div style="display:flex; flex-direction:column; gap:8px;">
+        <div style="font-size:11px; text-transform:uppercase; letter-spacing:0.08em; color:#4ade80; margin-bottom:2px;">Почему Sports Data</div>
+        <div style="font-size:13px; color:#ccc; line-height:1.5; padding-left:10px; border-left:2px solid #4ade80;">Статистика нужна <strong style="color:#fff;">не для обучения AI</strong>, а для получения аналитики — умных выводов на базе данных</div>
+        <div style="font-size:13px; color:#ccc; line-height:1.5; padding-left:10px; border-left:2px solid #4ade80;">Наша экспертиза в сборе и обработке данных <strong style="color:#fff;">полностью переносится</strong> в спортивную аналитику</div>
+        <div style="font-size:13px; color:#ccc; line-height:1.5; padding-left:10px; border-left:2px solid #4ade80;">Спорт — это <strong style="color:#fff;">длинные сезоны</strong>, повторяющийся спрос и предсказуемый P&amp;L</div>
+      </div>
+    </div>
+
+    <!-- SAM — три вида спорта -->
+    <div class="sec-eyebrow" style="margin-bottom:0.75rem">SAM — выбранные сегменты рынка</div>
+    <div style="display:grid; grid-template-columns:repeat(3,1fr); gap:12px; margin-bottom:1.5rem;">
+
+      <!-- Football -->
+      <div style="border:2px solid #1a9e5c; border-radius:12px; overflow:hidden;">
+        <div style="background:#1a9e5c; padding:0.85rem 1.1rem; display:flex; justify-content:space-between; align-items:center;">
+          <div>
+            <div style="font-size:10px; text-transform:uppercase; letter-spacing:0.08em; color:#d1fae5; margin-bottom:3px;">TAM · Футбол</div>
+            <div style="font-size:16px; font-weight:500; color:#fff;">Football Data Market</div>
+            <div style="font-size:14px; color:#d1fae5;">~$3.8B</div>
+          </div>
+          <div style="background:#fff; color:#1a9e5c; font-size:10px; font-weight:600; padding:3px 8px; border-radius:20px;">✓ ВЫБРАН</div>
+        </div>
+        <div style="padding:0.9rem 1.1rem; background:#fff;">
+          <div style="font-size:11px; color:#888; margin-bottom:8px;">Топ-5 лиг, международные турниры · сезон 10–11 мес</div>
+          <div style="display:grid; grid-template-columns:1fr 1fr; gap:6px; margin-bottom:8px;">
+            <div style="background:#f0fdf4; border-radius:8px; padding:0.6rem 0.7rem;">
+              <div style="font-size:9px; text-transform:uppercase; color:#166534; margin-bottom:2px;">SAM · B2B Analytics</div>
+              <div style="font-size:14px; font-weight:500; color:#1a9e5c;">~$1.1B</div>
+              <div style="font-size:10px; color:#888; margin-top:2px;">Betting, media, скаутинг</div>
+            </div>
+            <div style="background:#f7f7f5; border-radius:8px; padding:0.6rem 0.7rem;">
+              <div style="font-size:9px; text-transform:uppercase; color:#888; margin-bottom:2px;">SAM · In-house</div>
+              <div style="font-size:14px; font-weight:500; color:#444;">~$0.8B</div>
+              <div style="font-size:10px; color:#888; margin-top:2px;">Аналит. отделы лиг и клубов</div>
+            </div>
+          </div>
+          <div style="background:#1a9e5c; border-radius:8px; padding:0.6rem 0.8rem;">
+            <div style="font-size:9px; text-transform:uppercase; color:#d1fae5; margin-bottom:2px;">SOM · Выбран ✓ · Junior &amp; Amateur</div>
+            <div style="font-size:15px; font-weight:500; color:#fff;">~$80M</div>
+            <div style="font-size:10px; color:#d1fae5; margin-top:2px;">NCAA, amateur лиги, академии · маржа 50–60%</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Hockey -->
+      <div style="border:1.5px solid #93c5fd; border-radius:12px; overflow:hidden;">
+        <div style="background:#3b82f6; padding:0.85rem 1.1rem;">
+          <div style="font-size:10px; text-transform:uppercase; letter-spacing:0.08em; color:#dbeafe; margin-bottom:3px;">TAM · Хоккей</div>
+          <div style="font-size:16px; font-weight:500; color:#fff;">Hockey Data Market</div>
+          <div style="font-size:14px; color:#dbeafe;">~$1.4B</div>
+        </div>
+        <div style="padding:0.9rem 1.1rem; background:#fff;">
+          <div style="font-size:11px; color:#888; margin-bottom:8px;">NHL, KHL · сезон 7–8 мес</div>
+          <div style="display:grid; grid-template-columns:1fr 1fr; gap:6px; margin-bottom:8px;">
+            <div style="background:#eff6ff; border-radius:8px; padding:0.6rem 0.7rem;">
+              <div style="font-size:9px; text-transform:uppercase; color:#1e40af; margin-bottom:2px;">SAM · B2B Analytics</div>
+              <div style="font-size:14px; font-weight:500; color:#3b82f6;">~$280M</div>
+              <div style="font-size:10px; color:#888; margin-top:2px;">Betting, data vendors, media</div>
+            </div>
+            <div style="background:#f7f7f5; border-radius:8px; padding:0.6rem 0.7rem;">
+              <div style="font-size:9px; text-transform:uppercase; color:#888; margin-bottom:2px;">SAM · In-house</div>
+              <div style="font-size:14px; font-weight:500; color:#444;">~$140M</div>
+              <div style="font-size:10px; color:#888; margin-top:2px;">Аналитика внутри NHL/KHL</div>
+            </div>
+          </div>
+          <div style="display:grid; grid-template-columns:1fr 1fr; gap:6px;">
+            <div style="background:#f7f7f5; border-radius:8px; padding:0.5rem 0.7rem; text-align:center;">
+              <div style="font-size:9px; color:#888;">Проф лиги ~$22M</div>
+            </div>
+            <div style="background:#f7f7f5; border-radius:8px; padding:0.5rem 0.7rem; text-align:center;">
+              <div style="font-size:9px; color:#888;">Junior &amp; Amateur ~$8M</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Tennis -->
+      <div style="border:1.5px solid #fb923c; border-radius:12px; overflow:hidden;">
+        <div style="background:#c2621a; padding:0.85rem 1.1rem;">
+          <div style="font-size:10px; text-transform:uppercase; letter-spacing:0.08em; color:#fed7aa; margin-bottom:3px;">TAM · Теннис</div>
+          <div style="font-size:16px; font-weight:500; color:#fff;">Tennis Data Market</div>
+          <div style="font-size:14px; color:#fed7aa;">~$0.9B</div>
+        </div>
+        <div style="padding:0.9rem 1.1rem; background:#fff;">
+          <div style="font-size:11px; color:#888; margin-bottom:8px;">ATP, WTA · турниры 1–2 нед</div>
+          <div style="display:grid; grid-template-columns:1fr 1fr; gap:6px; margin-bottom:8px;">
+            <div style="background:#fff7ed; border-radius:8px; padding:0.6rem 0.7rem;">
+              <div style="font-size:9px; text-transform:uppercase; color:#9a3412; margin-bottom:2px;">SAM · B2B Analytics</div>
+              <div style="font-size:14px; font-weight:500; color:#c2621a;">~$180M</div>
+              <div style="font-size:10px; color:#888; margin-top:2px;">ATP/WTA data, betting, media</div>
+            </div>
+            <div style="background:#f7f7f5; border-radius:8px; padding:0.6rem 0.7rem;">
+              <div style="font-size:9px; text-transform:uppercase; color:#888; margin-bottom:2px;">SAM · In-house</div>
+              <div style="font-size:14px; font-weight:500; color:#444;">~$100M</div>
+              <div style="font-size:10px; color:#888; margin-top:2px;">Аналитика турниров и федераций</div>
+            </div>
+          </div>
+          <div style="display:grid; grid-template-columns:1fr 1fr; gap:6px;">
+            <div style="background:#f7f7f5; border-radius:8px; padding:0.5rem 0.7rem; text-align:center;">
+              <div style="font-size:9px; color:#888;">Проф турниры ~$16M</div>
+            </div>
+            <div style="background:#f7f7f5; border-radius:8px; padding:0.5rem 0.7rem; text-align:center;">
+              <div style="font-size:9px; color:#888;">Junior &amp; Amateur ~$6M</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- 4 criteria -->
+    <div class="sec-eyebrow" style="margin-bottom:0.75rem">Критерии выбора домена — 4 из 4 выполнены</div>
+    <div class="four-col" style="margin-bottom:1.25rem;">
+      <div class="card">
+        <div class="card-lbl">Критерий 1 · Большой рынок</div>
+        <div class="card-body" style="font-size:13px;">Выбирал сегмент с максимальным объёмом денег — больше возможностей для роста и высокого чека. <strong>SOM ~$80M</strong> — достаточно для масштабирования.</div>
+      </div>
+      <div class="card">
+        <div class="card-lbl">Критерий 2 · Длинные контракты</div>
+        <div class="card-body" style="font-size:13px;">Длительность контракта = длительность сезона. Чем длиннее сезон — тем предсказуемее P&amp;L. <strong>Футбол: 10–11 мес.</strong></div>
+      </div>
+      <div class="card">
+        <div class="card-lbl">Критерий 3 · Маржа ≥ 50%</div>
+        <div class="card-body" style="font-size:13px;">Юнит-экономика должна держать рентабельность не ниже 50% — иначе масштабирование не имеет смысла. <strong>Достигли 50–60%.</strong></div>
+      </div>
+      <div class="card" style="border-color:#d97706;">
+        <div class="card-lbl" style="color:var(--amber);">Критерий 4 · Стартап-фактор</div>
+        <div class="card-body" style="font-size:13px;">Стартовали без бренда и репутации. Нужен сегмент где решение принимается быстро. <strong>Junior &amp; Amateur — низкий барьер входа.</strong></div>
+      </div>
+    </div>
+
+    <!-- SOM final -->
+    <div style="background:var(--black); border:2px solid #d97706; border-radius:12px; padding:1.25rem 1.6rem; margin-bottom:1.75rem;">
+      <div style="font-size:10px; text-transform:uppercase; letter-spacing:0.08em; color:#d97706; margin-bottom:0.75rem;">⚽ Global SOM · Выбранный домен</div>
+      <div style="display:grid; grid-template-columns:auto 1fr auto; gap:1rem; align-items:center; margin-bottom:1rem;">
+        <div style="background:#222; border-radius:8px; padding:0.6rem 1rem; text-align:center;">
+          <div style="font-size:10px; color:#888; margin-bottom:3px;">Global TAM</div>
+          <div style="font-size:14px; font-weight:500; color:#fff;">Sports Data · ~$8.4B</div>
+        </div>
+        <div style="text-align:center; color:#555; font-size:18px;">→ &nbsp; Football ~$3.8B &nbsp; → &nbsp; B2B Analytics ~$1.1B &nbsp; →</div>
+        <div style="background:#d97706; border-radius:8px; padding:0.6rem 1rem; text-align:center;">
+          <div style="font-size:10px; color:#fff8e1; margin-bottom:3px;">Global SOM ✓</div>
+          <div style="font-size:14px; font-weight:500; color:#fff;">Junior &amp; Amateur · ~$80M</div>
+        </div>
+      </div>
+      <div style="display:grid; grid-template-columns:1fr 1fr 1fr; gap:1.5rem;">
+        <div>
+          <div style="font-size:10px; text-transform:uppercase; color:#888; margin-bottom:6px;">Домен</div>
+          <div style="font-size:16px; font-weight:500; color:#fff; margin-bottom:4px;">⚽ Football Junior &amp; Amateur</div>
+          <div style="font-size:12px; color:#aaa;">Университетский футбол (NCAA), amateur лиги, академии молодёжного развития</div>
+          <div style="margin-top:8px; background:#1a1a1a; border-radius:6px; padding:6px 10px; font-size:12px; color:#aaa;">Клиент: <strong style="color:#4ade80;">B2B Analytics компании</strong> — поставляем им данные по junior &amp; amateur сегменту</div>
+        </div>
+        <div>
+          <div style="font-size:10px; text-transform:uppercase; color:#888; margin-bottom:6px;">Почему выбрал</div>
+          <div style="font-size:13px; color:#ccc; line-height:1.8;">
+            • Крупнейший TAM — $3.8B<br>
+            • Сезон 10–11 мес — долгосрочные контракты<br>
+            • Маржа 50–60% — выше порога<br>
+            • Предсказуемый P&amp;L — решает исходную проблему
+          </div>
+        </div>
+        <div>
+          <div style="font-size:10px; text-transform:uppercase; color:#888; margin-bottom:6px;">Ключевые метрики</div>
+          <div style="margin-bottom:8px;"><div style="font-size:22px; font-weight:500; color:#d97706;">~$80M</div><div style="font-size:11px; color:#888;">Реалистичный SOM</div></div>
+          <div style="margin-bottom:8px;"><div style="font-size:22px; font-weight:500; color:#4ade80;">50–60%</div><div style="font-size:11px; color:#888;">Целевая маржа</div></div>
+          <div><div style="font-size:22px; font-weight:500; color:#fff;">10–11 мес</div><div style="font-size:11px; color:#888;">Длина сезона / контракта</div></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="quote">Я выбрал не самый крупный сегмент, а тот где можно войти быстро — низкий барьер, маржа 50–60%, сезон 10–11 месяцев и спрос повторяется каждый год. Это решило исходную проблему непредсказуемого P&amp;L и дало основу для управляемого масштабирования.</div>
+  </div>
+
+  <hr class="divider">
+
+  <!-- OPS -->
+  <div class="section" id="ops">
+    <div class="sec-eyebrow">Часть 2 · Операции</div>
+    <div class="sec-title">Операционная модель: как бизнес управляется через данные</div>
+    <div class="sec-body">При росте с 12 до 240+ человек главный риск — система перестаёт работать. Маржа падает, bench растёт, delivery теряет качество. Я построил трёхуровневую модель управления где каждый уровень отвечает за свой горизонт и передаёт данные наверх. Стратегические решения принимаются только на основе накопленных данных, а не ощущений.</div>
+
+    <!-- FLOW DIAGRAM -->
+    <div class="sec-eyebrow" style="margin-bottom:1rem">Как работает система — Блок 2 в центре</div>
+
+    <!-- BLOCK 2 — TOP, FULL WIDTH -->
+    <div style="background:#fff; border:2px solid #1a3a2a; border-radius:12px; overflow:hidden; margin-bottom:8px;">
+      <div style="background:#1a3a2a; padding:1rem 1.6rem; display:flex; align-items:center; gap:1rem;">
+        <div>
+          <div style="font-size:10px; letter-spacing:0.1em; text-transform:uppercase; color:#4ade80; opacity:0.8; margin-bottom:3px;">Блок 2 · COO + CEO · Monthly — ОСНОВА СИСТЕМЫ</div>
+          <div style="font-size:18px; font-weight:500; color:#fff;">Ежемесячный мониторинг и контроль P&amp;L</div>
+        </div>
+        <div style="margin-left:auto; font-size:11px; color:#6ee7b7; background:rgba(255,255,255,0.08); border-radius:8px; padding:6px 14px; white-space:nowrap;">Источник сигналов для Блоков 1 и 3</div>
+      </div>
+      <div style="padding:1.25rem 1.6rem; display:grid; grid-template-columns:1fr 1fr; gap:2rem;">
+        <div>
+          <div style="font-size:12px; color:var(--gray-500); margin-bottom:0.6rem; font-weight:500;">Алгоритм встречи (COO + CEO)</div>
+          <div style="font-size:13px; color:var(--gray-700); line-height:1.9;">
+            1. Данные из дашборда — факт за месяц автоматически<br>
+            2. План vs факт по каждому KPI<br>
+            3. Анализ отклонений — что буксует и почему<br>
+            4. Диагностика через Блок 1 по буксующему направлению<br>
+            5. Action plan: действие + ответственный + дедлайн<br>
+            6. Данные × 3 месяца → квартальный анализ в Блок 3
+          </div>
+        </div>
+        <div>
+          <div style="font-size:12px; color:var(--gray-500); margin-bottom:0.6rem; font-weight:500;">Метрики P&amp;L — фиксированная повестка</div>
+          <div style="display:grid; grid-template-columns:1fr 1fr; gap:8px;">
+            <div style="background:#f7f7f5; border-radius:8px; padding:0.6rem 0.8rem;">
+              <div style="font-size:13px; font-weight:500; color:var(--black);">Revenue</div>
+              <div style="font-size:11px; color:var(--gray-500);">план vs факт</div>
+            </div>
+            <div style="background:#f7f7f5; border-radius:8px; padding:0.6rem 0.8rem;">
+              <div style="font-size:13px; font-weight:500; color:var(--black);">EBITDA</div>
+              <div style="font-size:11px; color:var(--gray-500);">маржа и динамика</div>
+            </div>
+            <div style="background:#f7f7f5; border-radius:8px; padding:0.6rem 0.8rem;">
+              <div style="font-size:13px; font-weight:500; color:var(--black);">Gross Margin</div>
+              <div style="font-size:11px; color:var(--gray-500);">COGS контроль</div>
+            </div>
+            <div style="background:#f7f7f5; border-radius:8px; padding:0.6rem 0.8rem;">
+              <div style="font-size:13px; font-weight:500; color:var(--black);">OpEx</div>
+              <div style="font-size:11px; color:var(--gray-500);">bench и затраты</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ARROWS from Block 2 down to Blocks 1 and 3 -->
+    <div style="display:grid; grid-template-columns:1fr 1fr; gap:14px; margin-bottom:8px;">
+      <div style="text-align:center; font-size:13px; color:var(--gray-500); padding:4px 0;">↓ сигнал проблемы &nbsp;·&nbsp; ↑ результат fix</div>
+      <div style="text-align:center; font-size:13px; color:var(--gray-500); padding:4px 0;">↓ данные × 3 месяца &nbsp;·&nbsp; ↑ новые KPI-планы</div>
+    </div>
+
+    <!-- BOTTOM ROW: Block 1 (drill-down) + Block 3 (strategy) -->
+    <div style="display:grid; grid-template-columns:1fr 1fr; gap:14px; margin-bottom:2rem;">
+
+      <!-- BLOCK 1 -->
+      <div style="background:#fff; border:0.5px solid var(--gray-100); border-radius:12px; overflow:hidden;">
+        <div style="background:#0e0e0e; padding:0.9rem 1.4rem;">
+          <div style="font-size:10px; letter-spacing:0.1em; text-transform:uppercase; color:#666; margin-bottom:3px;">Блок 1 · COO · Daily/Weekly</div>
+          <div style="font-size:16px; font-weight:500; color:#fff;">Drill-down в проблему</div>
+        </div>
+        <div style="padding:1rem 1.4rem;">
+          <div style="font-size:12px; color:var(--gray-500); margin-bottom:0.5rem;">← Блок 2 сигнализирует проблему → COO идёт сюда</div>
+          <div style="font-size:13px; color:var(--gray-700); line-height:1.8;">
+            1. Выбрать ведущий показатель из метрик Блока 2<br>
+            2. Ежедневный/еженедельный замер через дашборд<br>
+            3. Отклонение от плана → определить функцию и этап<br>
+            4. Войти в процесс совместно с Head of<br>
+            5. Корректирующее действие + ответственный + дедлайн<br>
+            6. Нет улучшения → эскалация обратно в Блок 2
+          </div>
+          <div style="margin-top:0.9rem; padding-top:0.75rem; border-top:0.5px solid var(--gray-100);">
+            <div style="font-size:11px; color:var(--gray-500); margin-bottom:0.4rem;">Если буксует Revenue:</div>
+            <div style="display:flex; flex-wrap:wrap; gap:6px; margin-bottom:0.5rem;">
+              <span style="font-size:11px; background:var(--green-light); color:#166534; border-radius:20px; padding:3px 10px;">Win rate</span>
+              <span style="font-size:11px; background:var(--green-light); color:#166534; border-radius:20px; padding:3px 10px;">Pipeline</span>
+              <span style="font-size:11px; background:var(--green-light); color:#166534; border-radius:20px; padding:3px 10px;">Sales cycle</span>
+            </div>
+            <div style="font-size:11px; color:var(--gray-500); margin-bottom:0.4rem;">Если буксует Gross Margin:</div>
+            <div style="display:flex; flex-wrap:wrap; gap:6px;">
+              <span style="font-size:11px; background:#fef3c7; color:#92400e; border-radius:20px; padding:3px 10px;">Utilization</span>
+              <span style="font-size:11px; background:#fef3c7; color:#92400e; border-radius:20px; padding:3px 10px;">Bench %</span>
+              <span style="font-size:11px; background:#fef3c7; color:#92400e; border-radius:20px; padding:3px 10px;">Rework rate</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- BLOCK 3 -->
+      <div style="background:#fff; border:0.5px solid var(--gray-100); border-radius:12px; overflow:hidden;">
+        <div style="background:#1a2a3a; padding:0.9rem 1.4rem;">
+          <div style="font-size:10px; letter-spacing:0.1em; text-transform:uppercase; color:#60a5fa; opacity:0.7; margin-bottom:3px;">Блок 3 · CEO · Quarterly</div>
+          <div style="font-size:16px; font-weight:500; color:#fff;">Стратегический обзор</div>
+        </div>
+        <div style="padding:1rem 1.4rem;">
+          <div style="font-size:12px; color:var(--gray-500); margin-bottom:0.5rem;">← Данные Блока 2 × 3 месяца уходят сюда</div>
+          <div style="font-size:13px; color:var(--gray-700); line-height:1.8;">
+            1. Агрегация данных Блока 2 за квартал<br>
+            2. Анализ трендов — паттерны роста и отклонений<br>
+            3. Оценка action plans из Блоков 1 и 2<br>
+            4. Стратегические выводы — где мы vs OKR<br>
+            5. Корректировка стратегии и приоритетов<br>
+            6. KPI-план Блока 2 на следующий квартал →
+          </div>
+          <div style="margin-top:0.9rem; padding-top:0.75rem; border-top:0.5px solid var(--gray-100);">
+            <div style="font-size:11px; color:var(--gray-500); margin-bottom:0.4rem;">Входные данные из Блока 2:</div>
+            <div style="display:flex; flex-wrap:wrap; gap:6px;">
+              <span style="font-size:11px; background:#eff6ff; color:#1e40af; border-radius:20px; padding:3px 10px;">Revenue × 3M</span>
+              <span style="font-size:11px; background:#eff6ff; color:#1e40af; border-radius:20px; padding:3px 10px;">EBITDA trend</span>
+              <span style="font-size:11px; background:#eff6ff; color:#1e40af; border-radius:20px; padding:3px 10px;">GM delta</span>
+              <span style="font-size:11px; background:#eff6ff; color:#1e40af; border-radius:20px; padding:3px 10px;">OpEx динамика</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- PRINCIPLE -->
+    <div style="background:#f7f7f5; border:0.5px solid var(--gray-100); border-radius:12px; padding:1.25rem 1.6rem; margin-bottom:2rem; display:flex; gap:1rem; align-items:flex-start;">
+      <div style="font-size:22px; flex-shrink:0;">→</div>
+      <div>
+        <div style="font-size:14px; font-weight:500; color:var(--black); margin-bottom:4px;">Как система работает на практике</div>
+        <div style="font-size:13px; color:var(--gray-700); line-height:1.7;">Блок 2 сигнализирует падение Revenue → COO идёт в Блок 1 → находит узкое место в воронке продаж (Opportunity → Deal) → причина: условия оплаты 15 дней — барьер для клиентов → решение: отсрочка 30 дней → Win rate растёт → результат фиксируется в Блоке 2 следующего месяца.</div>
+      </div>
+    </div>
+
+    <!-- METRICS: P&L RESULTS -->
+    <div class="sec-eyebrow" style="margin-bottom:0.4rem">Финансовые результаты операционной системы</div>
+    <div style="font-size:13px; color:var(--gray-500); margin-bottom:1rem;">Выстроил трёхуровневую систему управления ведущими метриками по всем функциям — Delivery, Sales, Marketing, Finance, HR. Результат зафиксирован в P&amp;L.</div>
+
+    <!-- Operational results -->
+    <div style="display:grid; grid-template-columns:repeat(4,1fr); gap:8px; margin-bottom:8px;">
+      <div style="background:var(--amber-light); border:0.5px solid #fde68a; border-radius:8px; padding:0.85rem 1rem;">
+        <div style="font-size:10px; color:#92400e; margin-bottom:4px; text-transform:uppercase; letter-spacing:0.06em;">Utilization Rate</div>
+        <div style="font-size:20px; font-weight:500; color:var(--amber);">87%</div>
+        <div style="font-size:11px; color:#a16207; margin-top:3px;">при 240+ FTE</div>
+      </div>
+      <div style="background:var(--amber-light); border:0.5px solid #fde68a; border-radius:8px; padding:0.85rem 1rem;">
+        <div style="font-size:10px; color:#92400e; margin-bottom:4px; text-transform:uppercase; letter-spacing:0.06em;">Bench от ФОТ</div>
+        <div style="font-size:20px; font-weight:500; color:var(--amber);">≤ 10%</div>
+        <div style="font-size:11px; color:#a16207; margin-top:3px;">удержал при росте ×20</div>
+      </div>
+      <div style="background:var(--amber-light); border:0.5px solid #fde68a; border-radius:8px; padding:0.85rem 1rem;">
+        <div style="font-size:10px; color:#92400e; margin-bottom:4px; text-transform:uppercase; letter-spacing:0.06em;">Простой сотрудника</div>
+        <div style="font-size:20px; font-weight:500; color:var(--amber);">≤ 2 нед</div>
+        <div style="font-size:11px; color:#a16207; margin-top:3px;">максимальный срок</div>
+      </div>
+      <div style="background:#f0fdf4; border:0.5px solid #bbf7d0; border-radius:8px; padding:0.85rem 1rem;">
+        <div style="font-size:10px; color:#166534; margin-bottom:4px; text-transform:uppercase; letter-spacing:0.06em;">Win Rate</div>
+        <div style="font-size:20px; font-weight:500; color:var(--green);">&gt; 35%</div>
+        <div style="font-size:11px; color:#166534; margin-top:3px;">Opportunity → Deal</div>
+      </div>
+    </div>
+
+    <!-- arrow -->
+    <div style="text-align:center; font-size:11px; color:var(--gray-500); padding:3px 0; margin-bottom:6px;">↓ &nbsp; результат в P&amp;L</div>
+
+    <!-- P&L outcomes -->
+    <div style="display:grid; grid-template-columns:repeat(5,1fr); gap:8px; margin-bottom:1rem;">
+      <div style="background:#fff; border:0.5px solid var(--gray-100); border-radius:8px; padding:0.85rem 1rem;">
+        <div style="font-size:10px; color:var(--gray-500); margin-bottom:4px; text-transform:uppercase; letter-spacing:0.06em;">Revenue ARR</div>
+        <div style="font-size:20px; font-weight:500; color:var(--black);">$16M+</div>
+        <div style="font-size:11px; color:var(--gray-500); margin-top:3px;">вырастил с нуля</div>
+      </div>
+      <div style="background:#fff; border:0.5px solid var(--gray-100); border-radius:8px; padding:0.85rem 1rem;">
+        <div style="font-size:10px; color:var(--gray-500); margin-bottom:4px; text-transform:uppercase; letter-spacing:0.06em;">COGS / Delivery</div>
+        <div style="font-size:20px; font-weight:500; color:var(--black);">~55%</div>
+        <div style="font-size:11px; color:var(--gray-500); margin-top:3px;">удержал при росте команды ×20</div>
+      </div>
+      <div style="background:#fff; border:0.5px solid var(--gray-100); border-radius:8px; padding:0.85rem 1rem;">
+        <div style="font-size:10px; color:var(--gray-500); margin-bottom:4px; text-transform:uppercase; letter-spacing:0.06em;">Gross Margin</div>
+        <div style="font-size:20px; font-weight:500; color:var(--green);">40–45%</div>
+        <div style="font-size:11px; color:var(--gray-500); margin-top:3px;">держал весь период масштабирования</div>
+      </div>
+      <div style="background:#fff; border:0.5px solid var(--gray-100); border-radius:8px; padding:0.85rem 1rem;">
+        <div style="font-size:10px; color:var(--gray-500); margin-bottom:4px; text-transform:uppercase; letter-spacing:0.06em;">OpEx</div>
+        <div style="font-size:20px; font-weight:500; color:var(--black);">~20%</div>
+        <div style="font-size:11px; color:var(--gray-500); margin-top:3px;">рос пропорционально выручке</div>
+      </div>
+      <div style="background:#1a3a2a; border-radius:8px; padding:0.85rem 1rem;">
+        <div style="font-size:10px; color:#4ade80; opacity:0.8; margin-bottom:4px; text-transform:uppercase; letter-spacing:0.06em;">EBITDA</div>
+        <div style="font-size:20px; font-weight:500; color:#6ee7b7;">20%</div>
+        <div style="font-size:11px; color:#86efac; margin-top:3px;">удержал при 240+ FTE</div>
+      </div>
+    </div>
+
+    <div class="quote">Я вырастил бизнес с 12 до 240+ человек и удержал EBITDA на уровне 20%. Это стало возможным потому что я выстроил систему управления ведущими метриками по всем функциям — Delivery, Sales, Marketing, Finance, HR — и каждое операционное решение транслировалось в конкретную строку P&amp;L.</div>
+  </div>
+
+  <hr class="divider">
+
+  <!-- CLIENT -->
+  <div class="section" id="client">
+    <div class="sec-eyebrow">Часть 3 · Клиентский кейс</div>
+    <div class="sec-title">SportLogiq: качество данных с 67% до 97%</div>
+    <div class="sec-body">Первый enterprise-клиент. Разрабатывали AI-модели для хоккейной аналитики, работали с generic-подрядчиками и получали грязные данные. Я лично вёл переговоры на уровне C-suite — бюджет, коммерческие условия, SLA.</div>
+
+    <div class="two-col">
+      <div class="card">
+        <div class="card-lbl">Задача клиента</div>
+        <div class="card-body">Заменить ненадёжного подрядчика. Точность аннотации — 67%. AI-модели не обучались стабильно. Pipeline рвался на этапе данных.</div>
+      </div>
+      <div class="card">
+        <div class="card-lbl">Наше конкурентное преимущество</div>
+        <div class="card-body">Не просто «кликеры». Команда из бывших хоккеистов и тренеров — люди, которые понимают игру изнутри и видят аномалию в данных сразу.</div>
+      </div>
+    </div>
+
+    <div class="sec-eyebrow" style="margin-bottom:0.75rem">Что сделали</div>
+    <ul class="steps">
+      <li>
+        <div class="step-num">1</div>
+        <div>
+          <div class="step-main">Команда с доменной экспертизой</div>
+          <div class="step-sub">Набрали аннотаторов с реальным хоккейным бэкграундом. Экспертиза внутри команды, а не в инструкции.</div>
+        </div>
+      </li>
+      <li>
+        <div class="step-num">2</div>
+        <div>
+          <div class="step-main">Quality gates + авто-трекинг ошибок</div>
+          <div class="step-sub">Контрольные точки на каждом этапе pipeline. Автоматическое выявление паттернов ошибок — не ручная проверка выборкой.</div>
+        </div>
+      </li>
+      <li>
+        <div class="step-num">3</div>
+        <div>
+          <div class="step-main">Унификация терминологии и data contracts</div>
+          <div class="step-sub">Стандартизировали номенклатуру событий и форматы передачи. Устранили неоднозначность на входе — источник большинства ошибок.</div>
+        </div>
+      </li>
+    </ul>
+
+    <div class="result-block">
+      <div class="rb-lbl">Результат</div>
+      <div class="res-grid">
+        <div class="res-item"><div class="res-val">67% → 97%</div><div class="res-lbl">Точность аннотации данных</div></div>
+        <div class="res-item"><div class="res-val">12 → 50 FTE</div><div class="res-lbl">Рост команды за первый год</div></div>
+        <div class="res-item"><div class="res-val">Контракт продлён</div><div class="res-lbl">Следующий сезон — без тендера</div></div>
+      </div>
+    </div>
+
+    <div class="quote">SportLogiq стал доказательством гипотезы: доменная экспертиза выигрывает у generic-аутсорсинга. Это заложило основу всей клиентской модели OUTFORZ.</div>
+  </div>
+
+  <footer>
+    <div>Kiril Liberman · CEO, OUTFORZ</div>
+    <div>Case 01 · IT Outsourcing</div>
+  </footer>
+
+</div>
+
+
+</body></html>
